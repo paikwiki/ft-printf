@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"boot.h": "c",
+		"string.h": "c",
+		"ctype.h": "c",
+		"stdio.h": "c"
+	}
+}
