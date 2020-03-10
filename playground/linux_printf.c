@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:05:04 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/09 21:42:30 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/10 21:25:03 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,6 +321,8 @@ int linux_printf(const char *fmt, ...)
 
 int main(void)
 {
-	linux_printf("%d %s", 42, "Hello 42");
+	// linux_printf("%d %s, %s", 42, "Hello", "Forty Two");
+	// linux_printf("\n");
+	linux_printf("%3$c%2$c%1$c\n", 'c', 'b', 'a');
 	return (0);
 }
