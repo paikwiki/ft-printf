@@ -60,96 +60,61 @@ This is a POSIX extension and not in C99. The Parameter field can be omitted or 
 
 |Character|Description                                                         |
 |---------|--------------------------------------------------------------------|
-|---------|--------------------------------------------------------------------|
 |n$|`n`은 형식 지정자에서 사용하는 출력을 위한 파라미터 순서에 따른 숫자이며, 다양한 형식 지정자를 사용하거나 다른 순서로 제공된 파라미터를 여러 번 출력할 수 있습니다. 하나의 자리지정자가 파라미터를 지정하면, 모든 나머지 자리지정자도 파라미터를 지정해야합니다.<br>예를 들어,  `printf("%2$d %2$#x; %1$d %1$#x",16,17)` 는 다음을 출력합니다: `17 0x11; 16 0x10`.<br>이 기능은 주로 언어 종속 규칙에 따라 파라미터의 생성 순서가 다른 지역화(localization)에서 사용합니다(his feature mainly sees its use in localization, where the order of occurrence of parameters vary due to the language-dependent convention).|
 
-### Flags field
+### 플래그 필드(Flags field)
 
-The Flags field can be zero or more (in any order) of:
+플래그 필드는 0이거나 (어떤 순서로든) 아래의 문자가 될 수 있습니다:
 
-|Character|Description                                                         |
+|문자      |설명                                                                |
 |---------|--------------------------------------------------------------------|
-|-(minus)|Left-align the output of this placeholder. (The default is to right-align the output.)
-|+(plus)|Prepends a plus for positive signed-numeric types. positive = +, negative = -.<br>(The default doesn't prepend anything in front of positive numbers.)
-|' '(space)|Prepends a space for positive signed-numeric types. positive =  , negative = -. This flag is ignored if the + flag exists.<br>(The default doesn't prepend anything in front of positive numbers.)
-|0(zero)|When the 'width' option is specified, prepends zeros for numeric types. (The default prepends spaces.)<br>For example, printf("%4X",3) produces     3, while printf("%04X",3) produces 0003.
-|'(apostrophe)|The integer or exponent of a decimal has the thousands grouping separator applied.
-|#(hash)|Alternate form:<br>For g and G types, trailing zeros are not removed.<br>For f, F, e, E, g, G types, the output always contains a decimal point.<br>For o, x, X types, the text 0, 0x, 0X, respectively, is prepended to non-zero numbers.
+|-(minus) |이 자리지정자 출력값을 좌측 정렬(기본은 우측 정렬)|
+|+(plus)  |양수에 더하기 부호를 붙여줌. 양수 = +, 음수 = -.<br>(기본값은 양수일 경우에는 그 앞에 아무 부호를 붙이지 않음)|
+|' '(space)|양수의 앞에 공백을 붙여 줌. 양수 = ' ', 음수 = -. 만약 + 플래그가 있다면 이 플래그는 적용되지 않음<br>(기본값은 양수일 경우에는 그 앞에 아무 부호를 붙이지 않음)||0(zero)  |'width' 옵션이 지정됐을 때, 숫자형의 앞에 0을 붙여줌(기본 값은 공백을 앞에 추가함).<br>예를 들어, `printf("%4X",3)`은 `   3`을, `printf("%04X",3)`은 `0003`을 출력함|
+|'(apostrophe)|정수 또는 소수의 지수(exponent of a decimal)는 천 단위 그룹 구분자가 적용됩니다.|
+|#(hash)  |대안적인 형태:<br>`g`와 `G` 유형을 위해서, 뒤따르는 0을 제거하지 않습니다.<br>`f`, `F`, `e`, `E`, `g`, `G` 유형을 위해, 출력값은 항상 소수점을 포함합니다.<br>`o`, `x`, `X` 유형을 위해, `0`, `0x`, `0X`는 각각 0이 아닌 숫자에 붙습니다.|
 
-### Width field
+### 폭 필드(Width field)
+
+폭 필드는 출력할 문자의 최소 개수를 지정하며, 보통 표 형태의 출력에서 고정된 길이의 필드를 채울 때 사용합니다. 반면 필드가 더 작아도, 출력이 잘리지는 않습니다.
 
 The Width field specifies a minimum number of characters to output, and is typically used to pad fixed-width fields in tabulated output, where the fields would otherwise be smaller, although it does not cause truncation of oversized fields.
 
-The width field may be omitted, or a numeric integer value, or a dynamic value when passed as another argument when indicated by an asterisk *.[citation needed] For example, printf("%*d", 5, 10) will result in    10 being printed, with a total width of 5 characters.
+폭 필드가 필요없거나, 숫자 정수값이거나, 또는 별표(*)로 표시한 후, 또다른 인자로부터 전달받은 동적 값일경우에는 생략할 수 있습니다. 예를 들어, `printf("%*d", 5, 10)`의 결과는 다섯 개의 문자인 `   10`입니다.
 
-Though not part of the width field, a leading zero is interpreted as the zero-padding flag mentioned above, and a negative value is treated as the positive value in conjunction with the left-alignment - flag also mentioned above.
+폭 필드의 일부가 아니더라도, 앞부분의 0은 위에서 언급한 0 패딩값(zero-padding)처럼 해석됩니다. 그리고 `-` 부호는 위에서 언급한 왼쪽 정렬 `-` 플래그로 처리되어 양수값으로 다뤄집니다(a negative value is treated as the positive value in conjunction with the left-alignment - flag also mentioned above).
 
-### Precision field
+### 정밀도 필드(Precision field)
 
-The Precision field usually specifies a maximum limit on the output, depending on the particular formatting type. For floating point numeric types, it specifies the number of digits to the right of the decimal point that the output should be rounded. For the string type, it limits the number of characters that should be output, after which the string is truncated.
+정밀도 필드는 일반적으로 특정 포맷 형식에 따라 출력의 최댓값을 지정합니다. 부동 소수점 숫자 형식의 경우, 출력시 반올림하여 표시할 소수점 오른쪽의 총 자리수가 됩니다. 문자열 형식에서는 문자열을 잘라서 출력할 문자의 개수가 됩니다.
 
-The precision field may be omitted, or a numeric integer value, or a dynamic value when passed as another argument when indicated by an asterisk *. For example, printf("%.*s", 3, "abcdef") will result in abc being printed.
+정밀도 필드가 필요없거나, 정수형 숫자값 또는 별표(*)로 표시한 후, 또다른 인자로부터 전달받은 동적값일 경우에는 생략할 수 있습니다. 예를 들어, `printf("%.*s", 3, "abcdef")`는 `abc`를 출력합니다.
 
-### Length field
+### 길이 필드(Length field)
 
-The Length field can be omitted or be any of:
+> 역주: 길이 필드는 더 학습한 후 번역하는 게 좋을 듯 하여 생략합니다.
 
-|Character|Description                                                         |
+### 서식 지정자(서식 필드, Type field)
+
+서식 지정자는 아래처럼 작성할 수 있습니다:
+
+|문자     |설명                                                                 |
 |---------|--------------------------------------------------------------------|
-|hh|For integer types, causes printf to expect an int-sized integer argument which was promoted from a char.|
-|h|For integer types, causes printf to expect an int-sized integer argument which was promoted from a short.|
-|l|For integer types, causes printf to expect a long-sized integer argument.<br>For floating point types, this has no effect.[3]|
-|ll|For integer types, causes printf to expect a long long-sized integer argument.|
-|L|For floating point types, causes printf to expect a long double argument.|
-|z|For integer types, causes printf to expect a size_t-sized integer argument.|
-|j|For integer types, causes printf to expect a intmax_t-sized integer argument.|
-|t|For integer types, causes printf to expect a ptrdiff_t-sized integer argument.|
+|%        |`%` 문자를 출력합니다(이 유형은 어떤 플래그나, 폭 필드, 정밀도 필드, 길이 필드를 허용하지 않습니다).||
+|d, i     |부호가 있는 정수값. `%d`와 `%i`는 동일한 값을 출력하지만, 입력을 위해 `scanf()`를 사용할 때는 차이가 있습니다(`%i`를 사용하면 입력값이 `0x`로 시작하면 16진수로, `0`으로 시작할 경우에는 8진수로 해석합니다).|
+|u        |10진수의 부호없는 정수를 출력합니다.|
+|f, F     |일반적인(normal)(고정 소수점) 더블형 표기법. `f`와 `F`의 차이는 오직 무한수와 NaN을 출력하는 방식입니다(`f`는 `inf`와 `infinity`, `nan`, `F`는 `INF`와 `INFINITY`, `NAN`).|
+|e, E     |표준 형태의 더블형 값([-]d.ddd e[+/-]ddd). `E` 변환은 (`e`보다는) `E`를 사용해 지수를 표기합니다. 지수는 항상 최소 두개 이상의 숫자를 포함합니다; 값이 0이면, 지수는 `00`입니다. 윈도우 운영체제에서, 지수는 기본적으로 3개의 숫자를 포함합니다. 예: 1.5e002, 그러나 이는 `Microsoft-specific _set_output_format` 함수에 의해 변경될 수 있습니다.|
+|g, G     |지수나 일반적인(normal) 표기의 더블형으로 그 크기에 적절한 형태. `g`는 소문자를, `G`는 대문자를 사용합니다. 이 형식은 소수점 아래의 중요하지 않은 0이 출력되지 않는다는 점에서 고정 소수점 표기로부터 약간 다릅니다. 또한 소수점은 정수에 포함되지 않습니다.|
+|x, X     |16진수의 부호없는 정수형. `x`는 소문자를, `X`는 대문자를 사용합니다.|
+|o        |8진수의 부호없는 정수형|
+|s        |NULL 문자로 종료되는 문자열|
+|c        |char (문자)|
+|p        |구현-정의한 형식의(in an implementation-defined format) void * (빈 포인터)|
+|a, A     |16진수 표기법의 더블형, 0x 또는 0X로 시작합니다. `a`는 소문자를, `A`는 대문자를 사용합니다(C++11 iostreams에는 동일한 작업을 하는 `hexfloat`이 있습니다).|
+|n        |아무것도 출력하지 않지만, 정수형 포인터 파라미터에 성공적으로 작성한 문자의 수를 작성합니다.<br>Java: 플랫폼 중립적인(platform neutral) 개행/캐리지 리턴을 나타냅니다.<br>Note: 이는 조작되지 않는 형식의 문자열에 이용될 수 있습니다(This can be utilized in Uncontrolled format string exploits).|
 
-Additionally, several platform-specific length options came to exist prior to widespread use of the ISO C99 extensions:
-
-|Character|Description                                                         |
-|---------|--------------------------------------------------------------------|
-|I|For signed integer types, causes printf to expect ptrdiff_t-sized integer argument; for unsigned integer types, causes printf to expect size_t-sized integer argument. Commonly found in Win32/Win64 platforms.|
-|I32|For integer types, causes printf to expect a 32-bit (double word) integer argument. Commonly found in Win32/Win64 platforms.|
-|I64|For integer types, causes printf to expect a 64-bit (quad word) integer argument. Commonly found in Win32/Win64 platforms.|
-|q|For integer types, causes printf to expect a 64-bit (quad word) integer argument. Commonly found in BSD platforms.|
-
-ISO C99 includes the inttypes.h header file that includes a number of macros for use in platform-independent printf coding. These must be outside double-quotes, e.g. printf("%" PRId64 "\n", t);
-
-Example macros include:
-
-|Macro    |Description                                                         |
-|---------|--------------------------------------------------------------------|
-|PRId32   |Typically equivalent to I32d (Win32/Win64) or d|
-|PRId64   |Typically equivalent to I64d (Win32/Win64), lld (32-bit platforms) or ld (64-bit platforms)|
-|PRIi32   |Typically equivalent to I32i (Win32/Win64) or i|
-|PRIi64   |Typically equivalent to I64i (Win32/Win64), lli (32-bit platforms) or li (64-bit platforms)|
-|PRIu32   |Typically equivalent to I32u (Win32/Win64) or u|
-|PRIu64   |Typically equivalent to I64u (Win32/Win64), llu (32-bit platforms) or lu (64-bit platforms)|
-|PRIx32   |Typically equivalent to I32x (Win32/Win64) or x|
-|PRIx64   |Typically equivalent to I64x (Win32/Win64), llx (32-bit platforms) or lx (64-bit platforms)|
-
-### Type field
-
-The Type field can be any of:
-
-|Character|Description                                                         |
-|---------|--------------------------------------------------------------------|
-|%        |Prints a literal % character (this type doesn't accept any flags, width, precision, length fields).|
-|d, i     |int as a signed integer. %d and %i are synonymous for output, but are different when used with scanf() for input (where using %i will interpret a number as hexadecimal if it's preceded by 0x, and octal if it's preceded by 0.)|
-|u        |Print decimal unsigned int.|
-|f, F     |double in normal (fixed-point) notation. f and F only differs in how the strings for an infinite number or NaN are printed (inf, infinity and nan for f; INF, INFINITY and NAN for F).|
-|e, E     |double value in standard form ([-]d.ddd e[+/-]ddd). An E conversion uses the letter E (rather than e) to introduce the exponent. The exponent always contains at least two digits; if the value is zero, the exponent is 00. In Windows, the exponent contains three digits by default, e.g. 1.5e002, but this can be altered by Microsoft-specific _set_output_format function.|
-|g, G     |double in either normal or exponential notation, whichever is more appropriate for its magnitude. g uses lower-case letters, G uses upper-case letters. This type differs slightly from fixed-point notation in that insignificant zeroes to the right of the decimal point are not included. Also, the decimal point is not included on whole numbers.|
-|x, X     |unsigned int as a hexadecimal number. x uses lower-case letters and X uses upper-case.|
-|o        |unsigned int in octal.|
-|s        |null-terminated string.|
-|c        |char (character).|
-|p        |void * (pointer to void) in an implementation-defined format.|
-|a, A     |double in hexadecimal notation, starting with 0x or 0X. a uses lower-case letters, A uses upper-case letters. (C++11 iostreams have a hexfloat that works the same).|
-|n        |Print nothing, but writes the number of characters successfully written so far into an integer pointer parameter.<br>Java: indicates a platform neutral newline/carriage return.<br>Note: This can be utilized in Uncontrolled format string exploits.|
-
-### Custom format placeholders
+### 커스텀 형식 자리지정자(Custom format placeholders)
 
 There are a few implementations of printf-like functions that allow extensions to the escape-character-based mini-language, thus allowing the programmer to have a specific formatting function for non-builtin types. One of the most well-known is the (now deprecated) glibc's register_printf_function(). However, it is rarely used due to the fact that it conflicts with static format string checking. Another is Vstr custom formatters, which allows adding multi-character format names.
 
