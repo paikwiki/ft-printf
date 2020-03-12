@@ -116,33 +116,33 @@ The Width field specifies a minimum number of characters to output, and is typic
 
 ### 커스텀 형식 자리지정자(Custom format placeholders)
 
-There are a few implementations of printf-like functions that allow extensions to the escape-character-based mini-language, thus allowing the programmer to have a specific formatting function for non-builtin types. One of the most well-known is the (now deprecated) glibc's register_printf_function(). However, it is rarely used due to the fact that it conflicts with static format string checking. Another is Vstr custom formatters, which allows adding multi-character format names.
+이스케이프 문자 기반의 규모가 작은 언어(mini-language)에서 확장 기능을 허용하는 printf와 비슷한 함수들을 일부 구현해 둔 게 있어서, 개발자는 내장된 형식이 아닌 특정 형식을 사용할 수 있습니다. 가장 잘 알려진 것 중 하나는 (더이상 사용되지 않는) glibc의 `register_printf_function()`입니다. 그러나 이는 정적 형식 문자열 체크와 충돌하는 문제로 거의 사용되지 않습니다.또다른 하나는 다양한 문자 형식 이름을 추가할 수 있는 Vstr custom formatters입니다.
 
-Some applications (like the Apache HTTP Server) include their own printf-like function, and embed extensions into it. However these all tend to have the same problems that register_printf_function() has.
+(아파치 HTTP 서버처럼) 몇몇 애플리케이션은 각각의 printf와 같은 함수를 내장하고 있고, 그 안에 확장 기능을 내장합니다. 그러나 이들은 모두 `register_printf_function()`가 갖고 있던 것과 동일한 문제가 있습니다.
 
-The Linux kernel printk function supports a number of ways to display kernel structures using the generic %p specification, by appending additional format characters.[7] For example, %pI4 prints an IPv4 address in dotted-decimal form. This allows static format string checking (of the %p portion) at the expense of full compatibility with normal printf.
+리눅스 커널의 `printk`는 부가적인 형식 문자들을 추가하여 일반 `%p` 지정을 사용하는 커널 구조들을 출력할 수 있는 다양한 방법을 지원합니다. 예를 들어, `%pI4`는 점으로 구분된 십진수로 IPv4를 출력합니다. 이는 일반 `printf()`와 완전히 호환성을 희생하면서 (`%p`의 부분적인) 정적 문자열 형식 검사를 허용합니다.
 
-Most non-C languages that have a printf-like function work around the lack of this feature by just using the %s format and converting the object to a string representation. C++ offers a notable exception, in that it has a printf function inherited from its C history, but also has a completely different mechanism that is preferred.
+`printf`와 같은 기능을 가진 대부분의 C 언어 이외의 언어는 `%s` 형식을 사용하는 기능과 객체를 문자열 표현으로 변환하는 방법으로 이 기능의 부족을 해결합니다. C++은 C로부터 유래한 `printf` 함수를 가지고 있으나, 기호에 따른 완전히 다른 메커니즘을 가지고 있다는 점에서 차이점이 있다.
 
-## Vulnerabilities
+## 취약점(Vulnerabilities)
 
-### Invalid conversion specifications
+###  잘못된 변환 지정(Invalid conversion specifications)
 
-If the syntax of a conversion specification is invalid, behavior is undefined, and can cause program termination. If there are too few function arguments provided to supply values for all the conversion specifications in the template string, or if the arguments are not of the correct types, the results are also undefined. Excess arguments are ignored. In a number of cases, the undefined behavior has led to "Format string attack" security vulnerabilities.
+변환 규격의 문법이 유효하지 않으면 동작이 정의되지 않고(`undefined`), 프로그램 종료의 원인이 될 수 있다. 템플릿 문자열의 모든 변환 지정에 대입하기 위해 제공한 함수의 인수가 너무 적거나, 인수가 올바른 유형이 아닐 경우, `undefined`가 반환된다. 초과한 인자는 무시된다. 많은 경우에, 정의되지 않은 동작(undefined behavior)은 "형식 문자열 공격(Format string attack) 보안 취약성을 일으킬 수 있다.
 
-Some compilers, like the GNU Compiler Collection, will statically check the format strings of printf-like functions and warn about problems (when using the flags -Wall or -Wformat). GCC will also warn about user-defined printf-style functions if the non-standard "format" __attribute__ is applied to the function.
+GNU 컴파일러 집합(Collection)과 같은 일부 컴파일러는 printf와 유사한 기능의 포맷 문자열을 정적으로 확인하여 문제에 대해 경고한다(-Wall 또는 -Wformat 플래그 사용시). GCC는 또한 비표준 "format" `__attribute__`가 해당 기능에 적용될 경우, 사용자 정의 printf 형식의 함수에 경고를 발생할 것이다.
 
-### Field width versus explicit delimiters in tabular output
+### 길이 필드 VS. 표 형태의 출력값에서의 명시적 구분자(Field width versus explicit delimiters in tabular output)
 
-Using only field widths to provide for tabulation, as with a format like %8d%8d%8d for three integers in three 8-character columns, will not guarantee that field separation will be retained if large numbers occur in the data. Loss of field separation can easily lead to corrupt output. In systems which encourage the use of programs as building blocks in scripts, such corrupt data can often be forwarded into and corrupt further processing, regardless of whether the original programmer expected the output would only be read by human eyes. Such problems can be eliminated by including explicit delimiters, even spaces, in all tabular output formats. Simply changing the dangerous example from before to %7d %7d %7d addresses this, formatting identically until numbers become larger, but then explicitly preventing them from becoming merged on output due to the explicitly included spaces. Similar strategies apply to string data.
+여덟 글자 크기의 3개의 열에, 3개의 정수에 `%8d%8d%8d`와 같은 형식으로 표 형태로 제공하기 위해 필드 길이만 사용하는 건 데이터에 큰 숫자가 있을 경우, 필드 너비가 유지된다는 것을 보장하지 않습니다. 필드 구분이 깨지면 출력 오류를 발생시키기 쉽습니다. 스크립트 내에서 블록을 생성하여 프로그램을 사용하길 권장하는 시스템에서는, 그러한 손상된 데이터는 그 이후의 과정에 손상을 전파할 수 있으며 이는 개발자가 오직 사람의 눈으로 읽을 수 있도록 출력하기를 기대했는지 여부와는 무관하다(In systems which encourage the use of programs as building blocks in scripts, such corrupt data can often be forwarded into and corrupt further processing, regardless of whether the original programmer expected the output would only be read by human eyes). 이러한 문제는 명시적인 구분자, 공백 하나까지 모든 표 형태의 출력 형식에 포함시키면 제거할 수 있다. 간단하게 이전의 위험 요소가 있던 예제를 `%7d %7d %7d`로 변경하면, 숫자가 증가하면 동일한 형식이 적용되지만, 공백을 명시함으로써 출력때 병합으로 되는 오류를 확실히 방지할 수 있다. 이는 문자열 데이터에도 비슷하게 적용할 수 있다.
 
-## Programming languages with printf
+## 프로그래밍 언어에서의 printf(Programming languages with printf)
 
-Languages that use format strings that deviate from the style in this article (such as AMPL and Elixir), languages that inherit their implementation from the JVM or other environment (such as Clojure and Scala), and languages that do not have a standard native printf implementation but have external libraries which emulate printf behavior (such as JavaScript) are not included in this list.
+이 글에서 소개한 것과 동떨어진 형식 문자열을 사용하거나(AMPL, Elixir 등), JVM 또는 기타 환경에서 구현을 상속하는 언어(Clojure, Scala 등), 그리고 printf의 동작을 모방(emulate)하는 외부 라이브러리를 가졌으나 표준 네이티브 printf가 없는 경우(JavaScript)는 이 목록에 포함되지 않습니다.
 
 - awk (via sprintf)
 - C
-  - C++ (also provides overloaded shift operators and manipulators as an alternative for formatted output – see iostream and iomanip)
+  - C++ (쉬프트 연산자와 형식이 적용된 출력을 대신하기 위한 기능(manipulators)을 제공합니다. - iostream과 iomanip를 참조하세요.)
   - Objective-C
 - D
 - F#
@@ -161,7 +161,7 @@ Languages that use format strings that deviate from the style in this article (s
 - PARI/GP
 - Perl
 - PHP
-- Python ( via % operator)
+- Python (via % operator)
 - R
 - Raku (via printf, sprintf, and fmt)
 - Red/System
@@ -169,4 +169,4 @@ Languages that use format strings that deviate from the style in this article (s
 - Tcl (via format command)
 - Transact-SQL (via xp_sprintf)
 - Vala (via print() and FileStream.printf())
-- The printf utility command, sometimes built in the shell like some implementations of the Korn shell (ksh), Bourne again shell (bash), or Z shell (zsh). These commands usually interpret C escapes in the format string.
+- printf 유틸리티 명령은 때때로 콘쉘(Korn shell, ksh), 배시(Bourne again shell, bash), 지쉘(Z shell, zsh)의 구현처럼 쉘에 내장된 경우가 있습니다. 이 명령은 C 이스케이프 문자를 형식 문자열로 해석합니다.
