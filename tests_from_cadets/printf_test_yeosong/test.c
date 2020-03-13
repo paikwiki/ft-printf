@@ -1,4 +1,8 @@
-ft_printf("%s, %s!\n", "Hello", "world");
+#include <stdio.h>
+
+int main(void)
+{
+	ft_printf("%s, %s!\n", "Hello", "world");
 	ft_printf("%+++09.5d\n", 100);		//   +00100
 	ft_printf("%+09d\n", 100);		//+00000100
 	ft_printf("%+9.5d\n", 100);		//   +00100
@@ -39,3 +43,5 @@ ft_printf("%s, %s!\n", "Hello", "world");
 	ft_printf("%d\n",printf("%c %d\n", 128, 50));
 	printf("%d\n", printf("%d %lc\n", 50, 128));
 	ft_printf("%d\n",ft_printf("%d %lc\n", 50, 128));
+	return (0);
+}
