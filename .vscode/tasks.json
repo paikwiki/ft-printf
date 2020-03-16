@@ -7,7 +7,6 @@
             "args": [
                 "-g",
                 "${file}",
-                "${fileDirname}/libft/*.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.out"
             ],
@@ -17,7 +16,32 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "gcc build ft_printf project",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-g",
+                "${workspaceFolder}/*.c",
+                "${workspaceFolder}/libft/*.c",
+                "-o",
+                "${workspaceFolder}/${fileBasenameNoExtension}.out"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
         },
         {
             "type": "shell",
@@ -29,7 +53,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "proot" : "${workspaceFolder}"
+                    "proot": "${workspaceFolder}"
                 }
             },
             "group": "none",
