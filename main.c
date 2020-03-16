@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/13 22:56:54 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/16 19:17:53 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	main(void)
 {
-	printf("Hello, ft_printf()\n");
-	ft_printf("Hello, ft_printf()\n");
+	printf("%%%c: He%llo%c ft_printf()%c\n", 'a', 'b', 'c');
+	ft_printf("%%%c: Hello%c ft_printf()%c\n", 'a', 'b', 'c');
 	return (0);
 }
