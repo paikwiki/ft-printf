@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 20:28:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/09 21:32:22 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/16 13:15:42 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	printfnstr(int max, ...)
 int		main(void)
 {
 	printfnstr(3, "Hello", "Hi", "Bye");
+	printf("==============\n");
 	printfnstr(5, "Hey", "Hi", "Yo", "Yeh", "Bye");
 	return (0);
 }
