@@ -6,13 +6,20 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/16 17:44:55 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/17 15:34:02 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
 
-static	int count_placeholder(const char *str)
+static int	check_params(const char *str, ...)
+{
+	if (str)
+		;
+	return (1);
+}
+
+static int	count_placeholder(const char *str)
 {
 	char	*haystack;
 	int		cnt;
@@ -41,8 +48,14 @@ void	ft_printf(const char *str, ...)
 	int		arg;
 	int		arg_cnt;
 
+
 	idx = 0;
+
+	// placeholders에 자리지정자를 담는다
+	// placeholders: 연결리스트
 	arg_cnt = count_placeholder(str);
+
+	// args에 가변인자를 담는다.
 	va_start(ap, str);
 	while (idx < arg_cnt)
 	{
@@ -53,4 +66,9 @@ void	ft_printf(const char *str, ...)
 		idx++;
 	}
 	va_end(ap);
+
+	// placeholders와 args의 오류를 체크한다.
+
+	// 메인 로직을 수행한다
+
 }
