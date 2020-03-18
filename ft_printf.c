@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/17 15:34:02 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/18 20:49:26 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,56 +19,31 @@ static int	check_params(const char *str, ...)
 	return (1);
 }
 
-static int	count_placeholder(const char *str)
+static int	get_placeholders(t_list *lst_placeholder, const char *str)
 {
-	char	*haystack;
-	int		cnt;
-
-	haystack = ft_strdup(str);
-	cnt = 0;
-
-	if (*haystack == '%')
-	{
-		cnt++;
-		haystack++;
-	}
-	while (*haystack)
-	{
-		if (*haystack == '%' && *(haystack - 1) != '%')
-			cnt++;
-		haystack++;
-	}
-	return cnt;
+	if (!str || !lst_placeholder)
+		return (0);
+	return (1);
 }
 
 void	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	int		idx;
-	int		arg;
-	int		arg_cnt;
+	// 1. 연결리스트인 `lst_placeholder`와 `lst_args`를 만든다.
+	t_list	*lst_placeholder;
+	t_list	*lst_args;
 
-
-	idx = 0;
-
-	// placeholders에 자리지정자를 담는다
-	// placeholders: 연결리스트
-	arg_cnt = count_placeholder(str);
-
-	// args에 가변인자를 담는다.
+	// 2. `lst_placeholder`에 자리지정자를 담는다.
+	if (get_placeholders(lst_placeholder, str))
+		return ;
+	// 3. `lst_args`에 가변인자를 담는다.
 	va_start(ap, str);
-	while (idx < arg_cnt)
-	{
-		arg = va_arg(ap, int);
-		ft_putstr_fd((char *)str, 1);
-		ft_putnbr_fd(arg, 1);
-		ft_putendl_fd("", 1);
-		idx++;
-	}
+	va_arg(ap, int);
 	va_end(ap);
-
-	// placeholders와 args의 오류를 체크한다.
-
-	// 메인 로직을 수행한다
+	// 4. `lst_placeholder`의 길이와 `lst_args`의 길이를 비교한다. `lst_placeholder`의 길이가 더 길면 오류 반환
+	// 5. 문자열을 `%`를 만날 때까지 출력한다.
+	// 6. `%`를 만나면 다음 문자가 `%`인지 체크해서 맞을 경우 `%`처리 로직 수행(`%` 한번만 찍기)
+	// 7. 자리지정자로 판단되면 `lst_placeholder`와 `lst_args`로부터 하나씩 꺼내와서 데이터 처리/출력한다.
+	// 8. 5~7번 과정을 문자열 끝까지 진행한다.
 
 }
