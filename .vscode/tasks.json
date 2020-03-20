@@ -45,7 +45,7 @@
         },
         {
             "type": "shell",
-            "label": "gcc build with Wflags & exec output",
+            "label": "gcc build with Wflags & exec main",
             "command": "sh",
             "args": [
                 "./commands/gcwout.sh"
@@ -54,6 +54,25 @@
                 "cwd": "${workspaceFolder}",
                 "env": {
                     "proot": "${workspaceFolder}"
+                }
+            },
+            "group": "none",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "gcc build with Wflags & exec active file",
+            "command": "sh",
+            "args": [
+                "./commands/gcwout_active.sh"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "proot": "${workspaceFolder}/playground",
+                    "active_file": "${fileBasename}"
                 }
             },
             "group": "none",
