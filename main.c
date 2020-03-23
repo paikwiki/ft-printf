@@ -6,16 +6,16 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/16 19:17:53 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/23 21:06:23 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	main(void)
+int main(void)
 {
-	printf("%%%c: He%llo%c ft_printf()%c\n", 'a', 'b', 'c');
-	ft_printf("%%%c: Hello%c ft_printf()%c\n", 'a', 'b', 'c');
+	char *str = "idx: %d, str: %s, number: %.3f, percent char: %%\n";
+	pholderfinder(str);
 	return (0);
 }
