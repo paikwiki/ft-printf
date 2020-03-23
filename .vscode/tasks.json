@@ -71,7 +71,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
-                    "proot": "${workspaceFolder}/playground",
+                    "proot": "${fileDirname}",
                     "active_file": "${fileBasename}"
                 }
             },
