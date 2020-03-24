@@ -6,19 +6,12 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:40:37 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/23 21:45:46 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/24 13:51:13 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-
-typedef struct	placeholder_list
-{
-	void					*content;
-	int						len;
-	struct placeholder_list	*next;
-}				ph_list;
 
 ph_list *ft_phlstnew(void *content, int len)
 {
@@ -32,7 +25,7 @@ ph_list *ft_phlstnew(void *content, int len)
 	return (lst);
 }
 
-static char	*getpholder(const char *str, int s_idx, const char *fchars)
+static char	*getpholder	(const char *str, int s_idx, const char *fchars)
 {
 	char *fstr;
 	int idx;
@@ -118,9 +111,9 @@ int		pholderfinder(const char *str)
 	return (0);
 }
 
-int main(void)
-{
-	char *str = "idx: %d, str: %s, number: %.3f, percent char: %%\n";
-	pholderfinder(str);
-	return (0);
-}
+// int main(void)
+// {
+// 	char *str = "idx: %d, str: %s, number: %.3f, percent char: %%\n";
+// 	pholderfinder(str);
+// 	return (0);
+// }
