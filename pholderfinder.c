@@ -6,24 +6,12 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:40:37 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/24 13:51:13 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/24 20:40:17 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-
-ph_list *ft_phlstnew(void *content, int len)
-{
-	ph_list *lst;
-
-	if((lst = (ph_list *)malloc(sizeof(ph_list))) == 0)
-		return (0);
-	lst->content = content;
-	lst->len = len;
-	lst->next = 0;
-	return (lst);
-}
 
 static char	*getpholder	(const char *str, int s_idx, const char *fchars)
 {
@@ -49,71 +37,39 @@ static char	*getpholder	(const char *str, int s_idx, const char *fchars)
 	return (fstr);
 }
 
-void ft_phlstadd_back(ph_list **phlst, ph_list *new)
-{
-	ph_list	*last;
-
-	if (!phlst)
-		return ;
-	if (*phlst == 0)
-		*phlst = new;
-	else
-	{
-		last = *phlst;
-		while(last->next != 0)
-			last = last->next;
-		last->next = new;
-	}
-}
-
-int	ft_phlstsize(ph_list *phlst)
-{
-	size_t size;
-	ph_list *temp;
-
-	size = 0;
-	temp = phlst;
-	while (temp != 0)
-	{
-		temp = temp->next;
-		size++;
-	}
-	return (size);
-}
-
-int		pholderfinder(const char *str)
+int			pholderfinder(const char *str)
 {
 	int		idx;
 	int		len;
-	ph_list	*ph_item;
-	ph_list	**ph_list;
+	t_placeholder	*placeholder;
+	t_list			*ph_list_first;
 
-	*ph_list = 0;
+	if((ph_list_first = (t_list *)malloc(sizeof(t_list))) == 0)
+		return (0);
+	ph_list_first->content = 0;
 	len = ft_strlen(str);
 	idx = 0;
 	while (idx < len)
 	{
 		if (str[idx] == '%')
 		{
-			ph_item = ft_phlstnew(getpholder(str, idx, "diouxXfFeEgGaAcsb%"), ft_strlen(getpholder(str, idx, "diouxXfFeEgGaAcsb%")));
-			printf("placeholder: %%%s\n", ph_item->content);
-			idx += ph_item->len;
-			if (!(*ph_list))
-				*ph_list = ph_item;
+			if((placeholder = (t_placeholder *)malloc(sizeof(t_placeholder))) == 0)
+				return (0);
+			placeholder->str = getpholder(str, idx, "diouxXfFeEgGaAcsb%");
+			placeholder->len = ft_strlen(placeholder->str);
+			printf("placeholder: %%%s\n", (placeholder->str));
+			idx += (placeholder->len);
+			if (!(ph_list_first->content))
+				ph_list_first = ft_lstnew(placeholder);
 			else
-				ft_phlstadd_back(ph_list, ph_item);
+				ft_lstadd_back(&ph_list_first, ft_lstnew(placeholder));
 		}
 		idx++;
 	}
-	printf("ph_list size: %d\n", ft_phlstsize(*ph_list));
+	len = ft_lstsize(ph_list_first);
+	printf("ph_list size: %d\n", len);
 	printf("the first %% is not included placeholder. Just print.\n");
-	free(ph_item);
-	return (0);
+	free(placeholder);
+	free(ph_list_first);
+	return (len);
 }
-
-// int main(void)
-// {
-// 	char *str = "idx: %d, str: %s, number: %.3f, percent char: %%\n";
-// 	pholderfinder(str);
-// 	return (0);
-// }
