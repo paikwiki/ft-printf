@@ -6,12 +6,14 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/23 21:06:23 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/24 19:05:44 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+int		pholderfinder(const char *str);
 
 int main(void)
 {
