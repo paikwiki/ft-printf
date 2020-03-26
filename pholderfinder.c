@@ -6,14 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:40:37 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/24 20:40:17 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/26 22:02:54 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-static char	*getpholder	(const char *str, int s_idx, const char *fchars)
+static char			*getpholder	(const char *str, int s_idx, const char *fchars)
 {
 	char *fstr;
 	int idx;
@@ -37,27 +36,33 @@ static char	*getpholder	(const char *str, int s_idx, const char *fchars)
 	return (fstr);
 }
 
-int			pholderfinder(const char *str)
+static t_pholder	*phlodernew(char *str, int len)
 {
-	int		idx;
-	int		len;
-	t_placeholder	*placeholder;
-	t_list			*ph_list_first;
+	t_pholder *placeholder;
+
+	if((placeholder = (t_pholder *)malloc(sizeof(t_pholder))) == 0)
+		return (0);
+	placeholder->str = str;
+	placeholder->len = len;
+	return (placeholder);
+}
+
+int					pholderfinder(const char *str, int len)
+{
+	int			idx;
+	t_pholder	*placeholder;
+	t_list		*ph_list_first;
 
 	if((ph_list_first = (t_list *)malloc(sizeof(t_list))) == 0)
 		return (0);
 	ph_list_first->content = 0;
-	len = ft_strlen(str);
 	idx = 0;
 	while (idx < len)
 	{
 		if (str[idx] == '%')
 		{
-			if((placeholder = (t_placeholder *)malloc(sizeof(t_placeholder))) == 0)
-				return (0);
-			placeholder->str = getpholder(str, idx, "diouxXfFeEgGaAcsb%");
-			placeholder->len = ft_strlen(placeholder->str);
-			printf("placeholder: %%%s\n", (placeholder->str));
+			placeholder = phlodernew(getpholder(str, idx, "diouxXfFeEgGaAcsb%"),
+					ft_strlen(getpholder(str, idx, "diouxXfFeEgGaAcsb%")));
 			idx += (placeholder->len);
 			if (!(ph_list_first->content))
 				ph_list_first = ft_lstnew(placeholder);
@@ -66,10 +71,7 @@ int			pholderfinder(const char *str)
 		}
 		idx++;
 	}
-	len = ft_lstsize(ph_list_first);
-	printf("ph_list size: %d\n", len);
-	printf("the first %% is not included placeholder. Just print.\n");
 	free(placeholder);
 	free(ph_list_first);
-	return (len);
+	return (idx);
 }

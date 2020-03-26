@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/24 19:26:29 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/26 21:25:05 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct	s_placeholder
 {
 	char	*str;
 	int		len;
-}				t_placeholder;
+}				t_pholder;
 
 void ft_printf(const char *str, ...);
 #endif
