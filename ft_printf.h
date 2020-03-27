@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/26 21:25:05 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/27 21:19:15 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ typedef struct	s_placeholder
 	int		len;
 }				t_pholder;
 
-void ft_printf(const char *str, ...);
+int				pholderfinder(t_list **ph_list, const char *str, int len);
+void			ft_printf(const char *str, ...);
 #endif

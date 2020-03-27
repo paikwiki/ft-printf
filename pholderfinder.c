@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 17:40:37 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/26 22:02:54 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/27 21:28:00 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,11 @@ static t_pholder	*phlodernew(char *str, int len)
 	return (placeholder);
 }
 
-int					pholderfinder(const char *str, int len)
+int					pholderfinder(t_list **ph_list, const char *str, int len)
 {
 	int			idx;
 	t_pholder	*placeholder;
-	t_list		*ph_list_first;
 
-	if((ph_list_first = (t_list *)malloc(sizeof(t_list))) == 0)
-		return (0);
-	ph_list_first->content = 0;
 	idx = 0;
 	while (idx < len)
 	{
@@ -64,14 +60,13 @@ int					pholderfinder(const char *str, int len)
 			placeholder = phlodernew(getpholder(str, idx, "diouxXfFeEgGaAcsb%"),
 					ft_strlen(getpholder(str, idx, "diouxXfFeEgGaAcsb%")));
 			idx += (placeholder->len);
-			if (!(ph_list_first->content))
-				ph_list_first = ft_lstnew(placeholder);
+			if (!((*ph_list)->content))
+				*ph_list = ft_lstnew(placeholder);
 			else
-				ft_lstadd_back(&ph_list_first, ft_lstnew(placeholder));
+				ft_lstadd_back(ph_list, ft_lstnew(placeholder));
 		}
 		idx++;
 	}
 	free(placeholder);
-	free(ph_list_first);
 	return (idx);
 }
