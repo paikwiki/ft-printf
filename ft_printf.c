@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/27 22:36:25 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/03/29 17:33:16 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_printf(const char *str, ...)
 
 	arg_len = ft_lstsize(ph_list);
 	// 3. `lst_args`에 가변인자를 담는다.
-	va_start(ap, arg_len);
+	va_start(ap, str);
 	arg_int = 0;
 	while (arg_len > 0)
 	{
