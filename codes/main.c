@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/04 20:28:26 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/04 20:38:33 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 int main(void)
 {
-	ft_printf(3, "Doby", "is", "free!\n");
+	ft_printf("% % %", "Doby", "is", "free!\n");
 	return (0);
 }
