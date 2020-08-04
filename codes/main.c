@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/04 20:59:41 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/04 21:02:49 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 int main(void)
 {
 	ft_printf("% is %", "Doby", "free!");
+	ft_printf("\n");
+	ft_printf("% is %", "Cbaek", "in a jail!");
 	return (0);
 }
