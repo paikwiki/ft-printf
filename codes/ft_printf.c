@@ -6,15 +6,35 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/04 22:07:38 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/04 22:41:24 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
+#include	<stdio.h>
+
+static char *get_placeholder(const char *format, int *idx)
+{
+	char	*placeholder;
+	int		len;
+
+	len = 1;
+	while (format[*idx] != 's') /* 형식 필드를 만날때까지 while 실행 */
+	{
+		++len;
+		*idx = *idx + 1;
+	}
+
+	placeholder = (char *)malloc(sizeof(char) * len + 1);
+	// ft_strlcpy(placeholder, &format[*idx - len], len);
+	placeholder = "%s";
+	return (placeholder);
+}
 
 static int	proc_ft_printf(const char *format, va_list ap)
 {
 	char	*str;
+	char	*placeholder;
 	int		idx;
 	int		total_len;
 
@@ -29,8 +49,12 @@ static int	proc_ft_printf(const char *format, va_list ap)
 		}
 		else
 		{
+			placeholder = get_placeholder(format, &idx);
 			str = va_arg(ap, char *);
-			ft_putstr_fd(str, 1);
+			if (ft_strncmp(placeholder, "%s", ft_strlen("%s")) == 0)
+			{
+				ft_putstr_fd(str, 1);
+			}
 			total_len = total_len + ft_strlen(str);
 		}
 		++idx;
