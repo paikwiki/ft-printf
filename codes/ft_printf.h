@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/27 21:19:15 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/04 20:29:48 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,7 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
+# include <stdio.h>
 
-typedef struct	s_placeholder
-{
-	char	*str;
-	int		len;
-}				t_pholder;
-
-int				pholderfinder(t_list **ph_list, const char *str, int len);
-void			ft_printf(const char *str, ...);
+int	ft_printf(int placeholder_count, ...);
 #endif
