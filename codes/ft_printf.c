@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/05 01:12:36 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/05 01:18:41 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	proc_ft_printf(const char *format, va_list ap)
 		{
 			placeholder = get_placeholder(format, &idx);
 			str = va_arg(ap, char *);
-			if (ft_strncmp(placeholder, "%s", ft_strlen(placeholder)) == 0)
+			if (ft_strrchr(placeholder, 's') != 0)
 				ft_putstr_fd(str, 1);
 			total_len = total_len + ft_strlen(str);
 		}
