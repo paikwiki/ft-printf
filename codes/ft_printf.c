@@ -6,21 +6,21 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/05 00:57:56 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/05 01:12:36 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
 #include	<stdio.h>
 
-static const char *get_placeholder(const char *format, int *idx)
+static const char	*get_placeholder(const char *format, int *idx)
 {
 	char	*placeholder;
 	int		len;
 	int		ph_idx;
 
 	len = 1;
-	while (format[*idx + len++] != 's') /* 형식 필드를 만날때까지 while 실행 */
+	while (ft_strchr(TYPES, format[*idx + len++]) == 0) /* 형식 필드를 만날때까지 while 실행 */
 		;
 	placeholder = (char *)malloc(sizeof(char) * (len + 1));
 	placeholder[len] = '\0';
