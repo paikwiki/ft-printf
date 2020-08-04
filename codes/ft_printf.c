@@ -6,37 +6,40 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/04 22:41:24 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/05 00:57:56 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
 #include	<stdio.h>
 
-static char *get_placeholder(const char *format, int *idx)
+static const char *get_placeholder(const char *format, int *idx)
 {
 	char	*placeholder;
 	int		len;
+	int		ph_idx;
 
 	len = 1;
-	while (format[*idx] != 's') /* 형식 필드를 만날때까지 while 실행 */
+	while (format[*idx + len++] != 's') /* 형식 필드를 만날때까지 while 실행 */
+		;
+	placeholder = (char *)malloc(sizeof(char) * (len + 1));
+	placeholder[len] = '\0';
+	ph_idx = 0;
+	while (len > ph_idx)
 	{
-		++len;
-		*idx = *idx + 1;
+		placeholder[ph_idx] = format[*idx + ph_idx];
+		++ph_idx;
 	}
-
-	placeholder = (char *)malloc(sizeof(char) * len + 1);
-	// ft_strlcpy(placeholder, &format[*idx - len], len);
-	placeholder = "%s";
-	return (placeholder);
+	*idx = *idx + (len - 1);
+	return ((const char *)placeholder);
 }
 
 static int	proc_ft_printf(const char *format, va_list ap)
 {
-	char	*str;
-	char	*placeholder;
-	int		idx;
-	int		total_len;
+	char		*str;
+	const char	*placeholder;
+	int			idx;
+	int			total_len;
 
 	idx = 0;
 	total_len = 0;
@@ -51,10 +54,8 @@ static int	proc_ft_printf(const char *format, va_list ap)
 		{
 			placeholder = get_placeholder(format, &idx);
 			str = va_arg(ap, char *);
-			if (ft_strncmp(placeholder, "%s", ft_strlen("%s")) == 0)
-			{
+			if (ft_strncmp(placeholder, "%s", ft_strlen(placeholder)) == 0)
 				ft_putstr_fd(str, 1);
-			}
 			total_len = total_len + ft_strlen(str);
 		}
 		++idx;
