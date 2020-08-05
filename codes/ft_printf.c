@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/05 15:54:43 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/05 15:58:34 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static int			proc_ft_printf(const char *format, va_list ap)
 		}
 		++idx;
 	}
-	free(str);
 	return (total_len);
 }
 
