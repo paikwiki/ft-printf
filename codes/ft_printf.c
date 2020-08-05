@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/05 01:24:52 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/05 15:43:45 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,46 @@ static const char	*get_placeholder(const char *format, int *idx)
 	return ((const char *)placeholder);
 }
 
-static int	proc_ft_printf(const char *format, va_list ap)
+static char			*get_typed_arg(const char *placeholder, va_list ap)
+{
+	char	*str;
+	char	ph_type;
+
+	ph_type = placeholder[ft_strlen(placeholder) - 1];
+	if (ph_type == 'c')
+	{
+		if ((str = (char *)malloc(sizeof(char) * 2)) == NULL)
+			return (0);
+		str[0] = (char)va_arg(ap, int);
+		str[1] = '\0';
+	}
+	else if (ph_type == 's')
+		str = ft_strdup(va_arg(ap, char *));
+	// else if (ph_type == 'p')
+	// 	;
+	else if (ph_type == 'd')
+		str = ft_strdup(ft_itoa(va_arg(ap, int)));
+	else if (ph_type == 'i')
+		str = ft_strdup(ft_itoa(va_arg(ap, int)));
+	// else if (ph_type == 'u')
+	// 	;
+	// else if (ph_type == 'x')
+	// 	;
+	// else if (ph_type == 'X')
+	// 	;
+	// else if (ph_type == '%')
+	// 	;
+	else
+	{
+		if ((str = (char *)malloc(sizeof(char) * 1)) == NULL)
+			return (0);
+		str[0] = '\0';
+	}
+
+	return (str);
+}
+
+static int			proc_ft_printf(const char *format, va_list ap)
 {
 	char		*str;
 	const char	*placeholder;
@@ -53,10 +92,7 @@ static int	proc_ft_printf(const char *format, va_list ap)
 		else
 		{
 			placeholder = get_placeholder(format, &idx);
-			if (ft_strrchr(placeholder, 's') != 0)
-				str = va_arg(ap, char *);
-			if (ft_strrchr(placeholder, 'd') != 0)
-				str = ft_itoa(va_arg(ap, int));
+			str = get_typed_arg(placeholder, ap);
 			ft_putstr_fd(str, 1);
 			total_len = total_len + ft_strlen(str);
 		}
@@ -65,7 +101,7 @@ static int	proc_ft_printf(const char *format, va_list ap)
 	return (total_len);
 }
 
-int			ft_printf(const char *format, ...)
+int					ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		len;
