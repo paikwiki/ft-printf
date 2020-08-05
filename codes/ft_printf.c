@@ -53,6 +53,12 @@ static char			*get_typed_arg(const char *placeholder, va_list ap)
 		str = ft_strdup(ft_itoa(va_arg(ap, int)));
 	else if (ph_type == 'i')
 		str = ft_strdup(ft_itoa(va_arg(ap, int)));
+	else if (ph_type == '%')
+	{
+		if ((str = (char *)malloc(sizeof(char) * 2)) == NULL)
+			return (0);
+		str = "%\0";
+	}
 	// else if (ph_type == 'p')
 	// 	;
 	// else if (ph_type == 'u')
@@ -60,8 +66,6 @@ static char			*get_typed_arg(const char *placeholder, va_list ap)
 	// else if (ph_type == 'x')
 	// 	;
 	// else if (ph_type == 'X')
-	// 	;
-	// else if (ph_type == '%')
 	// 	;
 	else
 	{
