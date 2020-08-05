@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/05 14:49:10 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/05 15:42:18 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ int main(void)
 	len01 = printf("   printf : %s is %d", "Doby", 100);
 	printf("\n");
 	len02 = printf("   printf : %s is %d", "Cbaek", 98);
+	printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+		/* test 03 */
+	len01 = ft_printf("ft_printf : %c is %c", 'D', 'F');
+	ft_printf("\n");
+	len02 = ft_printf("ft_printf : %c is %c", 'C', 'J');
+	ft_printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 = printf("   printf : %c is %c", 'D', 'F');
+	printf("\n");
+	len02 = printf("   printf : %c is %c", 'C', 'J');
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	return (0);
