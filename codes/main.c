@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/05 20:22:50 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/18 17:49:16 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(void)
 	len02 = 0;
 
 	/* test 01 - plain text */
+	printf("test ====== 01 - plain text ========== \n");
 	len01 = ft_printf("ft_printf : Doby is Free!");
 	ft_printf("\n");
 	len02 = ft_printf("ft_printf : Cbaek is in a jail!");
@@ -33,6 +34,7 @@ int main(void)
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	/* test 02 - s */
+	printf("====== test 02 - s ========== \n");
 	len01 = ft_printf("ft_printf : %s is %s", "Doby", "free!");
 	ft_printf("\n");
 	len02 = ft_printf("ft_printf : %s is %s", "Cbaek", "in a jail!");
@@ -44,6 +46,7 @@ int main(void)
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	/* test 03 - d */
+	printf("====== test 03 - d ========== \n");
 	len01 = ft_printf("ft_printf : %s is %d", "Doby", 100);
 	ft_printf("\n");
 	len02 = ft_printf("ft_printf : %s is %d", "Cbaek", 98);
@@ -55,6 +58,7 @@ int main(void)
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	/* test 04 - c */
+	printf("====== test 04 - c ========== \n");
 	len01 = ft_printf("ft_printf : %c is %c", 'D', 'F');
 	ft_printf("\n");
 	len02 = ft_printf("ft_printf : %c is %c", 'C', 'J');
@@ -66,6 +70,7 @@ int main(void)
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	/* test 05 - % */
+	printf("====== test 05 - %% ========== \n");
 	len01 = ft_printf("ft_printf : %% is %%");
 	ft_printf("\nlen01: %d\n", len01);
 
@@ -73,6 +78,7 @@ int main(void)
 	printf("\nlen02: %d\n", len02);
 
 	/* test 06 - u */
+	printf("====== test 06 - u ========== \n");
 	len01 = ft_printf("ft_printf : u: %u", 1);
 	ft_printf("\n");
 	len02 = ft_printf("ft_printf : u: %u", -1);
@@ -84,6 +90,7 @@ int main(void)
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	/* test 07 - p */
+	printf("====== test 07 - p ========== \n");
 	int temp = 0;
 	len01 = ft_printf("ft_printf : p: %p", &temp);
 	ft_printf("\nlen01: %d\n", len01);
