@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/05 20:29:52 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/18 19:10:00 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,14 @@ static char			*get_typed_arg(const char *placeholder, va_list ap)
 			return (0);
 		str = "%\0";
 	}
-	// else if (ph_type == 'p')
-	// 	;
+	else if (ph_type == 'p')
+	{
+		str = ft_strdup(ft_ultoa_base(va_arg(ap, unsigned long), "0123456789abcdef"));
+		str = ft_strjoin("0x", str);
+	}
 	else if (ph_type == 'u')
 	{
-		int temp = va_arg(ap, int);
-		if (temp > 0)
-			str = ft_strdup(ft_itoa(temp));
-		else
-		{
-			// TODO: Fix wrong behavior
-			if ((str = (char *)malloc(sizeof(char) * 1)) == NULL)
-				return (0);
-			str = "\0";
-		}
-
+		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), "0123456789"));
 	}
 	// else if (ph_type == 'x')
 	// 	;
