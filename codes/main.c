@@ -6,12 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/18 20:02:01 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/18 20:04:17 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 int main(void)
 {
@@ -55,6 +56,16 @@ int main(void)
 	len01 = printf("   printf : %s is %d", "Doby", 100);
 	printf("\n");
 	len02 = printf("   printf : %s is %d", "Cbaek", 98);
+	printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 = ft_printf("ft_printf : %s is %d", "Doby", INT_MAX);
+	ft_printf("\n");
+	len02 = ft_printf("ft_printf : %s is %d", "Cbaek", INT_MIN);
+	ft_printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 = printf("   printf : %s is %d", "Doby", INT_MAX);
+	printf("\n");
+	len02 = printf("   printf : %s is %d", "Cbaek", INT_MIN);
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	/* test 04 - c */
@@ -120,6 +131,16 @@ int main(void)
 	len01 =    printf("   printf : X: %X", 255);
 	printf("\n");
 	len02 =    printf("   printf : X: %X", 4080);
+	printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 = ft_printf("ft_printf : X: %X", INT_MAX);
+	ft_printf("\n");
+	len02 = ft_printf("ft_printf : X: %X", INT_MIN);
+	ft_printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 =    printf("   printf : X: %X", INT_MAX);
+	printf("\n");
+	len02 =    printf("   printf : X: %X", INT_MIN);
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	return (0);
