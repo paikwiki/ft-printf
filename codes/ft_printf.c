@@ -6,12 +6,11 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/18 20:00:43 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/18 20:21:06 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"ft_printf.h"
-#include	<stdio.h>
+#include "ft_printf.h"
 
 static const char	*get_placeholder(const char *format, int *idx)
 {
@@ -49,9 +48,7 @@ static char			*get_typed_arg(const char *placeholder, va_list ap)
 	}
 	else if (ph_type == 's')
 		str = ft_strdup(va_arg(ap, char *));
-	else if (ph_type == 'd')
-		str = ft_strdup(ft_itoa(va_arg(ap, int)));
-	else if (ph_type == 'i')
+	else if (ph_type == 'd' || ph_type == 'i')
 		str = ft_strdup(ft_itoa(va_arg(ap, int)));
 	else if (ph_type == '%')
 	{
@@ -61,17 +58,15 @@ static char			*get_typed_arg(const char *placeholder, va_list ap)
 	}
 	else if (ph_type == 'p')
 	{
-		str = ft_strdup(ft_ultoa_base(va_arg(ap, unsigned long), "0123456789abcdef"));
+		str = ft_strdup(ft_ultoa_base(va_arg(ap, unsigned long), HEX_LOWER));
 		str = ft_strjoin("0x", str);
 	}
 	else if (ph_type == 'u')
-	{
-		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), "0123456789"));
-	}
+		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), DECIMAL));
 	else if (ph_type == 'x')
-		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), "0123456789abcedf"));
+		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), HEX_LOWER));
 	else if (ph_type == 'X')
-		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), "0123456789ABCDEF"));
+		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), HEX_UPPER));
 	else
 	{
 		if ((str = (char *)malloc(sizeof(char) * 1)) == NULL)
@@ -80,6 +75,10 @@ static char			*get_typed_arg(const char *placeholder, va_list ap)
 	}
 	return (str);
 }
+
+/*
+** TODO: get_placeholder()로 가져온 str에 형식 필드 외의 다른 필드 적용
+*/
 
 static int			proc_ft_printf(const char *format, va_list ap)
 {
@@ -101,7 +100,6 @@ static int			proc_ft_printf(const char *format, va_list ap)
 		{
 			placeholder = get_placeholder(format, &idx);
 			str = get_typed_arg(placeholder, ap);
-			/* TODO: 가져온 str에 형식 필드 외의 다른 필드 적용 */
 			ft_putstr_fd(str, 1);
 			total_len = total_len + ft_strlen(str);
 		}
