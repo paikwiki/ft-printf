@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/18 18:51:54 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/18 19:59:58 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,30 @@ int main(void)
 
 	len02 =    printf("   printf : p: %p", &temp);
 	printf("\nlen02: %d\n", len02);
+
+	/* test 08 - x */
+	printf("====== test 08 - x ========== \n");
+	len01 = ft_printf("ft_printf : x: %x", 255);
+	ft_printf("\n");
+	len02 = ft_printf("ft_printf : x: %x", 4080);
+	ft_printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 =    printf("   printf : x: %x", 255);
+	printf("\n");
+	len02 =    printf("   printf : x: %x", 4080);
+	printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	/* test 08 - X */
+	printf("====== test 08 - X ========== \n");
+	len01 = ft_printf("ft_printf : X: %X", 255);
+	ft_printf("\n");
+	len02 = ft_printf("ft_printf : X: %X", 4080);
+	ft_printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 =    printf("   printf : X: %X", 255);
+	printf("\n");
+	len02 =    printf("   printf : X: %X", 4080);
+	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	return (0);
 }
