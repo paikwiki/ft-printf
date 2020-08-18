@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 22:29:14 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/03 22:37:18 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/13 13:12:30 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t i;
+	size_t	idx;
 
-	i = 0;
-	if (n == 0)
-		return ((void *)&s[0]);
-	while(i < n)
+	idx = 0;
+	while (idx < n)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return ((void *)&s[i]);
-		i++;
+		if (((unsigned char *)s)[idx] == (unsigned char)c)
+			return ((void *)&s[idx]);
+		idx++;
 	}
 	return (0);
 }

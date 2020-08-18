@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 21:03:56 by chPaik            #+#    #+#             */
-/*   Updated: 2020/03/07 22:00:43 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/12 23:32:16 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long	getdigit(long long nbr)
+static long long	getdigit(long long nbr)
 {
 	long long	i;
 
@@ -27,9 +27,10 @@ long long	getdigit(long long nbr)
 	return (i);
 }
 
-char		getsign(long long nbr)
+static char			getsign(long long nbr)
 {
 	char		sign;
+
 	if (nbr >= 0)
 		sign = '+';
 	else
@@ -40,29 +41,29 @@ char		getsign(long long nbr)
 	return (sign);
 }
 
-char		*ft_itoa(int n)
+char				*ft_itoa(int n)
 {
 	char		*str;
 	char		sign;
-	long long	ln;
+	long long	len;
 	long long	memsize;
 
-	ln = (long long)n;
-	sign = getsign(ln);
-	if (ln < 0)
-		ln *= -1;
-	memsize = getdigit(ln) + ((sign - 43) / 2);
+	len = (long long)n;
+	sign = getsign(len);
+	if (len < 0)
+		len *= -1;
+	memsize = getdigit(len) + ((sign - 43) / 2);
 	if ((str = (char *)malloc(sizeof(char) * (memsize + 1))) == 0)
-		return 0;
+		return (0);
 	str[memsize--] = 0;
-	if (ln == 0)
-		str[0] = ln + '0';
-	while (ln > 0)
+	if (len == 0)
+		str[0] = len + '0';
+	while (len > 0)
 	{
-		str[memsize--] = (ln % 10) + '0';
-		ln /= 10;
+		str[memsize--] = (len % 10) + '0';
+		len /= 10;
 	}
 	if (sign == '-')
 		str[memsize] = sign;
-	return str;
+	return (str);
 }

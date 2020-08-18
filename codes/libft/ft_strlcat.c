@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 22:52:20 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/03 02:19:40 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/12 23:28:18 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,25 @@ static int	getlen(char *str)
 
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
+	size_t idx;
 	size_t dlen;
 	size_t slen;
 	size_t vacancy;
 
 	dlen = getlen(dst);
 	slen = getlen((char *)src);
-
 	if (!dst || !src)
 		return (0);
 	if (dlen >= dstsize || dstsize == 0)
 		return (slen + dstsize);
-	i = 0;
+	idx = 0;
 	vacancy = dstsize - dlen;
-	while (vacancy > 1 && src[i] != 0)
+	while (vacancy > 1 && src[idx] != 0)
 	{
-		dst[dlen + i] = src[i];
-		i++;
+		dst[dlen + idx] = src[idx];
+		idx++;
 		vacancy--;
 	}
-	dst[dlen + i] = 0;
+	dst[dlen + idx] = 0;
 	return (dlen + slen);
 }

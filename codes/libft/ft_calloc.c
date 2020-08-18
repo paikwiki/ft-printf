@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 11:54:44 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/06 20:01:53 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/10 14:39:58 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	len;
 
 	len = size * count;
-	ptr = (void *)malloc(len);
+	if (!(ptr = (void *)malloc(len)))
+		return (0);
 	i = 0;
 	while (len > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 15:38:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/02 17:49:17 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/12 23:27:18 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
+	size_t idx;
 
 	if (!src || !dst)
 		return (0);
-	i = 0;
+	idx = 0;
 	if (dstsize != 0)
 	{
-		while (src[i] != 0 && i < (dstsize - 1))
+		while (src[idx] != 0 && idx < (dstsize - 1))
 		{
-			dst[i] = src[i];
-			i++;
+			dst[idx] = src[idx];
+			idx++;
 		}
-		dst[i] = 0;
+		dst[idx] = 0;
 	}
-	i = 0;
-	while (src[i] != 0)
-		i++;
-	return (i);
+	idx = 0;
+	while (src[idx] != 0)
+		idx++;
+	return (idx);
 }

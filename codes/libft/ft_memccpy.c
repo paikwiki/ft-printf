@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 16:46:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/03 17:11:01 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/12 23:31:41 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t	i;
+	size_t	idx;
 
-	if (dst == 0 || src == 0)
+	if (!dst && !src)
 		return (0);
-	i = 0;
-	while (i < n)
+	idx = 0;
+	while (idx < n)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		if (((unsigned char *)dst)[i] == (unsigned char)c)
-			return (dst + i + 1);
-		i++;
+		((unsigned char *)dst)[idx] = ((unsigned char *)src)[idx];
+		if (((unsigned char *)dst)[idx] == (unsigned char)c)
+			return (dst + idx + 1);
+		idx++;
 	}
 	return (0);
 }

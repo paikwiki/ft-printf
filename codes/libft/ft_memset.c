@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 02:34:20 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/03 02:44:29 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/12 23:29:39 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t i;
+	size_t idx;
 
-	i = 0;
-	while (i < len)
-		((unsigned char *)b)[i++] = c;
+	idx = 0;
+	while (idx < len)
+		((unsigned char *)b)[idx++] = c;
 	return (b);
 }

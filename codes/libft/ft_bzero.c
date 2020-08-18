@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 02:39:58 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/03 02:47:46 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/12 23:32:42 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t i;
+	size_t	idx;
 
-	i = 0;
-	while (i < n)
-		((unsigned char *)s)[i++] = 0;
+	idx = 0;
+	while (idx < n)
+		((unsigned char *)s)[idx++] = 0;
 }

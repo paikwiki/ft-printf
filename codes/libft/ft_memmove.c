@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 19:19:56 by cbaek             #+#    #+#             */
-/*   Updated: 2020/03/03 21:04:21 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/06 15:18:07 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		s_start = (unsigned char *)(src + len - 1);
 		d_start = (unsigned char *)(dst + len - 1);
 	}
-	i =  0;
+	i = 0;
 	while (i < len)
 	{
 		*d_start = *s_start;

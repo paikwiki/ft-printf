@@ -6,11 +6,11 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 21:45:12 by cbaek             #+#    #+#             */
-/*   Updated: 2020/02/27 22:51:38 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/04/06 15:06:54 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
