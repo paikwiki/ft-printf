@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 18:44:57 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/18 18:45:23 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/18 19:13:33 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	get_baselen(const char *base)
+static size_t	get_baselen(const char *base)
 {
 	size_t idx;
 
@@ -22,7 +22,7 @@ size_t	get_baselen(const char *base)
 	return (idx);
 }
 
-char	*ft_ultoa_base(unsigned long n, const char *base)
+char			*ft_ultoa_base(unsigned long n, const char *base)
 {
 	unsigned long	tmp;
 	size_t			baselen;
