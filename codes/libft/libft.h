@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 19:08:22 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/17 17:08:11 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/18 18:44:26 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 
 /* Additional functions */
 char			*ft_uitoa_base(unsigned int n, const char *base);
+char			*ft_ultoa_base(unsigned long n, const char *base);
 
 #endif
