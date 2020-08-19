@@ -6,21 +6,48 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/18 20:21:06 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 20:45:59 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static const char	*get_placeholder(const char *format, int *idx)
+static const char	*get_placeholder(const char *format, int *idx, t_struct *fields)
 {
 	char	*placeholder;
 	int		len;
 	int		ph_idx;
 
 	len = 1;
+	if (format[*idx + len] == '-' || format[*idx + len] == '0')
+		fields->flag = format[*idx + len++];
+	if (ft_isdigit(format[*idx + len]) || format[*idx + len] == '*')
+	{
+		; // TODO: Get width to fields->width: Int
+		; //		종료조건: !isdigit(format[*idx + len])
+		while(ft_isdigit(format[*idx + len]))
+		{
+			fields->width = (fields->width * 10) + (format[*idx + len] - '0');
+			len++;
+		}
+	}
+
+	if (format[*idx + len] == '.')
+	{
+		len++;
+		while(ft_isdigit(format[*idx + len]))
+		{
+			fields->precision = (fields->precision * 10) + (format[*idx + len] - '0');
+			len++;
+		}
+	}
+
 	while (ft_strchr(TYPES, format[*idx + len]) == 0)
+	{
+		// 여기에 도달한 시점이면 flag, width 필드는 처리 완료인 상태임
 		++len;
+	}
+	fields->type = format[*idx + len];
 	placeholder = (char *)malloc(sizeof(char) * (len + 1));
 	placeholder[len] = '\0';
 	ph_idx = 0;
@@ -76,8 +103,17 @@ static char			*get_typed_arg(const char *placeholder, va_list ap)
 	return (str);
 }
 
+static void init_fields(t_struct *fields)
+{
+	fields->flag = 0;
+	fields->precision = 0;
+	fields->type = 0;
+	fields->width = 0;
+}
+
 /*
 ** TODO: get_placeholder()로 가져온 str에 형식 필드 외의 다른 필드 적용
+** TODO: const char	*placeholder 에 여러번 문자열을 덮어씌우는 게 문제가 되는지 확인
 */
 
 static int			proc_ft_printf(const char *format, va_list ap)
@@ -86,6 +122,7 @@ static int			proc_ft_printf(const char *format, va_list ap)
 	const char	*placeholder;
 	int			idx;
 	int			total_len;
+	t_struct	fields;
 
 	idx = 0;
 	total_len = 0;
@@ -98,7 +135,8 @@ static int			proc_ft_printf(const char *format, va_list ap)
 		}
 		else
 		{
-			placeholder = get_placeholder(format, &idx);
+			init_fields(&fields);
+			placeholder = get_placeholder(format, &idx, &fields);
 			str = get_typed_arg(placeholder, ap);
 			ft_putstr_fd(str, 1);
 			total_len = total_len + ft_strlen(str);
