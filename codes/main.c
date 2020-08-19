@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/18 20:04:17 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 19:38:21 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ int main(void)
 	len01 = 0;
 	len02 = 0;
 
+	printf("================================= \n");
+	printf("== TEST SECTION 1: Type field  == \n");
+	printf("================================= \n\n");
 	/* test 01 - plain text */
-	printf("test ====== 01 - plain text ========== \n");
+	printf("====== 01 - plain text ========== \n");
 	len01 = ft_printf("ft_printf : Doby is Free!");
 	ft_printf("\n");
 	len02 = ft_printf("ft_printf : Cbaek is in a jail!");
@@ -142,6 +145,13 @@ int main(void)
 	printf("\n");
 	len02 =    printf("   printf : X: %X", INT_MIN);
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	printf("Test section 1 is ended. Press any key to continue...\n");
+	scanf("lorem");
+
+	printf("================================= \n");
+	printf("== TEST SECTION 2: Width Field == \n");
+	printf("================================= \n");
 
 	return (0);
 }
