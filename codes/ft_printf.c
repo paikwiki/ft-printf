@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 21:04:20 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 21:10:19 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			*parse_fields(const char *format, int *idx, t_struct *fields)
+static void		*parse_fields(const char *format, int *idx, t_struct *fields)
 {
 	char	*placeholder;
 	int		len;
@@ -23,15 +23,12 @@ void			*parse_fields(const char *format, int *idx, t_struct *fields)
 		fields->flag = format[*idx + len++];
 	if (ft_isdigit(format[*idx + len]) || format[*idx + len] == '*')
 	{
-		; // TODO: Get width to fields->width: Int
-		; //		종료조건: !isdigit(format[*idx + len])
 		while(ft_isdigit(format[*idx + len]))
 		{
 			fields->width = (fields->width * 10) + (format[*idx + len] - '0');
 			len++;
 		}
 	}
-
 	if (format[*idx + len] == '.')
 	{
 		len++;
@@ -41,7 +38,6 @@ void			*parse_fields(const char *format, int *idx, t_struct *fields)
 			len++;
 		}
 	}
-
 	while (ft_strchr(TYPES, format[*idx + len]) == 0)
 	{
 		// 여기에 도달한 시점이면 flag, width 필드는 처리 완료인 상태임
@@ -57,7 +53,7 @@ void			*parse_fields(const char *format, int *idx, t_struct *fields)
 		++ph_idx;
 	}
 	*idx = *idx + len;
-	return ((const char *)placeholder);
+	return (0);
 }
 
 static char		*get_typed_arg(char ph_type, va_list ap)
@@ -111,7 +107,6 @@ static void		init_fields(t_struct *fields)
 
 /*
 ** TODO: get_typed_arg()로 가져온 str에 형식 필드 외의 다른 필드 적용
-** TODO: const char	*placeholder 에 여러번 문자열을 덮어씌우는 게 문제가 되는지 확인
 */
 
 static int		proc_ft_printf(const char *format, va_list ap)
