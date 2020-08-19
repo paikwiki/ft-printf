@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 21:00:42 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 21:02:14 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static const char	*get_placeholder(const char *format, int *idx, t_struct *fields)
+void			*get_placeholder(const char *format, int *idx, t_struct *fields)
 {
 	char	*placeholder;
 	int		len;
@@ -60,7 +60,7 @@ static const char	*get_placeholder(const char *format, int *idx, t_struct *field
 	return ((const char *)placeholder);
 }
 
-static char			*get_typed_arg(char ph_type, va_list ap)
+static char		*get_typed_arg(char ph_type, va_list ap)
 {
 	char	*str;
 
@@ -101,7 +101,7 @@ static char			*get_typed_arg(char ph_type, va_list ap)
 	return (str);
 }
 
-static void init_fields(t_struct *fields)
+static void		init_fields(t_struct *fields)
 {
 	fields->flag = 0;
 	fields->precision = 0;
@@ -114,10 +114,9 @@ static void init_fields(t_struct *fields)
 ** TODO: const char	*placeholder 에 여러번 문자열을 덮어씌우는 게 문제가 되는지 확인
 */
 
-static int			proc_ft_printf(const char *format, va_list ap)
+static int		proc_ft_printf(const char *format, va_list ap)
 {
 	char		*str;
-	const char	*placeholder;
 	int			idx;
 	int			total_len;
 	t_struct	fields;
@@ -134,7 +133,7 @@ static int			proc_ft_printf(const char *format, va_list ap)
 		else
 		{
 			init_fields(&fields);
-			placeholder = get_placeholder(format, &idx, &fields);
+			get_placeholder(format, &idx, &fields);
 			str = get_typed_arg(fields.type, ap);
 			ft_putstr_fd(str, 1);
 			total_len = total_len + ft_strlen(str);
@@ -144,7 +143,7 @@ static int			proc_ft_printf(const char *format, va_list ap)
 	return (total_len);
 }
 
-int					ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		len;
