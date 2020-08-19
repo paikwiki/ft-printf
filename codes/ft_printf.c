@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 20:45:59 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 20:57:22 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,10 @@ static const char	*get_placeholder(const char *format, int *idx, t_struct *field
 	return ((const char *)placeholder);
 }
 
-static char			*get_typed_arg(const char *placeholder, va_list ap)
+static char			*get_typed_arg(char ph_type, va_list ap)
 {
 	char	*str;
-	char	ph_type;
 
-	ph_type = placeholder[ft_strlen(placeholder) - 1];
 	if (ph_type == 'c')
 	{
 		if ((str = (char *)malloc(sizeof(char) * 2)) == NULL)
@@ -137,7 +135,7 @@ static int			proc_ft_printf(const char *format, va_list ap)
 		{
 			init_fields(&fields);
 			placeholder = get_placeholder(format, &idx, &fields);
-			str = get_typed_arg(placeholder, ap);
+			str = get_typed_arg(fields.type, ap);
 			ft_putstr_fd(str, 1);
 			total_len = total_len + ft_strlen(str);
 		}
