@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 21:02:14 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 21:04:20 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			*get_placeholder(const char *format, int *idx, t_struct *fields)
+void			*parse_fields(const char *format, int *idx, t_struct *fields)
 {
 	char	*placeholder;
 	int		len;
@@ -133,7 +133,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 		else
 		{
 			init_fields(&fields);
-			get_placeholder(format, &idx, &fields);
+			parse_fields(format, &idx, &fields);
 			str = get_typed_arg(fields.type, ap);
 			ft_putstr_fd(str, 1);
 			total_len = total_len + ft_strlen(str);
