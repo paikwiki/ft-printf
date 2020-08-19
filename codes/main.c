@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 21:26:43 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 21:48:37 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,13 @@ int main(void)
 	len01 = ft_printf("ft_printf : Andy is $%-123.456d$", 100);
 	ft_printf("\n");
 	len01 = ft_printf("ft_printf : Andy is $%0123.456d$", 100);
+	ft_printf("\n");
+	// flag, width, precision: d,i,u에만 적용?
+	// c,s,p,x,X,%는 필드값을 줘도 반응이 없음
+	len01 =    printf("   printf : u: $%20.20u$\n", 1);
+	len01 =    printf("   printf : u: $%20.10u$\n", 1);
+	len01 =    printf("   printf : u: $%10.20u$\n", 1);
+	// len01 = ft_printf("ft_printf : x: $%20.20x$", 255);
 	ft_printf("\n");
 
 	printf("Test section 1 is ended. Press any key to continue...\n");
