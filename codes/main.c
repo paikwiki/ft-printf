@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 20:57:48 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 21:26:43 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,12 +146,22 @@ int main(void)
 	len02 =    printf("   printf : X: %X", INT_MIN);
 	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
+	printf("================================= \n");
+	printf("== TEMPORARY TEST == \n");
+	printf("================================= \n");
+
+	len01 = ft_printf("ft_printf : Andy is $%*.*d$", 123, 456, 100);
+	ft_printf("\n");
+	len01 = ft_printf("ft_printf : Andy is $%123.456d$", 100);
+	ft_printf("\n");
+	len01 = ft_printf("ft_printf : Andy is $%-123.456d$", 100);
+	ft_printf("\n");
+	len01 = ft_printf("ft_printf : Andy is $%0123.456d$", 100);
+	ft_printf("\n");
+
 	printf("Test section 1 is ended. Press any key to continue...\n");
 	scanf("lorem");
 
-	// len01 = ft_printf("ft_printf : Andy is $%123.456d$", 100);
-	// len01 = ft_printf("ft_printf : Andy is $%-123.456d$", 100);
-	// len01 = ft_printf("ft_printf : Andy is $%0123.456d$", 100);
 
 	printf("================================= \n");
 	printf("== TEST SECTION 2: Width Field == \n");
