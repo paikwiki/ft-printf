@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 20:57:22 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 21:00:42 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static void init_fields(t_struct *fields)
 }
 
 /*
-** TODO: get_placeholder()로 가져온 str에 형식 필드 외의 다른 필드 적용
+** TODO: get_typed_arg()로 가져온 str에 형식 필드 외의 다른 필드 적용
 ** TODO: const char	*placeholder 에 여러번 문자열을 덮어씌우는 게 문제가 되는지 확인
 */
 
