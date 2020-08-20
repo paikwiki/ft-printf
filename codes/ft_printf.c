@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 11:26:44 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 12:23:57 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void		setzero_fields(t_struct *fields)
 	fields->width = 0;
 }
 
-static void		*parse_fields(const char *fmt, int *idx, t_struct *fields, va_list ap)
+static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
+		va_list ap)
 {
 	int		len;
 
@@ -31,15 +32,16 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields, va_list 
 		fields->width = va_arg(ap, int);
 	else if (ft_isdigit(fmt[*idx + len]))
 	{
-		while(ft_isdigit(fmt[*idx + len]) && len++)
+		while (ft_isdigit(fmt[*idx + len]) && len++)
 			fields->width = (fields->width * 10) + (fmt[*idx + len] - '0');
 	}
 	if (fmt[*idx + len] == '.' && len++)
 	{
 		if (fmt[*idx + len] == '*' && len++)
 			fields->prcs = va_arg(ap, int);
-		else {
-			while(ft_isdigit(fmt[*idx + len]) && len++)
+		else
+		{
+			while (ft_isdigit(fmt[*idx + len]) && len++)
 				fields->prcs = (fields->prcs * 10) + (fmt[*idx + len] - '0');
 		}
 	}
@@ -51,44 +53,30 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields, va_list 
 static size_t	proc_placeholder(char ph_type, va_list ap)
 {
 	char	*str;
-	size_t	proc_len;
 
 	if (ph_type == 'c')
-	{
-		ft_putchar_fd((char)va_arg(ap, int), 1);
-		proc_len = 1;
-		return (proc_len);
-	}
+		return (put_c_type(va_arg(ap, int)));
 	else if (ph_type == '%')
-	{
-		ft_putchar_fd('%', 1);
-		proc_len = 1;
-		return (proc_len);
-	}
+		return (put_percent_type());
 	else if (ph_type == 'p')
-	{
-		str = ft_strdup(ft_ultoa_base(va_arg(ap, unsigned long), HEX_LOWER));
-		str = ft_strjoin("0x", str);
-	}
+		return (put_p_type(va_arg(ap, unsigned long)));
 	else if (ph_type == 's')
-		str = ft_strdup(va_arg(ap, char *));
+		return (put_s_type(va_arg(ap, char *)));
 	else if (ph_type == 'd' || ph_type == 'i')
-		str = ft_strdup(ft_itoa(va_arg(ap, int)));
+		return (put_d_type(va_arg(ap, int)));
 	else if (ph_type == 'u')
-		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), DECIMAL));
+		return (put_u_type(va_arg(ap, unsigned int)));
 	else if (ph_type == 'x')
-		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), HEX_LOWER));
+		return (put_xx_type(va_arg(ap, unsigned int), HEX_LOWER));
 	else if (ph_type == 'X')
-		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), HEX_UPPER));
+		return (put_xx_type(va_arg(ap, unsigned int), HEX_UPPER));
 	else
 	{
 		if ((str = (char *)malloc(sizeof(char) * 1)) == NULL)
 			return (0);
 		str[0] = '\0';
 	}
-	ft_putstr_fd(str, 1);
-	proc_len = ft_strlen(str);
-	return (proc_len);
+	return (0);
 }
 
 static int		proc_ft_printf(const char *format, va_list ap)
