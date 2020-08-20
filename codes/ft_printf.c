@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 12:46:29 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 12:50:28 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		setzero_fields(t_struct *fields)
 static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
 		va_list ap)
 {
-	int		len;
+	int	len;
 
 	len = 1;
 	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
