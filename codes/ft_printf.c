@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 10:16:29 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 10:30:36 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		*parse_fields(const char *format, int *idx, t_struct *fields, va_li
 	return (0);
 }
 
-static char		*proc_placeholder(char ph_type, va_list ap)
+static size_t	proc_placeholder(char ph_type, va_list ap)
 {
 	char	*str;
 
@@ -86,7 +86,7 @@ static char		*proc_placeholder(char ph_type, va_list ap)
 		str[0] = '\0';
 	}
 	ft_putstr_fd(str, 1);
-	return (str);
+	return (ft_strlen(str));
 }
 
 static void		init_fields(t_struct *fields)
@@ -99,9 +99,9 @@ static void		init_fields(t_struct *fields)
 
 static int		proc_ft_printf(const char *format, va_list ap)
 {
-	char		*str;
 	int			idx;
-	int			total_len;
+	size_t		proc_len;
+	size_t		total_len;
 	t_struct	fields;
 
 	idx = 0;
@@ -117,8 +117,8 @@ static int		proc_ft_printf(const char *format, va_list ap)
 		{
 			init_fields(&fields);
 			parse_fields(format, &idx, &fields, ap);
-			str = proc_placeholder(fields.type, ap);
-			total_len = total_len + ft_strlen(str);
+			proc_len = proc_placeholder(fields.type, ap);
+			total_len = total_len + proc_len;
 		}
 		++idx;
 	}
@@ -128,7 +128,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 int				ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int		len;
+	size_t	len;
 
 	va_start(ap, format);
 	len = proc_ft_printf(format, ap);
