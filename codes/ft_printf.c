@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 12:39:38 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 12:46:29 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
 
 static size_t	proc_placeholder(char ph_type, va_list ap, t_struct *fields)
 {
-	char	*str;
-
 	if (ph_type == 'c')
 		return (put_c_type(va_arg(ap, int)));
 	else if (ph_type == '%')
@@ -71,12 +69,7 @@ static size_t	proc_placeholder(char ph_type, va_list ap, t_struct *fields)
 	else if (ph_type == 'X')
 		return (put_xx_type(va_arg(ap, unsigned int), HEX_UPPER, fields));
 	else
-	{
-		if ((str = (char *)malloc(sizeof(char) * 1)) == NULL)
-			return (0);
-		str[0] = '\0';
-	}
-	return (0);
+		return (0);
 }
 
 static int		proc_ft_printf(const char *format, va_list ap)
