@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 10:07:24 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 16:52:55 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,50 @@ int main(void)
 	printf("================================= \n");
 	printf("== TEMPORARY TEST == \n");
 	printf("================================= \n");
+
+	/* test 00 - d */
+	printf("====== test 00 - d ========== \n");
+	len01 = ft_printf("ft_printf : %s is %4d", "Andy", 100);
+	ft_printf("\n");
+	len02 = ft_printf("ft_printf : %s is %6d", "Red", 98);
+	ft_printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 = printf("   printf : %s is %4d", "Andy", 100);
+	printf("\n");
+	len02 = printf("   printf : %s is %6d", "Red", 98);
+	printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	/* test 00 - % */
+	printf("====== test 00 - %% ========== \n");
+	len01 = ft_printf("ft_printf : %8% is %8%");
+	ft_printf("\nlen01: %d\n", len01);
+
+	len02 = printf("   printf : %8% is %8%");
+	printf("\nlen02: %d\n", len02);
+
+	printf("====== test 00 - width, c ========== \n");
+	len01 = ft_printf("ft_printf : $%8.10c$", 'a');
+	ft_printf("\n");
+	len02 = ft_printf("ft_printf : $%c$", 'a');
+	ft_printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 = printf("   printf : $%8.10c$", 'a');
+	printf("\n");
+	len02 = printf("   printf : $%c$", 'a');
+	printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	printf("====== test 00 - width, p ========== \n");
+
+	int temp = 0;
+	len01 = ft_printf("ft_printf : $%20p$", &temp);
+	ft_printf("\n");
+	len02 = ft_printf("ft_printf : $%p$", &temp);
+	ft_printf("\nlen01: %d | len02: %d\n", len01, len02);
+
+	len01 = printf("   printf : $%20p$", &temp);
+	printf("\n");
+	len02 = printf("   printf : $%p$", &temp);
+	printf("\nlen01: %d | len02: %d\n", len01, len02);
 
 	len01 = ft_printf("ft_printf : Andy is $%*.*d$", 123, 456, 100);
 	ft_printf("\n");

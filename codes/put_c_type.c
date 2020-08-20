@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:47:52 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 15:10:26 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 16:07:07 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 size_t put_c_type(int arg, t_struct *fields)
 {
-	// TODO: field 처리
-	if (fields->flag == '-')
-		ft_putchar_fd('-', 1);
+	size_t proc_len;
+
+	proc_len = 1;
+	while (fields->width > (int)proc_len)
+	{
+		ft_putchar_fd(' ', 1);
+		proc_len++;
+	}
 
 	ft_putchar_fd((char)arg, 1);
-	return (1);
+	return (proc_len);
 }

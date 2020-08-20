@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 12:50:28 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 16:19:48 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
 	else if (ft_isdigit(fmt[*idx + len]))
 	{
 		while (ft_isdigit(fmt[*idx + len]) && len++)
-			fields->width = (fields->width * 10) + (fmt[*idx + len] - '0');
+			fields->width = (fields->width * 10) + (fmt[*idx + len - 1] - '0');
 	}
 	if (fmt[*idx + len] == '.' && len++)
 	{
@@ -42,7 +42,7 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
 		else
 		{
 			while (ft_isdigit(fmt[*idx + len]) && len++)
-				fields->prcs = (fields->prcs * 10) + (fmt[*idx + len] - '0');
+				fields->prcs = (fields->prcs * 10) + (fmt[*idx + len - 1] - '0');
 		}
 	}
 	fields->type = fmt[*idx + len];
@@ -53,15 +53,15 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
 static size_t	proc_placeholder(char ph_type, va_list ap, t_struct *fields)
 {
 	if (ph_type == 'c')
-		return (put_c_type(va_arg(ap, int)));
+		return (put_c_type(va_arg(ap, int), fields));
 	else if (ph_type == '%')
-		return (put_percent_type());
+		return (put_percent_type(fields));
 	else if (ph_type == 'p')
-		return (put_p_type(va_arg(ap, unsigned long)));
+		return (put_p_type(va_arg(ap, unsigned long), fields));
 	else if (ph_type == 's')
 		return (put_s_type(va_arg(ap, char *), fields));
 	else if (ph_type == 'd' || ph_type == 'i')
-		return (put_d_type(va_arg(ap, int), fields));
+		return (put_di_type(va_arg(ap, int), fields));
 	else if (ph_type == 'u')
 		return (put_u_type(va_arg(ap, unsigned int), fields));
 	else if (ph_type == 'x')

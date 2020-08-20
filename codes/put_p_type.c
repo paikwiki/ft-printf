@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:54:26 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 15:10:41 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 15:41:55 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 size_t	put_p_type(unsigned long arg, t_struct *fields)
 {
 	char *str;
+	size_t proc_len;
 
-	// TODO: field 처리
-	if (fields->flag == '-')
-		ft_putchar_fd('-', 1);
 	str = ft_strdup(ft_ultoa_base(arg, HEX_LOWER));
 	str = ft_strjoin("0x", str);
+	proc_len = ft_strlen(str);
+	while (fields->width > (int)proc_len)
+	{
+		ft_putchar_fd(' ', 1);
+		proc_len++;
+	}
 	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	return (proc_len);
 }
