@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 20:06:36 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 10:43:44 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_struct
 {
 	char	flag;
 	int		width;
-	int		precision;
+	int		prcs;
 	char	type;
 }				t_struct;
 

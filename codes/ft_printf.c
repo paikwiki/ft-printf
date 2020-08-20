@@ -6,43 +6,36 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 10:30:36 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 10:46:17 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		*parse_fields(const char *format, int *idx, t_struct *fields, va_list ap)
+static void		*parse_fields(const char *fmt, int *idx, t_struct *fields, va_list ap)
 {
 	int		len;
 
 	len = 1;
-	if (format[*idx + len] == '-' || format[*idx + len] == '0')
-		fields->flag = format[*idx + len++];
-	if (format[*idx + len] == '*' && len++)
+	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
+		fields->flag = fmt[*idx + len++];
+	if (fmt[*idx + len] == '*' && len++)
 		fields->width = va_arg(ap, int);
-	else if (ft_isdigit(format[*idx + len]))
+	else if (ft_isdigit(fmt[*idx + len]))
 	{
-		while(ft_isdigit(format[*idx + len]))
-		{
-			fields->width = (fields->width * 10) + (format[*idx + len] - '0');
-			len++;
-		}
+		while(ft_isdigit(fmt[*idx + len]) && len++)
+			fields->width = (fields->width * 10) + (fmt[*idx + len] - '0');
 	}
-	if (format[*idx + len] == '.')
+	if (fmt[*idx + len] == '.' && len++)
 	{
-		len++;
-		if (format[*idx + len] == '*' && len++)
-			fields->precision = va_arg(ap, int);
+		if (fmt[*idx + len] == '*' && len++)
+			fields->prcs = va_arg(ap, int);
 		else {
-			while(ft_isdigit(format[*idx + len]))
-			{
-				fields->precision = (fields->precision * 10) + (format[*idx + len] - '0');
-				len++;
-			}
+			while(ft_isdigit(fmt[*idx + len]) && len++)
+				fields->prcs = (fields->prcs * 10) + (fmt[*idx + len] - '0');
 		}
 	}
-	fields->type = format[*idx + len];
+	fields->type = fmt[*idx + len];
 	*idx = *idx + len;
 	return (0);
 }
@@ -89,10 +82,10 @@ static size_t	proc_placeholder(char ph_type, va_list ap)
 	return (ft_strlen(str));
 }
 
-static void		init_fields(t_struct *fields)
+static void		setzero_fields(t_struct *fields)
 {
 	fields->flag = 0;
-	fields->precision = 0;
+	fields->prcs = 0;
 	fields->type = 0;
 	fields->width = 0;
 }
@@ -115,7 +108,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 		}
 		else
 		{
-			init_fields(&fields);
+			setzero_fields(&fields);
 			parse_fields(format, &idx, &fields, ap);
 			proc_len = proc_placeholder(fields.type, ap);
 			total_len = total_len + proc_len;
