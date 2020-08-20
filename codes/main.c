@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 21:48:37 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/19 22:08:33 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,9 @@ int main(void)
 	ft_printf("\n");
 	// flag, width, precision: d,i,u에만 적용?
 	// c,s,p,x,X,%는 필드값을 줘도 반응이 없음
+	// c,p,%는 그냥 출력
+	// s는 0으로 정밀도를 맞추는 경우만 제외
+	// d,i,u,xX 는 동일하게 동작
 	len01 =    printf("   printf : u: $%20.20u$\n", 1);
 	len01 =    printf("   printf : u: $%20.10u$\n", 1);
 	len01 =    printf("   printf : u: $%10.20u$\n", 1);
