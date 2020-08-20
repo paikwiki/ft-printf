@@ -14,6 +14,8 @@
 
 int main(void)
 {
+	printf("$%20c$\n", 'a');
+	printf("$%020c$\n", 'a');
 	// printf(":%+d:\n", 123);
 	// printf(":%+d:\n", -123);
 
@@ -32,9 +34,9 @@ int main(void)
 	// printf(":%x:\n", 123456789);
 
 	// width field
-	printf(":% -*.*d:\n", 8, 4, 24);
-	printf(":% -8.4d:\n", 24);
-	printf(":% -+12.4%:\n");
+	// printf(":% -*.*d:\n", 8, 4, 24);
+	// printf(":% -8.4d:\n", 24);
+	// printf(":% -+12.4%:\n");
 	// printf(":%4d:\n", 123);
 	// printf(":%4d:\n", 12);
 	// printf(":%-4X:\n",3);
