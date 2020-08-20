@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 10:13:31 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 10:16:29 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		*parse_fields(const char *format, int *idx, t_struct *fields, va_li
 	return (0);
 }
 
-static char		*get_typed_arg(char ph_type, va_list ap)
+static char		*proc_placeholder(char ph_type, va_list ap)
 {
 	char	*str;
 
@@ -117,7 +117,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 		{
 			init_fields(&fields);
 			parse_fields(format, &idx, &fields, ap);
-			str = get_typed_arg(fields.type, ap);
+			str = proc_placeholder(fields.type, ap);
 			total_len = total_len + ft_strlen(str);
 		}
 		++idx;
