@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/19 21:26:05 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 10:13:31 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static char		*get_typed_arg(char ph_type, va_list ap)
 			return (0);
 		str[0] = '\0';
 	}
+	ft_putstr_fd(str, 1);
 	return (str);
 }
 
@@ -116,8 +117,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 		{
 			init_fields(&fields);
 			parse_fields(format, &idx, &fields, ap);
-			str = get_typed_arg(fields.type, ap); // TODO: get_typed_arg()로 가져온 str에 형식 필드 외의 다른 필드 적용
-			ft_putstr_fd(str, 1);
+			str = get_typed_arg(fields.type, ap);
 			total_len = total_len + ft_strlen(str);
 		}
 		++idx;
