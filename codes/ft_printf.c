@@ -6,11 +6,19 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 10:46:17 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/20 11:26:44 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void		setzero_fields(t_struct *fields)
+{
+	fields->flag = 0;
+	fields->prcs = 0;
+	fields->type = 0;
+	fields->width = 0;
+}
 
 static void		*parse_fields(const char *fmt, int *idx, t_struct *fields, va_list ap)
 {
@@ -43,29 +51,29 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields, va_list 
 static size_t	proc_placeholder(char ph_type, va_list ap)
 {
 	char	*str;
+	size_t	proc_len;
 
 	if (ph_type == 'c')
 	{
-		if ((str = (char *)malloc(sizeof(char) * 2)) == NULL)
-			return (0);
-		str[0] = (char)va_arg(ap, int);
-		str[1] = '\0';
+		ft_putchar_fd((char)va_arg(ap, int), 1);
+		proc_len = 1;
+		return (proc_len);
 	}
-	else if (ph_type == 's')
-		str = ft_strdup(va_arg(ap, char *));
-	else if (ph_type == 'd' || ph_type == 'i')
-		str = ft_strdup(ft_itoa(va_arg(ap, int)));
 	else if (ph_type == '%')
 	{
-		if ((str = (char *)malloc(sizeof(char) * 2)) == NULL)
-			return (0);
-		str = "%\0";
+		ft_putchar_fd('%', 1);
+		proc_len = 1;
+		return (proc_len);
 	}
 	else if (ph_type == 'p')
 	{
 		str = ft_strdup(ft_ultoa_base(va_arg(ap, unsigned long), HEX_LOWER));
 		str = ft_strjoin("0x", str);
 	}
+	else if (ph_type == 's')
+		str = ft_strdup(va_arg(ap, char *));
+	else if (ph_type == 'd' || ph_type == 'i')
+		str = ft_strdup(ft_itoa(va_arg(ap, int)));
 	else if (ph_type == 'u')
 		str = ft_strdup(ft_uitoa_base(va_arg(ap, unsigned int), DECIMAL));
 	else if (ph_type == 'x')
@@ -79,15 +87,8 @@ static size_t	proc_placeholder(char ph_type, va_list ap)
 		str[0] = '\0';
 	}
 	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
-}
-
-static void		setzero_fields(t_struct *fields)
-{
-	fields->flag = 0;
-	fields->prcs = 0;
-	fields->type = 0;
-	fields->width = 0;
+	proc_len = ft_strlen(str);
+	return (proc_len);
 }
 
 static int		proc_ft_printf(const char *format, va_list ap)
