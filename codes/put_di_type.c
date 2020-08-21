@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:13:28 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 12:16:00 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/21 17:08:45 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ size_t	put_di_type(int arg, t_struct *fields)
 	str = ft_strdup(ft_itoa(arg));
 	proc_len = ft_strlen(str);
 	pcnt = calc(proc_len, fields->width, fields->prcs);
-
-	if (fields->flag == '-') {
-		write(1, str, pcnt.arg);
+	if (fields->flag == '-')
+	{
 		proc_len += putnchar('0', pcnt.zero);
+		write(1, str, pcnt.arg);
 		proc_len += putnchar(' ', pcnt.space);
 	}
-	else {
+	else
+	{
 		proc_len += putnchar(' ', pcnt.space);
 		proc_len += putnchar('0', pcnt.zero);
 		write(1, str, pcnt.arg);

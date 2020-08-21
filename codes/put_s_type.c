@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:09:45 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 12:03:45 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/21 13:23:04 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_putcounts	calc(size_t arg, size_t width, size_t prcs)
 	pcnt.zero = 0;
 	if (arg >= width) // 456
 	{
-		if (arg >= prcs) // 56
+		if (prcs > 0 && arg >= prcs) // 56
 		{
 			pcnt.arg = prcs;
 			pcnt.space = width >= prcs ? width - prcs : 0; // 5, 6

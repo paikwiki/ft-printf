@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 11:19:53 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/21 16:42:24 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,20 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
 	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
 		fields->flag = fmt[*idx + len++];
 	if (fmt[*idx + len] == '*' && ++len)
-		fields->width = va_arg(ap, int);
-	else if (ft_isdigit(fmt[*idx + len]))
 	{
+		fields->width = va_arg(ap, int);
+		if (fields->width < 0)
+		{
+			fields->width = fields->width * -1;
+			fields->flag = '-';
+		}
+	}
+	else if (ft_isdigit(fmt[*idx + len]))
 		while (ft_isdigit(fmt[*idx + len]) && ++len)
 			fields->width = (fields->width * 10) + (fmt[*idx + len - 1] - '0');
-	}
 	if (fmt[*idx + len] == '.' && ++len)
 	{
+		fields->is_dot = 1;
 		if (fmt[*idx + len] == '*' && ++len)
 			fields->prcs = va_arg(ap, int);
 		else

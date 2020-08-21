@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 12:18:51 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/21 16:44:53 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,70 +151,129 @@ int main(void)
 	printf("================================= \n");
 
 
-	ft_printf("%*.*s\n",10 ,6 ,"abcde");
-	printf("%*.*s\n",10 ,6 ,"abcde");
-	ft_printf("%*.*s\n",6 ,8 ,"abcde");
-	printf("%*.*s\n",6 ,8 ,"abcde");
-	ft_printf("%*.*s\n",10 ,4 ,"abcde");
-	printf("%*.*s\n",10 ,4 ,"abcde");
-	ft_printf("%*.*s\n",4 ,6 ,"abcde");
-	printf("%*.*s\n",4 ,6 ,"abcde");
-	ft_printf("%*.*s\n",4 ,3 ,"abcde");
-	printf("%*.*s\n",4 ,3 ,"abcde");
-	ft_printf("%*.*s\n",3 ,4 ,"abcde");
-	printf("%*.*s\n",3 ,4 ,"abcde");
+	// ft_printf("%*.*s\n",10 ,6 ,"abcde");
+	// printf("%*.*s\n",10 ,6 ,"abcde");
+	// ft_printf("%*.*s\n",6 ,8 ,"abcde");
+	// printf("%*.*s\n",6 ,8 ,"abcde");
+	// ft_printf("%*.*s\n",10 ,4 ,"abcde");
+	// printf("%*.*s\n",10 ,4 ,"abcde");
+	// ft_printf("%*.*s\n",4 ,6 ,"abcde");
+	// printf("%*.*s\n",4 ,6 ,"abcde");
+	// ft_printf("%*.*s\n",4 ,3 ,"abcde");
+	// printf("%*.*s\n",4 ,3 ,"abcde");
+	// ft_printf("%*.*s\n",3 ,4 ,"abcde");
+	// printf("%*.*s\n",3 ,4 ,"abcde");
 
-	ft_printf("%*.*d\n",10 ,6 ,23452);
-	printf("%*.*d\n",10 ,6 ,23452);
-	ft_printf("%*.*d\n",6 ,8 ,23452);
-	printf("%*.*d\n",6 ,8 ,23452);
-	ft_printf("%*.*d\n",10 ,4 ,23452);
-	printf("%*.*d\n",10 ,4 ,23452);
-	ft_printf("%*.*d\n",4 ,6 ,23452);
-	printf("%*.*d\n",4 ,6 ,23452);
-	ft_printf("%*.*d\n",4 ,3 ,23452);
-	printf("%*.*d\n",4 ,3 ,23452);
-	ft_printf("%*.*d\n",3 ,4 ,23452);
-	printf("%*.*d\n",3 ,4 ,23452);
+	// ft_printf("%*.*d\n",10 ,6 ,23452);
+	// printf("%*.*d\n",10 ,6 ,23452);
+	// ft_printf("%*.*d\n",6 ,8 ,23452);
+	// printf("%*.*d\n",6 ,8 ,23452);
+	// ft_printf("%*.*d\n",10 ,4 ,23452);
+	// printf("%*.*d\n",10 ,4 ,23452);
+	// ft_printf("%*.*d\n",4 ,6 ,23452);
+	// printf("%*.*d\n",4 ,6 ,23452);
+	// ft_printf("%*.*d\n",4 ,3 ,23452);
+	// printf("%*.*d\n",4 ,3 ,23452);
+	// ft_printf("%*.*d\n",3 ,4 ,23452);
+	// printf("%*.*d\n",3 ,4 ,23452);
 
-	ft_printf("%*.*u\n",10 ,6 ,23452);
-	printf("%*.*u\n",10 ,6 ,23452);
-	ft_printf("%*.*u\n",6 ,8 ,23452);
-	printf("%*.*u\n",6 ,8 ,23452);
-	ft_printf("%*.*u\n",10 ,4 ,23452);
-	printf("%*.*u\n",10 ,4 ,23452);
-	ft_printf("%*.*u\n",4 ,6 ,23452);
-	printf("%*.*u\n",4 ,6 ,23452);
-	ft_printf("%*.*u\n",4 ,3 ,23452);
-	printf("%*.*u\n",4 ,3 ,23452);
-	ft_printf("%*.*u\n",3 ,4 ,23452);
-	printf("%*.*u\n",3 ,4 ,23452);
+	// ft_printf("%*.*u\n",10 ,6 ,23452);
+	// printf("%*.*u\n",10 ,6 ,23452);
+	// ft_printf("%*.*u\n",6 ,8 ,23452);
+	// printf("%*.*u\n",6 ,8 ,23452);
+	// ft_printf("%*.*u\n",10 ,4 ,23452);
+	// printf("%*.*u\n",10 ,4 ,23452);
+	// ft_printf("%*.*u\n",4 ,6 ,23452);
+	// printf("%*.*u\n",4 ,6 ,23452);
+	// ft_printf("%*.*u\n",4 ,3 ,23452);
+	// printf("%*.*u\n",4 ,3 ,23452);
+	// ft_printf("%*.*u\n",3 ,4 ,23452);
+	// printf("%*.*u\n",3 ,4 ,23452);
 
-		ft_printf("%*.*x\n",10 ,6 ,23452);
-	printf("%*.*x\n",10 ,6 ,23452);
-	ft_printf("%*.*x\n",6 ,8 ,23452);
-	printf("%*.*x\n",6 ,8 ,23452);
-	ft_printf("%*.*x\n",10 ,4 ,23452);
-	printf("%*.*x\n",10 ,4 ,23452);
-	ft_printf("%*.*x\n",4 ,6 ,23452);
-	printf("%*.*x\n",4 ,6 ,23452);
-	ft_printf("%*.*x\n",4 ,3 ,23452);
-	printf("%*.*x\n",4 ,3 ,23452);
-	ft_printf("%*.*x\n",3 ,4 ,23452);
-	printf("%*.*x\n",3 ,4 ,23452);
+	// 	ft_printf("%*.*x\n",10 ,6 ,23452);
+	// printf("%*.*x\n",10 ,6 ,23452);
+	// ft_printf("%*.*x\n",6 ,8 ,23452);
+	// printf("%*.*x\n",6 ,8 ,23452);
+	// ft_printf("%*.*x\n",10 ,4 ,23452);
+	// printf("%*.*x\n",10 ,4 ,23452);
+	// ft_printf("%*.*x\n",4 ,6 ,23452);
+	// printf("%*.*x\n",4 ,6 ,23452);
+	// ft_printf("%*.*x\n",4 ,3 ,23452);
+	// printf("%*.*x\n",4 ,3 ,23452);
+	// ft_printf("%*.*x\n",3 ,4 ,23452);
+	// printf("%*.*x\n",3 ,4 ,23452);
 
-	ft_printf("%*.*X\n",10 ,6 ,23452);
-	printf("%*.*X\n",10 ,6 ,23452);
-	ft_printf("%*.*X\n",6 ,8 ,23452);
-	printf("%*.*X\n",6 ,8 ,23452);
-	ft_printf("%*.*X\n",10 ,4 ,23452);
-	printf("%*.*X\n",10 ,4 ,23452);
-	ft_printf("%*.*X\n",4 ,6 ,23452);
-	printf("%*.*X\n",4 ,6 ,23452);
-	ft_printf("%*.*X\n",4 ,3 ,23452);
-	printf("%*.*X\n",4 ,3 ,23452);
-	ft_printf("%*.*X\n",3 ,4 ,23452);
-	printf("%*.*X\n",3 ,4 ,23452);
+	// ft_printf("%*.*X\n",10 ,6 ,23452);
+	// printf("%*.*X\n",10 ,6 ,23452);
+	// ft_printf("%*.*X\n",6 ,8 ,23452);
+	// printf("%*.*X\n",6 ,8 ,23452);
+	// ft_printf("%*.*X\n",10 ,4 ,23452);
+	// printf("%*.*X\n",10 ,4 ,23452);
+	// ft_printf("%*.*X\n",4 ,6 ,23452);
+	// printf("%*.*X\n",4 ,6 ,23452);
+	// ft_printf("%*.*X\n",4 ,3 ,23452);
+	// printf("%*.*X\n",4 ,3 ,23452);
+	// ft_printf("%*.*X\n",3 ,4 ,23452);
+	// printf("%*.*X\n",3 ,4 ,23452);
+
+	int		a = -4;
+	int		b = 0;
+	char	c = 'a';
+	int		d = 2147483647;
+	int		e = -2147483648;
+	int		f = 42;
+	int		g = 25;
+	int		h = 4200;
+	int		i = 8;
+	int		j = -12;
+	int		k = 123456789;
+	int		l = 0;
+	int		m = -12345678;
+	char	*n = "abcdefghijklmnop";
+	char	*o = "-a";
+	char	*p = "-12";
+	char	*q = "0";
+	char	*r = "%%";
+	char	*s = "-2147483648";
+	char	*t = "0x12345678";
+	char	*u = "-0";
+
+	if (
+		a == 0 && b == 0 && c == 0 && d == 0 && e == 0 && f == 0 && g == 0 && f == 0 && h == 0 && i == 0 && j == 0 && k == 0 && l == 0 && m == 0 && n == 0 && o == 0 && p == 0 && q == 0 && r == 0 && s == 0 && t == 0 && u == 0)
+		;
+
+	// ft_printf("%0.i, %0.d, %0.d, %0.d, %0.d, %0.d, %0.d, %0.d", i, j, k, l, m, c, e, d);
+	// ft_printf("%*.d", 0, l);
+	// printf("$%0d$\n", l);
+	// printf("$%0.d$\n", l);
+	// printf("$%03d$\n", l);
+	// ft_printf("$%0d$\n", l);
+	// ft_printf("$%0.d$\n", l);
+	// ft_printf("$%03d$\n", l);
+
+	// // printf("$%*d$", -3, 1);
+	// int idx = -5;
+	// while (idx < 6)
+	// {
+	// 	printf("$%*d$\n", idx, 1);
+	// 	ft_printf("$%*d$\n", idx, 1);
+	// 	idx++;
+	// }
+
+	printf("$%.5i$\n", 2);
+	ft_printf("$%.5i$\n", 2);
+	printf("$%.6d$\n", -3);
+	ft_printf("$%.6d$\n", -3);
+	printf("$%8.6d$\n", -3);
+	ft_printf("$%8.6d$\n", -3);
+	printf("$%-8.6d$\n", -3);
+	ft_printf("$%-8.6d$\n", -3);
+	// ft_printf("ft_printf : Andy is $%12.6d$\n", 100);
+	//    printf("   printf : Andy is $%12.6d$\n", 100);
+	// ft_printf("ft_printf : Andy is $%-12.6d$\n", 100);
+	//    printf("   printf : Andy is $%-12.6d$\n", 100);
+	// ft_printf("ft_printf : Andy is $%012.6d$\n", 100);
+	//    printf("   printf : Andy is $%012.6d$\n", 100);
 
 	// /* test 00 - d */
 	// printf("====== test 00 - d ========== \n");
