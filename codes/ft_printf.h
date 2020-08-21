@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 16:19:37 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/21 11:07:24 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,15 @@ typedef struct	s_struct
 	char	type;
 }				t_struct;
 
+typedef struct	s_putcounts
+{
+	int	space;
+	int	zero;
+	int	arg;
+}				t_putcounts;
+
 int				ft_printf(const char *format, ...);
+size_t			putnchar(char chr, size_t cnt);
 size_t			put_c_type(int arg, t_struct *fields);
 size_t			put_percent_type(t_struct *fields);
 size_t			put_p_type(unsigned long arg, t_struct *fields);

@@ -6,24 +6,59 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:13:28 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/20 16:48:23 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/21 12:16:00 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static t_putcounts	calc(size_t arg, size_t width, size_t prcs)
+{
+	t_putcounts	pcnt;
+
+	if (arg >= width) // 456
+	{
+		pcnt.space = 0;
+		pcnt.arg = arg;
+		pcnt.zero = arg >= prcs ? 0 : prcs - arg; // 56
+	}
+	else // 123
+	{
+		pcnt.arg = arg;
+		if (arg >= prcs) // 3
+		{
+			pcnt.zero = 0;
+			pcnt.space = width - arg;
+		}
+		else // 12
+		{
+			pcnt.zero = prcs - arg;
+			pcnt.space = width >= prcs ? width - prcs : 0;
+		}
+
+	}
+	return (pcnt);
+}
+
 size_t	put_di_type(int arg, t_struct *fields)
 {
-	char	*str;
 	size_t proc_len;
+	char	*str;
+	t_putcounts	pcnt;
 
 	str = ft_strdup(ft_itoa(arg));
 	proc_len = ft_strlen(str);
-	while (fields->width > (int)proc_len)
-	{
-		ft_putchar_fd(' ', 1);
-		proc_len++;
+	pcnt = calc(proc_len, fields->width, fields->prcs);
+
+	if (fields->flag == '-') {
+		write(1, str, pcnt.arg);
+		proc_len += putnchar('0', pcnt.zero);
+		proc_len += putnchar(' ', pcnt.space);
 	}
-	ft_putstr_fd(str, 1);
+	else {
+		proc_len += putnchar(' ', pcnt.space);
+		proc_len += putnchar('0', pcnt.zero);
+		write(1, str, pcnt.arg);
+	}
 	return (proc_len);
 }
