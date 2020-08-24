@@ -260,14 +260,16 @@ int main(void)
 	// 	idx++;
 	// }
 
-	printf("$%.5i$\n", 2);
-	ft_printf("$%.5i$\n", 2);
-	printf("$%.6d$\n", -3);
-	ft_printf("$%.6d$\n", -3);
-	printf("$%8.6d$\n", -3);
-	ft_printf("$%8.6d$\n", -3);
-	printf("$%-8.6d$\n", -3);
-	ft_printf("$%-8.6d$\n", -3);
+	// printf("$%.5i$\n", 2);
+	// ft_printf("$%.5i$\n", 2);
+	// printf("$%.6d$\n", -3);
+	// ft_printf("$%.6d$\n", -3);
+	// printf("$%8.6d$\n", -3);
+	// ft_printf("$%8.6d$\n", -3);
+	// printf("$%-8.6d$\n", -3);
+	// ft_printf("$%-8.6d$\n", -3);
+
+
 	// ft_printf("ft_printf : Andy is $%12.6d$\n", 100);
 	//    printf("   printf : Andy is $%12.6d$\n", 100);
 	// ft_printf("ft_printf : Andy is $%-12.6d$\n", 100);
@@ -376,5 +378,45 @@ int main(void)
 	// len02 = printf("   printf : Red  is $%06d$", 98);
 	// printf("\nlen01: %d | len02: %d\n", len01, len02);
 
+
+	// printf("$%05%$\n");
+	// ft_printf("$%05%$\n");
+	// printf("this %s is empty\n", "");
+	// ft_printf("this %s is empty\n", "");
+
+	// printf("$%32s$\n", "abc");
+	// ft_printf("$%32s$\n", "abc");
+	// printf("$%16s$\n", "nark nark");
+	// ft_printf("$%16s$\n", "nark nark");
+	// printf("$%.3s$\n", "hello");
+	// ft_printf("$%.3s$\n", "hello");
+	// printf("$%.0s$\n", "hello");
+	// ft_printf("$%.0s$\n", "hello");
+	// printf("$hello, %20s.$\n", NULL);
+	// ft_printf("$hello, %20s.$\n", NULL);
+	// printf("$hello, %s.$\n", NULL);
+	// ft_printf("$hello, %s.$\n", NULL);
+	// ft_printf("%.5s%7s$", "yo", "boi");
+	// ft_printf("$%3.s$", "hi low\0don't print me lol\0");
+	// int aa = printf("%.5s%7s", "yo", "boi");
+	// int bb = ft_printf("%.5s%7s", "yo", "boi");
+	// printf("\n%d, %d\n", aa, bb);
+
+	// printf("$%-8.5x$", 34);
+	// printf("$%08.5x$\n", 34);
+	// printf("$%0-8.5x$", 0);
+	// printf("$%0-8.3x$", 8375);
+	// printf("%0-2.7x", 3267);
+
+	// printf("%.0x", 0);
+	// printf("%.x", 0);
+	// printf("%5.0x", 0);
+	// printf("%5.x", 0);
+	// printf("%-5.0x", 0);
+	// printf("%-5.x", 0);
+
+	ft_printf("%5.p", NULL);
+	// printf("%2.9p\n", 1234);
+	// printf("%.5p", 0);
 	return (0);
 }

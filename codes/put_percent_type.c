@@ -32,12 +32,19 @@ size_t 				put_percent_type(t_struct *fields)
 
 	proc_len = 1;
 	pcnt = calc(proc_len, fields->width);
-	if (fields->flag == '-') {
+	if (fields->flag == '-')
+	{
 		write(1, "%", pcnt.arg);
 		proc_len += putnchar('0', pcnt.zero);
 		proc_len += putnchar(' ', pcnt.space);
 	}
-	else {
+	else if (fields->flag == '0')
+	{
+		proc_len += putnchar('0', pcnt.space);
+		write(1, "%", pcnt.arg);
+	}
+	else
+	{
 		proc_len += putnchar(' ', pcnt.space);
 		proc_len += putnchar('0', pcnt.zero);
 		write(1, "%", pcnt.arg);

@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static t_putcounts	calc(size_t arg, size_t width, size_t prcs)
+#include <stdio.h>
+static t_putcounts	calc(size_t arg, size_t width, size_t prcs, int is_dot)
 {
 	t_putcounts	pcnt;
 
 	pcnt.zero = 0;
 	if (arg >= width) // 456
 	{
-		if (prcs > 0 && arg >= prcs) // 56
+		if (is_dot == 1 && arg >= prcs) // 56
 		{
 			pcnt.arg = prcs;
 			pcnt.space = width >= prcs ? width - prcs : 0; // 5, 6
@@ -32,8 +32,8 @@ static t_putcounts	calc(size_t arg, size_t width, size_t prcs)
 	}
 	else // 123
 	{
-		pcnt.arg = arg >= prcs ? prcs : arg;
-		pcnt.space = arg >= prcs ? width - prcs : width - arg;
+		pcnt.arg = (arg >= prcs && prcs != 0) ? prcs : arg;
+		pcnt.space = (arg >= prcs && is_dot != 0) ? width - prcs : width - arg;
 	}
 	return (pcnt);
 }
@@ -44,11 +44,16 @@ size_t	put_s_type(char *arg, t_struct *fields)
 	char		*str;
 	t_putcounts	pcnt;
 
-
-	str = ft_strdup(arg);
+	if (arg == NULL)
+		str = ft_strdup(PRINT_NULL);
+	else
+		str = ft_strdup(arg);
 	proc_len = ft_strlen(str);
-	pcnt = calc(proc_len, fields->width, fields->prcs);
-
+	pcnt = calc(proc_len, fields->width, fields->prcs, fields->is_dot);
+	pcnt.arg = (fields->is_dot == 1 && fields->prcs == 0) ? 0 : pcnt.arg;
+	proc_len = pcnt.arg;
+	if (fields->is_dot == 1 && fields->width == 0 && fields->prcs == 0)
+		return (0);
 	if (fields->flag == '-') {
 		write(1, str, pcnt.arg);
 		proc_len += putnchar('0', pcnt.zero);

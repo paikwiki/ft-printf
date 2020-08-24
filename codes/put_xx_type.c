@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static t_putcounts	calc(size_t arg, size_t width, size_t prcs)
+static t_putcounts	calc(size_t arg, size_t width, size_t prcs, int is_dot)
 {
 	t_putcounts	pcnt;
 
@@ -24,11 +24,11 @@ static t_putcounts	calc(size_t arg, size_t width, size_t prcs)
 	}
 	else // 123
 	{
-		pcnt.arg = arg;
+		pcnt.arg = (is_dot == 1 && prcs == 0) ? 0 : arg;
 		if (arg >= prcs) // 3
 		{
 			pcnt.zero = 0;
-			pcnt.space = width - arg;
+			pcnt.space = (is_dot == 1 && prcs == 0) ? width : width - arg;
 		}
 		else // 12
 		{
@@ -49,11 +49,14 @@ size_t	put_xx_type(unsigned int arg, char *base, t_struct *fields)
 
 	str = ft_strdup(ft_uitoa_base(arg, base));
 	proc_len = ft_strlen(str);
-	pcnt = calc(proc_len, fields->width, fields->prcs);
-	pad_char = fields->flag == '0' ? '0' : ' ';
+	pcnt = calc(proc_len, fields->width, fields->prcs, fields->is_dot);
+	proc_len = fields->is_dot == 1 && fields->prcs == 0 ? proc_len - 1 : proc_len;
+	if (fields->is_dot == 1 && fields->width == 0 && fields->prcs == 0)
+		return (0);
+	pad_char = fields->flag == '0' && fields->is_dot == 0 ? '0' : ' ';
 	if (fields->flag == '-') {
-		write(1, str, pcnt.arg);
 		proc_len += putnchar('0', pcnt.zero);
+		write(1, str, pcnt.arg);
 		proc_len += putnchar(pad_char, pcnt.space);
 	}
 	else {

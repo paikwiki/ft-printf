@@ -26,8 +26,6 @@ SRCS		= ./ft_printf.c \
 
 OBJS		= $(SRCS:.c=.o)
 INCS		= .
-DBGS		= $(wildcard *.dSYM)
-OUTS		= $(wildcard *.out)
 LIBC		= ar rc
 CC			= gcc
 RM			= rm -f
@@ -46,8 +44,6 @@ all : $(NAME)
 clean:
 	$(RM) $(OBJS)
 	make clean -C $(LIBFT)
-	rm -rf $(DBGS)
-	rm -rf $(OUTS)
 
 fclean : clean
 	$(RM) $(NAME)

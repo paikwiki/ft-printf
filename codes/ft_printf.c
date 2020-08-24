@@ -6,10 +6,10 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 16:42:24 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/24 14:57:45 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 #include "ft_printf.h"
 
 static void		setzero_fields(t_struct *fields)
@@ -18,6 +18,7 @@ static void		setzero_fields(t_struct *fields)
 	fields->prcs = 0;
 	fields->type = 0;
 	fields->width = 0;
+	fields->is_dot = 0;
 }
 
 static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
@@ -95,7 +96,8 @@ static int		proc_ft_printf(const char *format, va_list ap)
 		{
 			setzero_fields(&fields);
 			parse_fields(format, &idx, &fields, ap);
-			proc_len = proc_placeholder(fields.type, ap, &fields);
+			if ((proc_len = proc_placeholder(fields.type, ap, &fields)) == 0 && (fields.type != 's' && fields.type != 'x' && fields.type != 'X'))
+				return (ERROR);
 			total_len = total_len + proc_len;
 		}
 		++idx;
@@ -109,7 +111,8 @@ int				ft_printf(const char *format, ...)
 	size_t	len;
 
 	va_start(ap, format);
-	len = proc_ft_printf(format, ap);
+	if ((len = proc_ft_printf(format, ap)) == ERROR)
+		return (ERROR);
 	va_end(ap);
 	return (len);
 }

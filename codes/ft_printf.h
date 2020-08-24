@@ -20,7 +20,8 @@
 # define HEX_LOWER "0123456789abcdef"
 # define HEX_UPPER "0123456789ABCDEF"
 # define DECIMAL "0123456789"
-
+# define ERROR -1
+# define PRINT_NULL "(null)"
 typedef struct	s_struct
 {
 	char	flag;
