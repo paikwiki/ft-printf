@@ -1,5 +1,6 @@
 .DS_Store
 *.out
+*.o
 *.dSYM
 codes/pft_2019/
 codes/42TESTERS-PRINTF/
