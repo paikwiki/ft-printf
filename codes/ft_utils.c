@@ -14,15 +14,15 @@
 
 char	*itoa_abs(int arg)
 {
-	if (arg < 0)
-		return(ft_itoa(-arg));
-	else
-		return(ft_itoa(arg));
+	unsigned int	value;
+
+	value = arg > 0 ? (unsigned int)arg : (unsigned int)arg * -1;
+	return (ft_uitoa_base(value, DECIMAL));
 }
 
 size_t	putnchar(char chr, size_t len)
 {
-	size_t	idx;
+	size_t			idx;
 
 	idx = 0;
 	if (len == 0)

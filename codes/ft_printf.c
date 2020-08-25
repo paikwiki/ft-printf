@@ -6,10 +6,10 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/24 14:57:45 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 01:26:19 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 #include "ft_printf.h"
 
 static void		setzero_fields(t_struct *fields)
@@ -27,6 +27,8 @@ static void		*parse_fields(const char *fmt, int *idx, t_struct *fields,
 	int	len;
 
 	len = 1;
+	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
+		fields->flag = fmt[*idx + len++];
 	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
 		fields->flag = fmt[*idx + len++];
 	if (fmt[*idx + len] == '*' && ++len)
@@ -88,6 +90,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 
 	idx = 0;
 	total_len = 0;
+	proc_len = 0;
 	while (format[idx] != '\0')
 	{
 		if (format[idx] != '%' && ++total_len)
@@ -96,7 +99,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 		{
 			setzero_fields(&fields);
 			parse_fields(format, &idx, &fields, ap);
-			if ((proc_len = proc_placeholder(fields.type, ap, &fields)) == 0 && (fields.type != 's' && fields.type != 'x' && fields.type != 'X'))
+			if ((proc_len = proc_placeholder(fields.type, ap, &fields)) == 0 && (fields.type != 's' && fields.type != 'x' && fields.type != 'X' && fields.type != 'd' && fields.type != 'i' && fields.type != 'u'))
 				return (ERROR);
 			total_len = total_len + proc_len;
 		}

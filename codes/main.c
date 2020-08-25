@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 16:44:53 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 01:34:11 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -415,8 +415,71 @@ int main(void)
 	// printf("%-5.0x", 0);
 	// printf("%-5.x", 0);
 
-	ft_printf("%5.p", NULL);
+	// ft_printf("%5.p", NULL);
 	// printf("%2.9p\n", 1234);
 	// printf("%.5p", 0);
+
+	// d
+	// ft_printf("%0-8.5d", 34);
+	// ft_printf("%0-10.5d", -216);
+	// ft_printf("%0-8.5d", 0);
+	// ft_printf("%0-8.3d", 8375);
+	// ft_printf("%0-8.3d", -8473);
+	// ft_printf("%0-3.7d", 3267);
+	// ft_printf("%0-3.7d", -2375);
+	// ft_printf("%0-3.3d", 6983);
+	// ft_printf("%0-3.3d", -8462);
+	// ft_printf("%.0d", 0);
+	// ft_printf("%.d", 0);
+	// ft_printf("%5.0d", 0);
+	// ft_printf("%5.d", 0);
+	// ft_printf("%-5.0d", 0);
+	// ft_printf("%-5.d", 0);
+
+	// final 42 errors
+	static char *s_hidden = "hi low\0don't print me lol\0";
+
+	ft_printf("%-05%");
+	ft_printf("%00-s", s_hidden);
+	ft_printf("%09s", s_hidden);
+	ft_printf("%-09s", s_hidden);
+	// ft_printf("%7u", 33);
+	// ft_printf("%3u", 0);
+	// ft_printf("%-7u", 33);
+	// ft_printf("%-3u", 0);
+	// ft_printf("%.5u", 2);
+	// ft_printf("%.3u", 0);
+	// ft_printf("%05u", 43);
+	// ft_printf("%03u", 0);
+	// ft_printf("%8.5u", 34);
+	// ft_printf("%8.5u", 0);
+	// ft_printf("%8.3u", 8375);
+	// ft_printf("%3.7u", 3267);
+	// ft_printf("%-8.5u", 34);
+	// ft_printf("%-8.5u", 0);
+	// ft_printf("%-8.3u", 8375);
+	// ft_printf("%-3.7u", 3267);
+	// ft_printf("%08.5u", 34);
+	// ft_printf("%08.5u", 0);
+	// ft_printf("%08.3u", 8375);
+	// ft_printf("%03.7u", 3267);
+	// ft_printf("%0-8.5u", 34);
+	// ft_printf("%0-8.5u", 0);
+	// ft_printf("%0-8.3u", 8375);
+	// ft_printf("%0-3.7u", 3267);
+	// ft_printf("%.0u", 0);
+	// ft_printf("%.u", 0);
+	// ft_printf("%5.0u", 0);
+	// ft_printf("%5.u", 0);
+	// ft_printf("%-5.0u", 0);
+	// ft_printf("%-5.u", 0);
+	// ft_printf("%2.9p\n", 1234);
+	// ft_printf("%.5p", 0);
+	// ft_printf("%d", INT_MIN);
+	// //ddd ft_printf("%d", INT_MAX + 1);
+	// ft_printf("%i", INT_MIN);
+	// //ddd ft_printf("%i", INT_MAX + 1);
+	// ft_printf("%%-d 42 == %-d\n", INT_MIN);
+	// ft_printf("%.*i", -6, -3);
 	return (0);
 }
