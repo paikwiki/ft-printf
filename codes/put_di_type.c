@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:13:28 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 17:08:45 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/25 22:58:38 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_putcounts	calc(size_t arg, size_t width, size_t prcs)
+static t_putcounts	calc(size_t arg, size_t width, size_t prcs, int is_negative)
 {
 	t_putcounts	pcnt;
 
@@ -28,12 +28,12 @@ static t_putcounts	calc(size_t arg, size_t width, size_t prcs)
 		if (arg >= prcs) // 3
 		{
 			pcnt.zero = 0;
-			pcnt.space = width - arg;
+			pcnt.space = width - arg - is_negative;
 		}
 		else // 12
 		{
 			pcnt.zero = prcs - arg;
-			pcnt.space = width >= prcs ? width - prcs : 0;
+			pcnt.space = width >= prcs ? width - prcs - is_negative : 0;
 		}
 
 	}
@@ -44,20 +44,34 @@ size_t	put_di_type(int arg, t_struct *fields)
 {
 	size_t proc_len;
 	char	*str;
+	int		is_negative;
+	// int		pad_char;
+
 	t_putcounts	pcnt;
 
-	str = ft_strdup(ft_itoa(arg));
+	is_negative = arg < 0 ? 1 : 0;
+	str = ft_strdup(itoa_abs(arg));
 	proc_len = ft_strlen(str);
-	pcnt = calc(proc_len, fields->width, fields->prcs);
+	pcnt = calc(proc_len, fields->width, fields->prcs, is_negative);
+	// pad_char = fields->flag == '0' ? '0' : ' ';
 	if (fields->flag == '-')
 	{
+		proc_len += is_negative > 0 ? putnchar('-', 1) : 0;
 		proc_len += putnchar('0', pcnt.zero);
 		write(1, str, pcnt.arg);
 		proc_len += putnchar(' ', pcnt.space);
 	}
+	else if (fields->flag == '0')
+	{
+		// proc_len += putnchar(pad_char, pcnt.space);
+		proc_len += is_negative > 0 ? putnchar('-', 1) : 0;
+		proc_len += putnchar('0', pcnt.zero + pcnt.space);
+		write(1, str, pcnt.arg);
+	}
 	else
 	{
 		proc_len += putnchar(' ', pcnt.space);
+		proc_len += is_negative > 0 ? putnchar('-', 1) : 0;
 		proc_len += putnchar('0', pcnt.zero);
 		write(1, str, pcnt.arg);
 	}

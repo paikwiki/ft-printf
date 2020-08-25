@@ -6,11 +6,19 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 10:08:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 16:15:30 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/25 22:39:52 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*itoa_abs(int arg)
+{
+	if (arg < 0)
+		return(ft_itoa(-arg));
+	else
+		return(ft_itoa(arg));
+}
 
 size_t	putnchar(char chr, size_t len)
 {
