@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 12:36:16 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 17:07:00 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 int main(void)
 {
-	int	len01;
-	int len02;
+	// int	len01;
+	// int len02;
 
-	len01 = 0;
-	len02 = 0;
+	// len01 = 0;
+	// len02 = 0;
+	// static char *s_hidden = "hi low\0don't print me lol\0";
 
 	// printf("================================= \n");
 	// printf("== TEST SECTION 1: Type field  == \n");
@@ -146,9 +147,9 @@ int main(void)
 	// len02 =    printf("   printf : X: %X", INT_MIN);
 	// printf("\nlen01: %d | len02: %d\n", len01, len02);
 
-	printf("================================= \n");
-	printf("== TEMPORARY TEST == \n");
-	printf("================================= \n");
+	// printf("================================= \n");
+	// printf("== TEMPORARY TEST == \n");
+	// printf("================================= \n");
 
 
 	// ft_printf("%*.*s\n",10 ,6 ,"abcde");
@@ -216,31 +217,31 @@ int main(void)
 	// ft_printf("%*.*X\n",3 ,4 ,23452);
 	// printf("%*.*X\n",3 ,4 ,23452);
 
-	int		a = -4;
-	int		b = 0;
-	char	c = 'a';
-	int		d = 2147483647;
-	int		e = -2147483648;
-	int		f = 42;
-	int		g = 25;
-	int		h = 4200;
-	int		i = 8;
-	int		j = -12;
-	int		k = 123456789;
-	int		l = 0;
-	int		m = -12345678;
-	char	*n = "abcdefghijklmnop";
-	char	*o = "-a";
-	char	*p = "-12";
-	char	*q = "0";
-	char	*r = "%%";
-	char	*s = "-2147483648";
-	char	*t = "0x12345678";
-	char	*u = "-0";
+	// int		a = -4;
+	// int		b = 0;
+	// char	c = 'a';
+	// int		d = 2147483647;
+	// int		e = -2147483648;
+	// int		f = 42;
+	// int		g = 25;
+	// int		h = 4200;
+	// int		i = 8;
+	// int		j = -12;
+	// int		k = 123456789;
+	// int		l = 0;
+	// int		m = -12345678;
+	// char	*n = "abcdefghijklmnop";
+	// char	*o = "-a";
+	// char	*p = "-12";
+	// char	*q = "0";
+	// char	*r = "%%";
+	// char	*s = "-2147483648";
+	// char	*t = "0x12345678";
+	// char	*u = "-0";
 
-	if (
-		a == 0 && b == 0 && c == 0 && d == 0 && e == 0 && f == 0 && g == 0 && f == 0 && h == 0 && i == 0 && j == 0 && k == 0 && l == 0 && m == 0 && n == 0 && o == 0 && p == 0 && q == 0 && r == 0 && s == 0 && t == 0 && u == 0)
-		;
+	// if (
+	// 	a == 0 && b == 0 && c == 0 && d == 0 && e == 0 && f == 0 && g == 0 && f == 0 && h == 0 && i == 0 && j == 0 && k == 0 && l == 0 && m == 0 && n == 0 && o == 0 && p == 0 && q == 0 && r == 0 && s == 0 && t == 0 && u == 0)
+	// 	;
 
 	// ft_printf("%0.i, %0.d, %0.d, %0.d, %0.d, %0.d, %0.d, %0.d", i, j, k, l, m, c, e, d);
 	// ft_printf("%*.d", 0, l);
@@ -437,7 +438,6 @@ int main(void)
 	// ft_printf("%-5.d", 0);
 
 	// final 42 errors
-	// static char *s_hidden = "hi low\0don't print me lol\0";
 
 	// ft_printf("%-05%");
 	// ft_printf("%00-s", s_hidden);
@@ -481,6 +481,104 @@ int main(void)
 	// //ddd ft_printf("%i", INT_MAX + 1);
 	// ft_printf("%%-d 42 == %-d\n", INT_MIN);
 	// ft_printf("%.*i", -6, -3);
-	ft_printf("%-*.*s", -7, -3, "yolo");
+	// ft_printf("%-*.*s", -7, -3, "yolo");
+	// printf("%-05%");
+	// printf("%00-s", s_hidden);
+	// printf("%09s", s_hidden);
+	// printf("%-09s", s_hidden);/
+
+	// printf("%2.9p\n", 1234);
+	// printf("%.5p", 0);
+	// printf("%09s", s_hidden);
+
+
+
+	// d all =============================================================
+	ft_printf("this %d number", 17);
+	// ft_printf("this %d number", -267);
+	// ft_printf("this %d number", 0);
+	// ft_printf("this %d number", 17);
+	// ft_printf("this %d number", -267);
+	// ft_printf("this %d number", 0);
+	// ft_printf("%d", 3);
+	// ft_printf("%d", -1);
+	// ft_printf("%d", 0);
+	// ft_printf("%d",  2147483647);
+	// ft_printf("%d", (int)(-2147483678));
+	// ft_printf("%7d", 33);
+	// ft_printf("%7d", -14);
+	// ft_printf("%3d", 0);
+	// ft_printf("%5d", 52625);
+	// ft_printf("%5d", -2562);
+	// ft_printf("%4d", 94827);
+	// ft_printf("%4d", -2464);
+	// ft_printf("%-7d", 33);
+	// ft_printf("%-7d", -14);
+	// ft_printf("%-3d", 0);
+	// ft_printf("%-5d", 52625);
+	// ft_printf("%-5d", -2562);
+	// ft_printf("%-4d", 94827);
+	// ft_printf("%-4d", -2464);
+	// ft_printf("%.5d", 2);
+	// ft_printf("%.6d", -3);
+	// ft_printf("%.3d", 0);
+	// ft_printf("%.4d", 5263);
+	// ft_printf("%.4d", -2372);
+	// ft_printf("%.3d", 13862);
+	// ft_printf("%.3d",-23646);
+	// ft_printf("%05d", 43);
+	// ft_printf("%07d", -54);
+	// ft_printf("%03d", 0);
+	// ft_printf("%03d", 634);
+	// ft_printf("%04d", -532);
+	// ft_printf("%04d", -4825);
+	// ft_printf("%8.5d", 34);
+	// ft_printf("%10.5d", -216);
+	// ft_printf("%8.5d", 0);
+	// ft_printf("%8.3d", 8375);
+	// ft_printf("%8.3d", -8473);
+	// ft_printf("%3.7d", 3267);
+	// ft_printf("%3.7d", -2375);
+	// ft_printf("%3.3d", 6983);
+	// ft_printf("%3.3d", -8462);
+	// ft_printf("%-8.5d", 34);
+	// ft_printf("%-10.5d", -216);
+	// ft_printf("%-8.5d", 0);
+	// ft_printf("%-8.3d", 8375);
+	// ft_printf("%-8.3d", -8473);
+	// ft_printf("%-3.7d", 3267);
+	// ft_printf("%-3.7d", -2375);
+	// ft_printf("%-3.3d", 6983);
+	// ft_printf("%-3.3d", -8462);
+	// ft_printf("%08.5d", 34);
+	// ft_printf("%010.5d", -216);
+	// ft_printf("%08.5d", 0);
+	// ft_printf("%08.3d", 8375);
+	// ft_printf("%08.3d", -8473);
+	// ft_printf("%03.7d", 3267);
+	// ft_printf("%03.7d", -2375);
+	// ft_printf("%03.3d", 6983);
+	// ft_printf("%03.3d", -8462);
+	// ft_printf("%0-8.5d", 34);
+	// ft_printf("%0-10.5d", -216);
+	// ft_printf("%0-8.5d", 0);
+	// ft_printf("%0-8.3d", 8375);
+	// ft_printf("%0-8.3d", -8473);
+	// ft_printf("%0-3.7d", 3267);
+	// ft_printf("%0-3.7d", -2375);
+	// ft_printf("%0-3.3d", 6983);
+	// ft_printf("%0-3.3d", -8462);
+	// ft_printf("%.0d", 0);
+	// ft_printf("%.d", 0);
+	// ft_printf("%5.0d", 0);
+	// ft_printf("%5.d", 0);
+	// ft_printf("%-5.0d", 0);
+	// ft_printf("%-5.d", 0);
+
+	int temp = 0;
+	while (temp == 0)
+	{
+		temp = 0;
+	}
 	return (0);
 }

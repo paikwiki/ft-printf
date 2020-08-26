@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 11:18:34 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 16:23:48 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ static void		*parse_note(const char *fmt, int *idx, t_struct *note,
 	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
 		note->flag = fmt[*idx + len++];
 	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
-		note->flag = fmt[*idx + len++];
+	{
+		note->flag = note->flag != '-' ? fmt[*idx + len] : note->flag;
+		len++;
+	}
+
 	if (fmt[*idx + len] == '*' && ++len)
 	{
 		note->width = va_arg(ap, int);

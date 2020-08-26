@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:13:28 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 13:52:47 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 17:36:05 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ size_t		put_di_type(int arg, t_struct *note)
 	size_t	proc_len;
 	char	*str;
 	int		is_negative;
+	char 	*temp;
 
 	is_negative = arg < 0 ? 1 : 0;
-	str = ft_strdup(itoa_abs(arg));
+	temp = itoa_abs(arg);
+	str = ft_strdup(temp);
 	proc_len = ft_strlen(str);
 	calc(proc_len, note, is_negative);
 	proc_len = note->arg;
@@ -71,5 +73,7 @@ size_t		put_di_type(int arg, t_struct *note)
 		proc_len += putnchar('0', note->zero);
 		write(1, str, note->arg);
 	}
+	free(str);
+	free(temp);
 	return (proc_len);
 }

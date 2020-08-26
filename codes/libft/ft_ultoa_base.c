@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 18:44:57 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 12:57:26 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 16:42:26 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ char			*ft_ultoa_base(unsigned long n, const char *base)
 	str_size = 1;
 	while (tmp /= baselen)
 		str_size++;
-	str = (char *)malloc(sizeof(char) * (str_size + 1));
+	if ((str = (char *)malloc(sizeof(char) * (str_size + 1))) == 0)
+		return (0);
 	str[str_size] = '\0';
 	flag = 0;
 	while (str_size > flag)
