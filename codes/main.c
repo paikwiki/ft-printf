@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 01:34:11 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 12:36:16 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -437,12 +437,12 @@ int main(void)
 	// ft_printf("%-5.d", 0);
 
 	// final 42 errors
-	static char *s_hidden = "hi low\0don't print me lol\0";
+	// static char *s_hidden = "hi low\0don't print me lol\0";
 
-	ft_printf("%-05%");
-	ft_printf("%00-s", s_hidden);
-	ft_printf("%09s", s_hidden);
-	ft_printf("%-09s", s_hidden);
+	// ft_printf("%-05%");
+	// ft_printf("%00-s", s_hidden);
+	// ft_printf("%09s", s_hidden);
+	// ft_printf("%-09s", s_hidden);
 	// ft_printf("%7u", 33);
 	// ft_printf("%3u", 0);
 	// ft_printf("%-7u", 33);
@@ -481,5 +481,6 @@ int main(void)
 	// //ddd ft_printf("%i", INT_MAX + 1);
 	// ft_printf("%%-d 42 == %-d\n", INT_MIN);
 	// ft_printf("%.*i", -6, -3);
+	ft_printf("%-*.*s", -7, -3, "yolo");
 	return (0);
 }
