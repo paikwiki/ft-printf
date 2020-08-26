@@ -34,15 +34,7 @@ typedef struct	s_struct
 	int		arg;
 }				t_struct;
 
-typedef struct	s_putcounts
-{
-	int	space;
-	int	zero;
-	int	arg;
-}				t_putcounts;
-
 int				ft_printf(const char *format, ...);
-void			init_putcounts(t_putcounts *pcnt);
 char			*itoa_abs(int arg);
 size_t			putnchar(char chr, size_t cnt);
 size_t			put_c_type(int arg, t_struct *note);
