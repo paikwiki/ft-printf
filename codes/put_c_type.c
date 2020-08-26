@@ -6,18 +6,18 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:47:52 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 11:26:02 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 11:36:36 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	calc(size_t arg, t_struct *note)
+static void	calc(int arg, t_struct *note)
 {
-	note->arg = (int)arg;
+	note->arg = arg;
 	note->zero = 0;
-	if (note->width > 0 && note->width > (int)arg)
-		note->space = note->width - (int)arg;
+	if (note->width > 0 && note->width > arg)
+		note->space = note->width - arg;
 	else
 		note->space = 0;
 	return ;
@@ -25,7 +25,7 @@ static void	calc(size_t arg, t_struct *note)
 
 size_t		put_c_type(int arg, t_struct *note)
 {
-	size_t 		proc_len;
+	int	proc_len;
 
 	proc_len = 1;
 	calc(proc_len, note);
