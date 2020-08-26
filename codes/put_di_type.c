@@ -6,74 +6,70 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:13:28 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 11:16:03 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 13:52:47 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_putcounts	calc(size_t arg, size_t width, size_t prcs, int is_dot, int is_negative)
+static void	calc(int arg, t_struct *note, int is_negative)
 {
-	t_putcounts	pcnt;
-
-	if (arg >= width) // 456
+	if (arg >= note->width) // 456
 	{
-		pcnt.space = 0;
-		pcnt.arg = is_dot == 1 && prcs == 0 ? 0 : arg;
-		pcnt.zero = arg >= prcs ? 0 : prcs - arg; // 56
+		note->space = 0;
+		note->arg = note->is_dot == 1 && note->prcs == 0 ? 0 : arg;
+		note->zero = arg >= note->prcs ? 0 : note->prcs - arg; // 56
 	}
 	else // 123
 	{
-		pcnt.arg = is_dot == 1 && prcs == 0 ? 0 : arg;
-		if (arg >= prcs) // 3
+		note->arg = note->is_dot == 1 && note->prcs == 0 ? 0 : arg;
+		if (arg >= note->prcs) // 3
 		{
-			pcnt.zero = 0;
-			pcnt.space = width - arg - is_negative;
+			note->zero = 0;
+			note->space = note->width - arg - is_negative;
 		}
 		else // 12
 		{
-			pcnt.zero = prcs - arg;
-			pcnt.space = width >= prcs ? width - prcs - is_negative : 0;
+			note->zero = note->prcs - arg;
+			note->space = note->width >= note->prcs ? note->width - note->prcs - is_negative : 0;
 		}
-		pcnt.space += is_dot == 1 && prcs == 0 ? 1 : 0;
+		note->space += note->is_dot == 1 && note->prcs == 0 ? 1 : 0;
 	}
-	return (pcnt);
+	return ;
 }
 
-size_t	put_di_type(int arg, t_struct *note)
+size_t		put_di_type(int arg, t_struct *note)
 {
-	size_t proc_len;
+	size_t	proc_len;
 	char	*str;
 	int		is_negative;
-
-	t_putcounts	pcnt;
 
 	is_negative = arg < 0 ? 1 : 0;
 	str = ft_strdup(itoa_abs(arg));
 	proc_len = ft_strlen(str);
-	pcnt = calc(proc_len, note->width, note->prcs, note->is_dot, is_negative);
-	proc_len = pcnt.arg;
+	calc(proc_len, note, is_negative);
+	proc_len = note->arg;
 	if (note->flag == '-')
 	{
 		proc_len += is_negative > 0 ? putnchar('-', 1) : 0;
-		proc_len += putnchar('0', pcnt.zero);
-		write(1, str, pcnt.arg);
-		proc_len += putnchar(' ', pcnt.space);
+		proc_len += putnchar('0', note->zero);
+		write(1, str, note->arg);
+		proc_len += putnchar(' ', note->space);
 	}
 	else if (note->flag == '0')
 	{
 		proc_len += note->is_dot == 0 ? putnchar('-', is_negative) : 0;
-		proc_len += note->is_dot == 1 ? putnchar(' ', pcnt.space) : putnchar('0', pcnt.space);
+		proc_len += note->is_dot == 1 ? putnchar(' ', note->space) : putnchar('0', note->space);
 		proc_len += note->is_dot == 1 ? putnchar('-', is_negative) : 0;
-		proc_len += putnchar('0', pcnt.zero);
-		write(1, str, pcnt.arg);
+		proc_len += putnchar('0', note->zero);
+		write(1, str, note->arg);
 	}
 	else
 	{
-		proc_len += putnchar(' ', pcnt.space);
+		proc_len += putnchar(' ', note->space);
 		proc_len += is_negative > 0 ? putnchar('-', 1) : 0;
-		proc_len += putnchar('0', pcnt.zero);
-		write(1, str, pcnt.arg);
+		proc_len += putnchar('0', note->zero);
+		write(1, str, note->arg);
 	}
 	return (proc_len);
 }
