@@ -31,15 +31,6 @@ size_t	put_p_type(unsigned long arg, t_struct *fields)
 	size_t		proc_len;
 	t_putcounts	pcnt;
 
-	// if (arg == (unsigned long)NULL)
-	// {
-	// 	if ((str = (char *)malloc(sizeof(char) * 2)) == 0)
-	// 		return (0);
-	// 	str[1] = 0;
-	// 	str[0] = ' ';
-	// }
-	// else
-	// 	str = ft_strdup(ft_ultoa_base(arg, HEX_LOWER));
 	str = ft_strdup(ft_ultoa_base(arg, HEX_LOWER));
 	str = ft_strjoin("0x", str);
 	proc_len = ft_strlen(str);
