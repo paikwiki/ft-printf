@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/25 22:37:00 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 11:17:48 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef struct	s_struct
 	int		prcs;
 	int		is_dot;
 	char	type;
+	int		space;
+	int		zero;
+	int		arg;
 }				t_struct;
 
 typedef struct	s_putcounts
@@ -42,11 +45,11 @@ int				ft_printf(const char *format, ...);
 void			init_putcounts(t_putcounts *pcnt);
 char			*itoa_abs(int arg);
 size_t			putnchar(char chr, size_t cnt);
-size_t			put_c_type(int arg, t_struct *fields);
-size_t			put_percent_type(t_struct *fields);
-size_t			put_p_type(unsigned long arg, t_struct *fields);
-size_t			put_s_type(char *arg, t_struct *fields);
-size_t			put_di_type(int arg, t_struct *fields);
-size_t			put_u_type(unsigned int arg, t_struct *fields);
-size_t			put_xx_type(unsigned int arg, char *base, t_struct *fields);
+size_t			put_c_type(int arg, t_struct *note);
+size_t			put_percent_type(t_struct *note);
+size_t			put_p_type(unsigned long arg, t_struct *note);
+size_t			put_s_type(char *arg, t_struct *note);
+size_t			put_di_type(int arg, t_struct *note);
+size_t			put_u_type(unsigned int arg, t_struct *note);
+size_t			put_xx_type(unsigned int arg, char *base, t_struct *note);
 #endif

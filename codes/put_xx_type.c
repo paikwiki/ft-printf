@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:16:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 13:05:21 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 11:16:03 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static t_putcounts	calc(size_t arg, size_t width, size_t prcs, int is_dot)
 	return (pcnt);
 }
 
-size_t	put_xx_type(unsigned int arg, char *base, t_struct *fields)
+size_t	put_xx_type(unsigned int arg, char *base, t_struct *note)
 {
 	size_t proc_len;
 	char	*str;
@@ -49,12 +49,12 @@ size_t	put_xx_type(unsigned int arg, char *base, t_struct *fields)
 
 	str = ft_strdup(ft_uitoa_base(arg, base));
 	proc_len = ft_strlen(str);
-	pcnt = calc(proc_len, fields->width, fields->prcs, fields->is_dot);
-	proc_len = fields->is_dot == 1 && fields->prcs == 0 ? proc_len - 1 : proc_len;
-	if (fields->is_dot == 1 && fields->width == 0 && fields->prcs == 0)
+	pcnt = calc(proc_len, note->width, note->prcs, note->is_dot);
+	proc_len = note->is_dot == 1 && note->prcs == 0 ? proc_len - 1 : proc_len;
+	if (note->is_dot == 1 && note->width == 0 && note->prcs == 0)
 		return (0);
-	pad_char = fields->flag == '0' && fields->is_dot == 0 ? '0' : ' ';
-	if (fields->flag == '-') {
+	pad_char = note->flag == '0' && note->is_dot == 0 ? '0' : ' ';
+	if (note->flag == '-') {
 		proc_len += putnchar('0', pcnt.zero);
 		write(1, str, pcnt.arg);
 		proc_len += putnchar(pad_char, pcnt.space);

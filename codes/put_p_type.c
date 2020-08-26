@@ -6,10 +6,10 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:54:26 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 11:33:26 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 11:16:03 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 #include "ft_printf.h"
 
 static t_putcounts	calc(size_t arg, size_t width, size_t prcs, int is_dot)
@@ -25,7 +25,7 @@ static t_putcounts	calc(size_t arg, size_t width, size_t prcs, int is_dot)
 	return (pcnt);
 }
 
-size_t	put_p_type(unsigned long arg, t_struct *fields)
+size_t	put_p_type(unsigned long arg, t_struct *note)
 {
 	char		*str;
 	size_t		proc_len;
@@ -34,9 +34,9 @@ size_t	put_p_type(unsigned long arg, t_struct *fields)
 	str = ft_strdup(ft_ultoa_base(arg, HEX_LOWER));
 	str = ft_strjoin("0x", str);
 	proc_len = ft_strlen(str);
-	pcnt = calc(proc_len, fields->width, fields->prcs, fields->is_dot);
-	proc_len = (fields->is_dot == 1 && fields->prcs == 0) ? 2 : pcnt.arg;
-	if (fields->flag == '-') {
+	pcnt = calc(proc_len, note->width, note->prcs, note->is_dot);
+	proc_len = (note->is_dot == 1 && note->prcs == 0) ? 2 : pcnt.arg;
+	if (note->flag == '-') {
 		proc_len += putnchar('0', pcnt.zero);
 		write(1, str, pcnt.arg);
 		proc_len += putnchar(' ', pcnt.space);

@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:09:45 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/21 13:23:04 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/26 11:16:03 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_putcounts	calc(size_t arg, size_t width, size_t prcs, int is_dot)
 	return (pcnt);
 }
 
-size_t	put_s_type(char *arg, t_struct *fields)
+size_t	put_s_type(char *arg, t_struct *note)
 {
 	size_t		proc_len;
 	char		*str;
@@ -49,12 +49,12 @@ size_t	put_s_type(char *arg, t_struct *fields)
 	else
 		str = ft_strdup(arg);
 	proc_len = ft_strlen(str);
-	pcnt = calc(proc_len, fields->width, fields->prcs, fields->is_dot);
-	pcnt.arg = (fields->is_dot == 1 && fields->prcs == 0) ? 0 : pcnt.arg;
+	pcnt = calc(proc_len, note->width, note->prcs, note->is_dot);
+	pcnt.arg = (note->is_dot == 1 && note->prcs == 0) ? 0 : pcnt.arg;
 	proc_len = pcnt.arg;
-	if (fields->is_dot == 1 && fields->width == 0 && fields->prcs == 0)
+	if (note->is_dot == 1 && note->width == 0 && note->prcs == 0)
 		return (0);
-	if (fields->flag == '-') {
+	if (note->flag == '-') {
 		write(1, str, pcnt.arg);
 		proc_len += putnchar('0', pcnt.zero);
 		proc_len += putnchar(' ', pcnt.space);

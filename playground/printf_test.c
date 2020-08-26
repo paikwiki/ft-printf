@@ -16,12 +16,12 @@ int main(void)
 {
 	// printf("$%20c$\n", 'a');
 	// printf("$%020c$\n", 'a');
-	printf("$%10.6x$\n", 113801);
-	printf("$%6.8x$\n", 113801);
-	printf("$%10.4x$\n", 113801);
-	printf("$%4.6x$\n", 113801);
-	printf("$%4.3x$\n", 113801);
-	printf("$%3.4x$\n", 113801);
+	// printf("$%10.6x$\n", 113801);
+	// printf("$%6.8x$\n", 113801);
+	// printf("$%10.4x$\n", 113801);
+	// printf("$%4.6x$\n", 113801);
+	// printf("$%4.3x$\n", 113801);
+	// printf("$%3.4x$\n", 113801);
 	// printf(":%+d:\n", 123);
 	// printf(":%+d:\n", -123);
 
@@ -56,7 +56,9 @@ int main(void)
 	// #include <limits.h>
 	// printf(":%ld:\n", (long)INT_MIN);
 	// printf(":%d:\n", -2147483648);
-	// printf(":%d:\n", -2147483647 - 1);
+	// printf(":%d:\n", -2147483647 - 1);P
 	// printf(":%d:\n", (int)-2147483648);
+
+	printf(":%s:\n", "hello");
 	return (0);
 }
