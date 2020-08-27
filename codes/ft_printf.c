@@ -6,46 +6,46 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:54:08 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 22:50:25 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void		setzero_note(t_note *note)
+{
+	note->flag = 0;
+	note->type = 0;
+	note->width = 0;
+	note->prcs = 0;
+	note->is_dot = 0;
+	note->cnt_space = 0;
+	note->cnt_zero = 0;
+	note->cnt_arg = 0;
+}
 
 static void		*parse_note(const char *fmt, int *idx, t_note *note, va_list ap)
 {
 	int	len;
 
 	len = 1;
-	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
-		note->flag = fmt[*idx + len++];
-	if (fmt[*idx + len] == '-' || fmt[*idx + len] == '0')
-	{
-		note->flag = note->flag != '-' ? fmt[*idx + len] : note->flag;
-		len++;
-	}
-
+	note->flag = ft_strchr("-0", fmt[*idx + len]) ? fmt[*idx + len++] : 0;
+	if (ft_strchr("-0", fmt[*idx + len]) && len++)
+		note->flag = note->flag != '-' ? fmt[*idx + len - 1] : note->flag;
 	if (fmt[*idx + len] == '*' && ++len)
-	{
 		note->width = va_arg(ap, int);
-		if (note->width < 0)
-		{
-			note->width = note->width * -1;
-			note->flag = '-';
-		}
-	}
-	else if (ft_isdigit(fmt[*idx + len]))
+	note->flag = note->width < 0 ? '-' : note->flag;
+	note->width = note->width < 0 ? note->width * -1 : note->width;
+	if (ft_isdigit(fmt[*idx + len]))
 		while (ft_isdigit(fmt[*idx + len]) && ++len)
 			note->width = (note->width * 10) + (fmt[*idx + len - 1] - '0');
 	if (fmt[*idx + len] == '.' && ++len)
-	{
 		note->is_dot = 1;
-		if (fmt[*idx + len] == '*' && ++len)
-			note->prcs = va_arg(ap, int);
-		else
-			while (ft_isdigit(fmt[*idx + len]) && ++len)
-				note->prcs = (note->prcs * 10) + (fmt[*idx + len - 1] - '0');
-	}
+	if (note->is_dot == 1 && fmt[*idx + len] == '*' && ++len)
+		note->prcs = va_arg(ap, int);
+	else if (note->is_dot == 1)
+		while (ft_isdigit(fmt[*idx + len]) && ++len)
+			note->prcs = (note->prcs * 10) + (fmt[*idx + len - 1] - '0');
 	note->type = fmt[*idx + len];
 	*idx = *idx + len;
 	return (0);
