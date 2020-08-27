@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:47:52 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:04:54 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:31:39 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	calc(int arg, t_note *note)
 {
-	note->arg = arg;
-	note->zero = 0;
+	note->cnt_arg = arg;
+	note->cnt_zero = 0;
 	if (note->width > 0 && note->width > arg)
-		note->space = note->width - arg;
+		note->cnt_space = note->width - arg;
 	else
-		note->space = 0;
+		note->cnt_space = 0;
 	return ;
 }
 
@@ -30,14 +30,14 @@ size_t		put_c_type(int arg, t_note *note)
 	proc_len = 1;
 	calc(proc_len, note);
 	if (note->flag == '-') {
-		write(1, &arg, note->arg);
-		proc_len += putnchar('0', note->zero);
-		proc_len += putnchar(' ', note->space);
+		write(1, &arg, note->cnt_arg);
+		proc_len += putnchar('0', note->cnt_zero);
+		proc_len += putnchar(' ', note->cnt_space);
 	}
 	else {
-		proc_len += putnchar(' ', note->space);
-		proc_len += putnchar('0', note->zero);
-		write(1, &arg, note->arg);
+		proc_len += putnchar(' ', note->cnt_space);
+		proc_len += putnchar('0', note->cnt_zero);
+		write(1, &arg, note->cnt_arg);
 	}
 	return (proc_len);
 }

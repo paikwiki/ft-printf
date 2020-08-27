@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:09:45 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:04:54 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:31:39 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 #include <stdio.h>
 static void	calc(int arg, t_note *note)
 {
-	note->zero = 0;
+	note->cnt_zero = 0;
 	if (arg >= note->width) // 456
 	{
 		if (note->is_dot == 1 && arg >= note->prcs) // 56
 		{
-			note->arg = note->prcs < 0 ? arg : note->prcs;
-			note->space = note->width >= note->prcs && note->prcs >= 0 ? note->width - note->prcs : 0; // 5, 6
+			note->cnt_arg = note->prcs < 0 ? arg : note->prcs;
+			note->cnt_space = note->width >= note->prcs && note->prcs >= 0 ? note->width - note->prcs : 0; // 5, 6
 		}
 		else // 4
 		{
-			note->arg = arg;
-			note->space = 0;
+			note->cnt_arg = arg;
+			note->cnt_space = 0;
 		}
 	}
 	else // 123
 	{
-		note->arg = (arg >= note->prcs) && note->prcs > 0 ? note->prcs : arg;
+		note->cnt_arg = (arg >= note->prcs) && note->prcs > 0 ? note->prcs : arg;
 		if (note->prcs < 0)
-			note->space = note->width - note->arg;
+			note->cnt_space = note->width - note->cnt_arg;
 		else
-			note->space = (arg >= note->prcs) && note->is_dot != 0 ? note->width - note->prcs : note->width - arg;
+			note->cnt_space = (arg >= note->prcs) && note->is_dot != 0 ? note->width - note->prcs : note->width - arg;
 	}
 	return ;
 }
@@ -50,19 +50,19 @@ size_t		put_s_type(char *arg, t_note *note)
 		str = ft_strdup(arg);
 	proc_len = ft_strlen(str);
 	calc(proc_len, note);
-	note->arg = (note->is_dot == 1 && note->prcs == 0) ? 0 : note->arg;
-	proc_len = note->arg;
+	note->cnt_arg = (note->is_dot == 1 && note->prcs == 0) ? 0 : note->cnt_arg;
+	proc_len = note->cnt_arg;
 	if (note->is_dot == 1 && note->width == 0 && note->prcs == 0)
 		return (0);
 	if (note->flag == '-') {
-		write(1, str, note->arg);
-		proc_len += putnchar('0', note->zero);
-		proc_len += putnchar(' ', note->space);
+		write(1, str, note->cnt_arg);
+		proc_len += putnchar('0', note->cnt_zero);
+		proc_len += putnchar(' ', note->cnt_space);
 	}
 	else {
-		proc_len += putnchar(' ', note->space);
-		proc_len += putnchar('0', note->zero);
-		write(1, str, note->arg);
+		proc_len += putnchar(' ', note->cnt_space);
+		proc_len += putnchar('0', note->cnt_zero);
+		write(1, str, note->cnt_arg);
 	}
 	free(str);
 	return (proc_len);

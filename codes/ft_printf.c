@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:04:54 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:31:39 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void		setzero_note(t_note *note)
 	note->type = 0;
 	note->width = 0;
 	note->is_dot = 0;
-	note->space = 0;
-	note->zero = 0;
-	note->arg = 0;
+	note->cnt_space = 0;
+	note->cnt_zero = 0;
+	note->cnt_arg = 0;
 }
 
 static void		*parse_note(const char *fmt, int *idx, t_note *note,

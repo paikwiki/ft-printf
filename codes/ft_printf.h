@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:04:54 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:31:41 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 typedef struct	s_note
 {
 	char	flag;
+	char	type;
 	int		width;
 	int		prcs;
 	int		is_dot;
-	char	type;
-	int		space;
-	int		zero;
-	int		arg;
+	int		cnt_space;
+	int		cnt_zero;
+	int		cnt_arg;
 }				t_note;
 
 int				ft_printf(const char *format, ...);
