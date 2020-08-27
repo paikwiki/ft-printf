@@ -6,23 +6,11 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:16:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 23:36:34 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 01:22:57 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int	generate_str(char **str, char *base, unsigned long long arg)
-{
-	char	*temp;
-	int		proc_len;
-
-	temp = ft_uitoa_base(arg, base);
-	*str = ft_strdup(temp);
-	proc_len = ft_strlen(*str);
-	free(temp);
-	return (proc_len);
-}
 
 static void	calc(int arg, t_note *note)
 {
@@ -57,7 +45,8 @@ size_t		put_xx_type(unsigned int arg, char *base, t_note *note)
 	char	*str;
 	char	pad_char;
 
-	proc_len = generate_str(&str, base, arg);
+	str = ft_uitoa_base(arg, base);
+	proc_len = ft_strlen(str);
 	calc(proc_len, note);
 	proc_len = note->is_dot == 1 && note->prcs == 0 ? proc_len - 1 : proc_len;
 	if (note->is_dot == 1 && note->width == 0 && note->prcs == 0)

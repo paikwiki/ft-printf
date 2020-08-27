@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:14:52 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 23:55:17 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 01:16:40 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,10 @@ static int	proc_with_flag(char *str, t_note *note, int is_negative)
 
 static int	generate_str(char **str, unsigned long long arg)
 {
-	char	*temp;
 	int		proc_len;
 
-	temp = ft_uitoa_base(arg, DECIMAL);
-	*str = ft_strdup(temp);
+	*str = ft_uitoa_base(arg, DECIMAL);
 	proc_len = ft_strlen(*str);
-	free(temp);
 	return (proc_len);
 }
 

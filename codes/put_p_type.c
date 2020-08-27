@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:54:26 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 23:32:19 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 01:20:15 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,11 @@
 static int	generate_str(char **str, unsigned long long arg)
 {
 	char	*temp;
-	char	*pre_str;
-	int		proc_len;
 
 	temp = ft_ultoa_base(arg, HEX_LOWER);
-	pre_str = ft_strdup(temp);
-	*str = ft_strjoin("0x", pre_str);
-	proc_len = ft_strlen(*str);
-	free(pre_str);
+	*str = ft_strjoin("0x", temp);
 	free(temp);
-	return (proc_len);
+	return (ft_strlen(*str));
 }
 
 static void	calc(int arg, t_note *note)

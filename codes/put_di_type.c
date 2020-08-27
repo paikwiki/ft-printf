@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:13:28 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 23:55:21 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 01:19:31 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,6 @@ static int	proc_with_flag(char *str, t_note *note, int is_negative)
 		write(1, str, note->cnt_arg);
 	}
 	return (len);
-}
-
-static int	generate_str(char **str, unsigned long long arg)
-{
-	char	*temp;
-	int		proc_len;
-
-	temp = itoa_abs(arg);
-	*str = ft_strdup(temp);
-	proc_len = ft_strlen(*str);
-	free(temp);
-	return (proc_len);
 }
 
 static void	calc(int arg, t_note *note, int is_negative)
@@ -82,7 +70,8 @@ size_t		put_di_type(int arg, t_note *note)
 	int		is_negative;
 
 	is_negative = arg < 0 ? 1 : 0;
-	proc_len = generate_str(&str, arg);
+	str = itoa_abs(arg);
+	proc_len = ft_strlen(str);
 	calc(proc_len, note, is_negative);
 	proc_len = note->cnt_arg;
 	if (note->flag != 0)
