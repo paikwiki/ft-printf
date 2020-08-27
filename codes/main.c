@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 18:36:39 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 01:04:31 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -581,18 +581,18 @@ int main(void)
 	// printf("%.*o", -1, 12345); // o 형식 필드는 보너스 파트
 	// printf("%.*o", -1, 0); // o 형식 필드는 보너스 파트
 
-	// mem leaks =========================================
-	int varp = 0;
-	ft_printf("This is a plain text.");
-	ft_printf("c: %c\n", 'c');
-	ft_printf("s: %s\n", "Life is 42.");
-	ft_printf("p: %p\n", &varp);
-	ft_printf("d: Life is %d\n", 42);
-	ft_printf("i: Life is %i\n", 42);
-	ft_printf("u: Life is %u\n", 42);
-	ft_printf("x: 2048 is %x\n", 2048);
-	ft_printf("X: 2048 is %X\n", 2048);
-	ft_printf("Percent is %%.\n");
+	// // mem leaks =========================================
+	// int varp = 0;
+	// ft_printf("This is a plain text.");
+	// ft_printf("c: %c\n", 'c');
+	// ft_printf("s: %s\n", "Life is 42.");
+	// ft_printf("p: %p\n", &varp);
+	// ft_printf("d: Life is %d\n", 42);
+	// ft_printf("i: Life is %i\n", 42);
+	// ft_printf("u: Life is %u\n", 42);
+	// ft_printf("x: 2048 is %x\n", 2048);
+	// ft_printf("X: 2048 is %X\n", 2048);
+	// ft_printf("Percent is %%.\n");
 
 	// int temp = 0;
 	// while (temp == 0)
@@ -600,4 +600,18 @@ int main(void)
 	// 	temp = 0;
 	// }
 	// return (0);
+
+	// printf_lover_v2 ========================
+	// char	*p = NULL;
+	int p = 0;
+	printf("-->|%-3.p|<--\n", &p);		// -->|0x7ffee99db3dc|<--
+	ft_printf("-->|%-3.p|<--\n", &p);	// -->|0x|<--
+	printf("-->|%-15.p|<--\n", &p);		// -->|0x7f93b1402710 |<--
+	ft_printf("-->|%-15.p|<--\n", &p);	// -->|0x7f93b1402710             |<--
+	printf("-->|%-2.p|<--\n", &p);
+	ft_printf("-->|%-2.p|<--\n", &p);
+
+	int x = 42;
+	printf("-->|%-4.x|<--\n", x);
+	ft_printf("-->|%-4.x|<--\n", x);
 }
