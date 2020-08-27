@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:31:41 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:37:25 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define DECIMAL "0123456789"
 # define ERROR -1
 # define PRINT_NULL "(null)"
+
 typedef struct	s_note
 {
 	char	flag;
