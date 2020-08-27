@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:16:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 13:10:43 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 16:07:24 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ size_t		put_xx_type(unsigned int arg, char *base, t_struct *note)
 	int		proc_len;
 	char	*str;
 	char	pad_char;
+	char 	*temp;
 
-	str = ft_strdup(ft_uitoa_base(arg, base));
+	temp = ft_uitoa_base(arg, base);
+	str = ft_strdup(temp);
 	proc_len = ft_strlen(str);
 	calc(proc_len, note);
 	proc_len = note->is_dot == 1 && note->prcs == 0 ? proc_len - 1 : proc_len;
@@ -61,5 +63,7 @@ size_t		put_xx_type(unsigned int arg, char *base, t_struct *note)
 		proc_len += putnchar('0', note->zero);
 		write(1, str, note->arg);
 	}
+	free(str);
+	free(temp);
 	return (proc_len);
 }

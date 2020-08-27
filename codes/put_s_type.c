@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:09:45 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 12:50:07 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 16:05:14 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ size_t		put_s_type(char *arg, t_struct *note)
 		proc_len += putnchar('0', note->zero);
 		write(1, str, note->arg);
 	}
+	free(str);
 	return (proc_len);
 }

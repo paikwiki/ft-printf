@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:14:52 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 13:42:43 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 16:06:00 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ size_t		put_u_type(unsigned int arg, t_struct *note)
 	int		proc_len;
 	char	*str;
 	int		is_negative;
+	char 	*temp;
 
 	is_negative = arg < 0 ? 1 : 0;
-	str = ft_strdup(ft_uitoa_base(arg, DECIMAL));
+	temp = ft_uitoa_base(arg, DECIMAL);
+	str = ft_strdup(temp);
 	proc_len = ft_strlen(str);
 	calc(proc_len, note, is_negative);
 	proc_len = note->arg;
@@ -71,5 +73,7 @@ size_t		put_u_type(unsigned int arg, t_struct *note)
 		proc_len += putnchar('0', note->zero);
 		write(1, str, note->arg);
 	}
+	free(str);
+	free(temp);
 	return (proc_len);
 }

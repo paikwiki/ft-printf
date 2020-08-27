@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:54:26 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 11:35:04 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 16:25:59 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ static void	calc(int arg, t_struct *note)
 size_t	put_p_type(unsigned long arg, t_struct *note)
 {
 	char	*str;
+	char	*pre_str;
 	int		proc_len;
+	char 	*temp;
 
-	str = ft_strdup(ft_ultoa_base(arg, HEX_LOWER));
+	temp = ft_ultoa_base(arg, HEX_LOWER);
+	pre_str = ft_strdup(temp);
 	str = ft_strjoin("0x", str);
 	proc_len = ft_strlen(str);
 	calc(proc_len, note);
@@ -43,5 +46,8 @@ size_t	put_p_type(unsigned long arg, t_struct *note)
 		proc_len += putnchar('0', note->zero);
 		write(1, str, note->arg);
 	}
+	free(str);
+	free(pre_str);
+	free(temp);
 	return (proc_len);
 }
