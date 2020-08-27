@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 11:17:48 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:04:54 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define DECIMAL "0123456789"
 # define ERROR -1
 # define PRINT_NULL "(null)"
-typedef struct	s_struct
+typedef struct	s_note
 {
 	char	flag;
 	int		width;
@@ -32,16 +32,16 @@ typedef struct	s_struct
 	int		space;
 	int		zero;
 	int		arg;
-}				t_struct;
+}				t_note;
 
 int				ft_printf(const char *format, ...);
 char			*itoa_abs(int arg);
 size_t			putnchar(char chr, size_t cnt);
-size_t			put_c_type(int arg, t_struct *note);
-size_t			put_percent_type(t_struct *note);
-size_t			put_p_type(unsigned long arg, t_struct *note);
-size_t			put_s_type(char *arg, t_struct *note);
-size_t			put_di_type(int arg, t_struct *note);
-size_t			put_u_type(unsigned int arg, t_struct *note);
-size_t			put_xx_type(unsigned int arg, char *base, t_struct *note);
+size_t			put_c_type(int arg, t_note *note);
+size_t			put_percent_type(t_note *note);
+size_t			put_p_type(unsigned long arg, t_note *note);
+size_t			put_s_type(char *arg, t_note *note);
+size_t			put_di_type(int arg, t_note *note);
+size_t			put_u_type(unsigned int arg, t_note *note);
+size_t			put_xx_type(unsigned int arg, char *base, t_note *note);
 #endif

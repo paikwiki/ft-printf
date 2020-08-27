@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 16:23:48 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:04:54 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		setzero_note(t_struct *note)
+static void		setzero_note(t_note *note)
 {
 	note->flag = 0;
 	note->prcs = 0;
@@ -24,7 +24,7 @@ static void		setzero_note(t_struct *note)
 	note->arg = 0;
 }
 
-static void		*parse_note(const char *fmt, int *idx, t_struct *note,
+static void		*parse_note(const char *fmt, int *idx, t_note *note,
 		va_list ap)
 {
 	int	len;
@@ -66,7 +66,7 @@ static void		*parse_note(const char *fmt, int *idx, t_struct *note,
 	return (0);
 }
 
-static size_t	proc_placeholder(char ph_type, va_list ap, t_struct *note)
+static size_t	proc_placeholder(char ph_type, va_list ap, t_note *note)
 {
 	if (ph_type == 'c')
 		return (put_c_type(va_arg(ap, int), note));
@@ -93,7 +93,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 	int			idx;
 	size_t		proc_len;
 	size_t		total_len;
-	t_struct	note;
+	t_note	note;
 
 	idx = 0;
 	total_len = 0;

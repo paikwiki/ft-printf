@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:54:26 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 16:25:59 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:20:25 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	calc(int arg, t_struct *note)
+static void	calc(int arg, t_note *note)
 {
 	note->arg = (note->is_dot == 1 && note->prcs == 0) ? 2 : arg;
 	note->zero = 0;
@@ -23,7 +23,7 @@ static void	calc(int arg, t_struct *note)
 	return ;
 }
 
-size_t	put_p_type(unsigned long arg, t_struct *note)
+size_t	put_p_type(unsigned long arg, t_note *note)
 {
 	char	*str;
 	char	*pre_str;
@@ -32,7 +32,7 @@ size_t	put_p_type(unsigned long arg, t_struct *note)
 
 	temp = ft_ultoa_base(arg, HEX_LOWER);
 	pre_str = ft_strdup(temp);
-	str = ft_strjoin("0x", str);
+	str = ft_strjoin("0x", pre_str);
 	proc_len = ft_strlen(str);
 	calc(proc_len, note);
 	proc_len = (note->is_dot == 1 && note->prcs == 0) ? 2 : note->arg;

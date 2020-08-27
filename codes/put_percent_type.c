@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:51:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 12:56:47 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:04:54 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	calc(int arg, t_struct *note)
+static void	calc(int arg, t_note *note)
 {
 	note->arg = arg;
 	note->zero = 0;
@@ -23,7 +23,7 @@ static void	calc(int arg, t_struct *note)
 	return ;
 }
 
-size_t 		put_percent_type(t_struct *note)
+size_t 		put_percent_type(t_note *note)
 {
 	int	proc_len;
 

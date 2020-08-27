@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:13:28 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/26 17:36:05 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:04:54 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	calc(int arg, t_struct *note, int is_negative)
+static void	calc(int arg, t_note *note, int is_negative)
 {
 	if (arg >= note->width) // 456
 	{
@@ -38,7 +38,7 @@ static void	calc(int arg, t_struct *note, int is_negative)
 	return ;
 }
 
-size_t		put_di_type(int arg, t_struct *note)
+size_t		put_di_type(int arg, t_note *note)
 {
 	size_t	proc_len;
 	char	*str;
