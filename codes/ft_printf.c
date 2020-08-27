@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 22:50:25 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 00:17:08 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 	proc_len = 0;
 	while (format[idx] != '\0')
 	{
-		if (format[idx] != '%' && ++total_len)
+		if (format[idx] != '%' && format[idx] && ++total_len)
 			write(1, &format[idx], 1);
 		else
 		{
