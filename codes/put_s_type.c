@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:09:45 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 23:04:11 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 23:20:52 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	calc(int arg, t_note *note)
 {
-	note->cnt_zero = 0;
 	if (arg >= note->width)
 	{
 		if (note->is_dot == 1 && arg >= note->prcs)
@@ -24,10 +23,7 @@ static void	calc(int arg, t_note *note)
 					note->width - note->prcs : 0;
 		}
 		else
-		{
 			note->cnt_arg = arg;
-			note->cnt_space = 0;
-		}
 	}
 	else
 	{
@@ -47,10 +43,7 @@ size_t		put_s_type(char *arg, t_note *note)
 	int		proc_len;
 	char	*str;
 
-	if (arg == NULL)
-		str = ft_strdup(PRINT_NULL);
-	else
-		str = ft_strdup(arg);
+	str = arg == NULL ? ft_strdup(PRINT_NULL) : ft_strdup(arg);
 	proc_len = ft_strlen(str);
 	calc(proc_len, note);
 	note->cnt_arg = (note->is_dot == 1 && note->prcs == 0) ? 0 : note->cnt_arg;

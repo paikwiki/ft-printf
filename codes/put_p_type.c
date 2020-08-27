@@ -6,11 +6,26 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:54:26 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 23:01:37 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 23:32:19 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	generate_str(char **str, unsigned long long arg)
+{
+	char	*temp;
+	char	*pre_str;
+	int		proc_len;
+
+	temp = ft_ultoa_base(arg, HEX_LOWER);
+	pre_str = ft_strdup(temp);
+	*str = ft_strjoin("0x", pre_str);
+	proc_len = ft_strlen(*str);
+	free(pre_str);
+	free(temp);
+	return (proc_len);
+}
 
 static void	calc(int arg, t_note *note)
 {
@@ -27,14 +42,9 @@ static void	calc(int arg, t_note *note)
 size_t		put_p_type(unsigned long arg, t_note *note)
 {
 	char	*str;
-	char	*pre_str;
 	int		proc_len;
-	char	*temp;
 
-	temp = ft_ultoa_base(arg, HEX_LOWER);
-	pre_str = ft_strdup(temp);
-	str = ft_strjoin("0x", pre_str);
-	proc_len = ft_strlen(str);
+	proc_len = generate_str(&str, arg);
 	calc(proc_len, note);
 	proc_len = (note->is_dot == 1 && note->prcs == 0) ? 2 : note->cnt_arg;
 	if (note->flag == '-')
@@ -50,7 +60,5 @@ size_t		put_p_type(unsigned long arg, t_note *note)
 		write(1, str, note->cnt_arg);
 	}
 	free(str);
-	free(pre_str);
-	free(temp);
 	return (proc_len);
 }
