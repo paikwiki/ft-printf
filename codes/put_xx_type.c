@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:16:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:31:39 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 22:56:08 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 static void	calc(int arg, t_note *note)
 {
-	if (arg >= note->width) // 456
+	if (arg >= note->width)
 	{
 		note->cnt_space = 0;
 		note->cnt_arg = arg;
-		note->cnt_zero = arg >= note->prcs ? 0 : note->prcs - arg; // 56
+		note->cnt_zero = arg >= note->prcs ? 0 : note->prcs - arg;
 	}
-	else // 123
+	else
 	{
 		note->cnt_arg = (note->is_dot == 1 && note->prcs == 0) ? 0 : arg;
-		if (arg >= note->prcs) // 3
+		if (arg >= note->prcs)
 		{
 			note->cnt_zero = 0;
 			note->cnt_space = (note->is_dot == 1 && note->prcs == 0) ? note->width : note->width - arg;
 		}
-		else // 12
+		else
 		{
 			note->cnt_zero = note->prcs - arg;
 			note->cnt_space = note->width >= note->prcs ? note->width - note->prcs : 0;
