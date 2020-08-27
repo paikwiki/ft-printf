@@ -3,6 +3,7 @@
 *.o
 *.a
 *.dSYM
+codes/pft/
 codes/pft_2019/
 codes/42TESTERS-PRINTF/
 codes/printf_lover_v2/
