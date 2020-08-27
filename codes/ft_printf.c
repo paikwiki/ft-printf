@@ -6,23 +6,11 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:49:34 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 20:54:08 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static void		setzero_note(t_note *note)
-{
-	note->flag = 0;
-	note->type = 0;
-	note->width = 0;
-	note->prcs = 0;
-	note->is_dot = 0;
-	note->cnt_space = 0;
-	note->cnt_zero = 0;
-	note->cnt_arg = 0;
-}
 
 static void		*parse_note(const char *fmt, int *idx, t_note *note, va_list ap)
 {
