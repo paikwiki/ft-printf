@@ -6,12 +6,12 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:09:45 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 22:54:51 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 23:04:11 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 static void	calc(int arg, t_note *note)
 {
 	note->cnt_zero = 0;
@@ -20,7 +20,8 @@ static void	calc(int arg, t_note *note)
 		if (note->is_dot == 1 && arg >= note->prcs)
 		{
 			note->cnt_arg = note->prcs < 0 ? arg : note->prcs;
-			note->cnt_space = note->width >= note->prcs && note->prcs >= 0 ? note->width - note->prcs : 0;
+			note->cnt_space = note->width >= note->prcs && note->prcs >= 0 ?
+					note->width - note->prcs : 0;
 		}
 		else
 		{
@@ -30,11 +31,13 @@ static void	calc(int arg, t_note *note)
 	}
 	else
 	{
-		note->cnt_arg = (arg >= note->prcs) && note->prcs > 0 ? note->prcs : arg;
+		note->cnt_arg = (arg >= note->prcs) && note->prcs > 0 ?
+				note->prcs : arg;
 		if (note->prcs < 0)
 			note->cnt_space = note->width - note->cnt_arg;
 		else
-			note->cnt_space = (arg >= note->prcs) && note->is_dot != 0 ? note->width - note->prcs : note->width - arg;
+			note->cnt_space = (arg >= note->prcs) && note->is_dot != 0 ?
+					note->width - note->prcs : note->width - arg;
 	}
 	return ;
 }
@@ -54,12 +57,14 @@ size_t		put_s_type(char *arg, t_note *note)
 	proc_len = note->cnt_arg;
 	if (note->is_dot == 1 && note->width == 0 && note->prcs == 0)
 		return (0);
-	if (note->flag == '-') {
+	if (note->flag == '-')
+	{
 		write(1, str, note->cnt_arg);
 		proc_len += putnchar('0', note->cnt_zero);
 		proc_len += putnchar(' ', note->cnt_space);
 	}
-	else {
+	else
+	{
 		proc_len += putnchar(' ', note->cnt_space);
 		proc_len += putnchar('0', note->cnt_zero);
 		write(1, str, note->cnt_arg);

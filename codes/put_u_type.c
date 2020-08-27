@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:14:52 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 22:55:57 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 23:04:57 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	calc(int arg, t_note *note, int is_negative)
 		else
 		{
 			note->cnt_zero = note->prcs - arg;
-			note->cnt_space = note->width >= note->prcs ? note->width - note->prcs - is_negative : 0;
+			note->cnt_space = note->width >= note->prcs ?
+					note->width - note->prcs - is_negative : 0;
 		}
 		note->cnt_space += note->is_dot == 1 && note->prcs == 0 ? 1 : 0;
 	}
@@ -43,7 +44,7 @@ size_t		put_u_type(unsigned int arg, t_note *note)
 	int		proc_len;
 	char	*str;
 	int		is_negative;
-	char 	*temp;
+	char	*temp;
 
 	is_negative = arg < 0 ? 1 : 0;
 	temp = ft_uitoa_base(arg, DECIMAL);
@@ -61,7 +62,8 @@ size_t		put_u_type(unsigned int arg, t_note *note)
 	else if (note->flag == '0')
 	{
 		proc_len += note->is_dot == 0 ? putnchar('-', is_negative) : 0;
-		proc_len += note->is_dot == 1 ? putnchar(' ', note->cnt_space) : putnchar('0', note->cnt_space);
+		proc_len += note->is_dot == 1 ? putnchar(' ', note->cnt_space) :
+				putnchar('0', note->cnt_space);
 		proc_len += note->is_dot == 1 ? putnchar('-', is_negative) : 0;
 		proc_len += putnchar('0', note->cnt_zero);
 		write(1, str, note->cnt_arg);

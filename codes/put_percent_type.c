@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:51:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 20:31:39 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/27 23:01:54 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	calc(int arg, t_note *note)
 	return ;
 }
 
-size_t 		put_percent_type(t_note *note)
+size_t		put_percent_type(t_note *note)
 {
 	int	proc_len;
 
