@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/28 11:09:17 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 11:46:51 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -633,10 +633,15 @@ int main(void)
 
 	// fix p(42Tester & pft)============================
 	char	*p = NULL;
-	ft_printf("exp|0x0|[.] %%.-3p, 0\nres|%.-3p|\n", 0);
-	ft_printf("exp|0x0|[pft] %%.*p, -3, 0\nres|%.*p|\n", -3, 0);
-	ft_printf("exp|0x0|[pft] %%.*p, -1, 0\nres|%.*p|\n", -1, 0);
+	int zero = 0;
+	// int one = 1;
+	// ft_printf("exp|0x0|[.] %%.-3p, 0\nres|%.-3p|\n", 0);
+	// ft_printf("exp|0x0|[pft] %%.*p, -3, 0\nres|%.*p|\n", -3, 0);
+	// ft_printf("exp|0x0|[pft] %%.*p, -1, 0\nres|%.*p|\n", -1, 0);
+	ft_printf("exp|0xba9876543210|[.] %%-2.p, NULL\nres|%-2.p|\n", &zero);
+	ft_printf("exp|0xba9876543210|[.] %%-2.p, NULL\nres|%-2.p|\n", NULL);
 	ft_printf("exp|0xba9876543210|[42] %%-2.p, NULL\nres|%-2.p|\n", p);
 	ft_printf("exp|0xba9876543210|[42] %%-3.p, NULL\nres|%-3.p|\n", p);
 	ft_printf("exp|0xba9876543210 |[42] %%-15.p, NULL\nres|%-15.p|\n", p);
+	ft_printf("exp|0x |[42] %%-16.p, NULL\nres|%-16.p|\n", p);
 }
