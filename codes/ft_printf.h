@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:43:46 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 22:38:52 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 11:06:30 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_note
 }				t_note;
 
 int				ft_printf(const char *format, ...);
+void			init_note(t_note *note);
 char			*itoa_abs(int arg);
 size_t			putnchar(char chr, size_t cnt);
 size_t			put_c_type(int arg, t_note *note);
@@ -45,4 +46,5 @@ size_t			put_s_type(char *arg, t_note *note);
 size_t			put_di_type(int arg, t_note *note);
 size_t			put_u_type(unsigned int arg, t_note *note);
 size_t			put_xx_type(unsigned int arg, char *base, t_note *note);
+
 #endif

@@ -6,22 +6,22 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/28 10:50:57 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 11:04:40 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		init_note(t_note *note)
+static void		parse_prcs(int *len, const char *fmt, int *idx, t_note *note)
 {
-	note->flag = 0;
-	note->type = 0;
-	note->width = 0;
-	note->prcs = 0;
-	note->is_dot = 0;
-	note->cnt_space = 0;
-	note->cnt_zero = 0;
-	note->cnt_arg = 0;
+	int	sign;
+
+	sign = 1;
+	if (fmt[*idx + *len] == '-' && ++(*len))
+		sign = -1;
+	while (ft_isdigit(fmt[*idx + *len]) && ++(*len))
+		note->prcs = (note->prcs * 10) + (fmt[*idx + *len - 1] - '0');
+	note->prcs *= sign;
 }
 
 static void		*parse_note(const char *fmt, int *idx, t_note *note, va_list ap)
@@ -44,8 +44,7 @@ static void		*parse_note(const char *fmt, int *idx, t_note *note, va_list ap)
 	if (note->is_dot == 1 && fmt[*idx + len] == '*' && ++len)
 		note->prcs = va_arg(ap, int);
 	else if (note->is_dot == 1)
-		while (ft_isdigit(fmt[*idx + len]) && ++len)
-			note->prcs = (note->prcs * 10) + (fmt[*idx + len - 1] - '0');
+		parse_prcs(&len, fmt, idx, note);
 	note->type = fmt[*idx + len];
 	*idx = *idx + len;
 	return (0);
