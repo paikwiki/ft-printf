@@ -6,13 +6,13 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/28 00:17:08 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 10:50:57 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		setzero_note(t_note *note)
+static void		init_note(t_note *note)
 {
 	note->flag = 0;
 	note->type = 0;
@@ -89,7 +89,7 @@ static int		proc_ft_printf(const char *format, va_list ap)
 			write(1, &format[idx], 1);
 		else
 		{
-			setzero_note(&note);
+			init_note(&note);
 			parse_note(format, &idx, &note, ap);
 			if ((proc_len = proc_placeholder(note.type, ap, &note)) == 0 &&
 					ft_strchr("diusxX", note.type) == 0)
