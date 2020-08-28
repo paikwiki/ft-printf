@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:09:45 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/27 23:20:52 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 11:17:07 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ size_t		put_s_type(char *arg, t_note *note)
 	if (note->flag == '-')
 	{
 		write(1, str, note->cnt_arg);
-		proc_len += putnchar('0', note->cnt_zero);
 		proc_len += putnchar(' ', note->cnt_space);
 	}
 	else
 	{
 		proc_len += putnchar(' ', note->cnt_space);
-		proc_len += putnchar('0', note->cnt_zero);
 		write(1, str, note->cnt_arg);
 	}
 	free(str);
