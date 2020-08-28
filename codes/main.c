@@ -582,24 +582,24 @@ int main(void)
 	// printf("%.*o", -1, 0); // o 형식 필드는 보너스 파트
 
 	// mem leaks =========================================
-	int varp = 0;
-	ft_printf("This is a plain text.");
-	ft_printf("c: %c\n", 'c');
-	ft_printf("s: %s\n", "Life is 42.");
-	ft_printf("p: %p\n", &varp);
-	ft_printf("d: Life is %d\n", 42);
-	ft_printf("i: Life is %i\n", 42);
-	ft_printf("u: Life is %u\n", 42);
-	ft_printf("x: 2048 is %x\n", 2048);
-	ft_printf("X: 2048 is %X\n", 2048);
-	ft_printf("Percent is %%.\n");
+	// int varp = 0;
+	// ft_printf("This is a plain text.");
+	// ft_printf("c: %c\n", 'c');
+	// ft_printf("s: %s\n", "Life is 42.");
+	// ft_printf("p: %p\n", &varp);
+	// ft_printf("d: Life is %d\n", 42);
+	// ft_printf("i: Life is %i\n", 42);
+	// ft_printf("u: Life is %u\n", 42);
+	// ft_printf("x: 2048 is %x\n", 2048);
+	// ft_printf("X: 2048 is %X\n", 2048);
+	// ft_printf("Percent is %%.\n");
 
-	int temp = 0;
-	while (temp == 0)
-	{
-		temp = 0;
-	}
-	return (0);
+	// int temp = 0;
+	// while (temp == 0)
+	// {
+	// 	temp = 0;
+	// }
+	// return (0);
 
 	// // printf_lover_v2 ========================
 	// // char	*p = NULL;
@@ -614,4 +614,29 @@ int main(void)
 	// int x = 42;
 	// printf("-->|%-4.x|<--\n", x);
 	// ft_printf("-->|%-4.x|<--\n", x);
+
+	/*
+	Test 4205 (p_neg_prec_star_03) : FAILED.
+    First line of code: {return test("%.*p", -3, 0);}
+      expected output : "0x0"
+      your output     : "0x"
+      expected (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x"
+
+	Test 4206 (p_neg_prec_star_04) : FAILED.
+    First line of code: {return test("%.*p", -1, 0);}
+      expected output : "0x0"
+      your output     : "0x"
+      expected (nonprintable as hex) : "0x0"
+      actual   (nonprintable as hex) : "0x"
+	  */
+
+	// fix p(42Tester & pft)============================
+	char	*p = NULL;
+	ft_printf("exp|0x0|[pft] %%.-3p, 0\nres|%.-3p|\n", 0);
+	ft_printf("exp|0x0|[pft] %%.*p, -3, 0\nres|%.*p|\n", -3, 0);
+	ft_printf("exp|0x0|[pft] %%.*p, -1, 0\nres|%.*p|\n", -1, 0);
+	ft_printf("exp|0xba9876543210|[42] %%-2.p, NULL\nres|%-2.p|\n", p);
+	ft_printf("exp|0xba9876543210|[42] %%-3.p, NULL\nres|%-3.p|\n", p);
+	ft_printf("exp|0xba9876543210 |[42] %%-15.p, NULL\nres|%-15.p|\n", p);
 }
