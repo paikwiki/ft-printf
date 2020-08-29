@@ -6,12 +6,12 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:54:26 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/28 12:07:44 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 12:21:51 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
 static int	generate_str(char **str, unsigned long long arg, t_note *note)
 {
 	char	*temp;

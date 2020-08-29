@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/28 11:46:51 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/28 16:58:53 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -631,17 +631,75 @@ int main(void)
       actual   (nonprintable as hex) : "0x"
 	  */
 
-	// fix p(42Tester & pft)============================
-	char	*p = NULL;
-	int zero = 0;
+	// fix p(lover & pft)============================
+	// char	*p = NULL;
+	// int zero = 0;
 	// int one = 1;
 	// ft_printf("exp|0x0|[.] %%.-3p, 0\nres|%.-3p|\n", 0);
 	// ft_printf("exp|0x0|[pft] %%.*p, -3, 0\nres|%.*p|\n", -3, 0);
 	// ft_printf("exp|0x0|[pft] %%.*p, -1, 0\nres|%.*p|\n", -1, 0);
-	ft_printf("exp|0xba9876543210|[.] %%-2.p, NULL\nres|%-2.p|\n", &zero);
-	ft_printf("exp|0xba9876543210|[.] %%-2.p, NULL\nres|%-2.p|\n", NULL);
-	ft_printf("exp|0xba9876543210|[42] %%-2.p, NULL\nres|%-2.p|\n", p);
-	ft_printf("exp|0xba9876543210|[42] %%-3.p, NULL\nres|%-3.p|\n", p);
-	ft_printf("exp|0xba9876543210 |[42] %%-15.p, NULL\nres|%-15.p|\n", p);
-	ft_printf("exp|0x |[42] %%-16.p, NULL\nres|%-16.p|\n", p);
+	// /* 이 아래 테스트는 결과가 제대로 안나옴;; */
+	// ft_printf("exp|0xba9876543210|[.] %%-2.p, NULL\nres|%-2.p|\n", &zero);
+	// ft_printf("exp|0xba9876543210|[.] %%-2.p, NULL\nres|%-2.p|\n", NULL);
+	// ft_printf("exp|0xba9876543210|[lv] %%-2.p, NULL\nres|%-2.p|\n", p);
+	// ft_printf("exp|0xba9876543210|[lv] %%-3.p, NULL\nres|%-3.p|\n", p);
+	// ft_printf("exp|0xba9876543210 |[lv] %%-15.p, NULL\nres|%-15.p|\n", p);
+	// ft_printf("exp|0x |[lv] %%-16.p, NULL\nres|%-16.p|\n", p);=
+
+	// fix x(lover & pft)============================
+	// ft_printf("exp |ffffff79|[lv] %%.x, 4294967161\nres |%.x|\n", 4294967161);
+	// ft_printf("exp |c6  |[lv] %%-4.0x, 198\nres |%-4.0x|\n", 198);
+	// ft_printf("exp |    |[lv] %%-4.0x, 0\nres |%-4.0x|\n", 0);
+	// ft_printf("exp |     |[pft] %%5.0x, 0\nres |%5.0x|\n", 0);
+
+	// fix d(lover) sigabort ========================
+
+	// int		a = -4;
+	// // int		b = 0;
+	// char	c = 'a';
+	// int		d = ;
+	// int		e = ;
+	// // int		f = 42;
+	// // int		g = 25;
+	// // int		h = 4200;
+	// int		i = 8;
+	// int		j = -12;
+	// int		k = 123456789;
+	// int		l = 0;
+	// int		m = -12345678;
+	// char	*n = "abcdefghijklmnop";
+	// char	*o = "-a";
+	// char	*p = "-12";
+	// char	*q = "0";
+	// char	*r = "%%";
+	// char	*s = "-2147483648";
+	// char	*t = "0x12345678";
+	// char	*u = "-0";
+	// while (a < 5) //T34-69
+	// {
+	// 	printf("%d printf   : %*i, %*d, %*d, %*d, %*d, %*d, %*d, %*d\n", a, a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	// 	ft_printf("%d ft_printf: %*i, %*d, %*d, %*d, %*d, %*d, %*d, %*d\n", a, a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	// 	printf("%d printf   : %0*i, %0*d, %0*d, %0*d, %0*d, %0*d, %0*d, %0*d\n", a, a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	// 	ft_printf("%d ft_printf: %0*i, %0*d, %0*d, %0*d, %0*d, %0*d, %0*d, %0*d\n", a, a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	// 	printf("%d printf   : %-*i, %-*d, %-*d, %-*d, %-*d, %-*d, %-*d, %-*d\n", a, a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	// 	ft_printf("%d ft_printf: %-*i, %-*d, %-*d, %-*d, %-*d, %-*d, %-*d, %-*d\n", a, a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	// 	printf("%d printf   : %.*i, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d\n", a, a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	// 	ft_printf("%d ft_printf: %.*i,c %.*d, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d\n", a, a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d);
+	// 	a++;
+	// }
+	// printf("%d ft_printf: %.*i,c %.*d, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d\n", 0, 0, 8, 0, -12, 0, 123456789, 0, 0, 0, -12345678, 0, 'a', 0, -2147483647, 0, 2147483647);
+	// ft_printf("%d ft_printf: %.*i,c %.*d, %.*d, %.*d, %.*d, %.*d, %.*d, %.*d\n", 0, 0, 8, 0, -12, 0, 123456789, 0, 0, 0, -12345678, 0, 'a', 0, -2147483647, 0, 2147483647);
+
+	printf("|%1.d|\n", 0);
+	ft_printf("|%1.d|\n", 0);
+
+	// ft_printf("|%-4.*d|\n", 4, -135);
+	// int iii = -5;
+	// while(iii < 6)
+	// {
+	// 	printf("printf   : -->|%-1.d|<--\n", iii);
+	// 	ft_printf("ft_printf: -->|%-1.d|<--\n", iii);
+	// 	iii++;
+	// }
 }
+
