@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:14:52 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/28 01:16:40 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/08/31 13:56:19 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,44 @@ static int	proc_with_flag(char *str, t_note *note, int is_negative)
 	{
 		len += note->is_dot == 0 ? putnchar('-', is_negative) : 0;
 		len += note->is_dot == 1 ? putnchar(' ', note->cnt_space) :
-				putnchar('0', note->cnt_space);
+			putnchar('0', note->cnt_space);
 		len += note->is_dot == 1 ? putnchar('-', is_negative) : 0;
 		len += putnchar('0', note->cnt_zero);
 		write(1, str, note->cnt_arg);
 	}
 	return (len);
+}
+
+static void	calc(int len_arg, t_note *note, int is_negative, int arg)
+{
+	if (len_arg >= note->width)
+	{
+		note->cnt_space = note->is_dot == 1 && note->prcs == 0 && arg == 0 && note->width > 0 ? 1 : 0;
+		note->cnt_arg = len_arg;
+		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 && arg
+		 == 0 ? 0 : len_arg;
+		note->cnt_zero = len_arg >= note->prcs ? 0 : note->prcs - len_arg;
+	}
+	else
+	{
+		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 && arg
+		 == 0 ? 0 : len_arg;
+		if (len_arg >= note->prcs)
+		{
+			note->cnt_zero = note->flag == '0' && note->prcs < 0 ? note->width - len_arg - is_negative: 0;
+			note->cnt_space = note->flag == '0' && note->prcs < 0 ? 0 : note->width - len_arg;
+		}
+		else
+		{
+			note->cnt_zero = note->prcs - len_arg;
+			note->cnt_space = note->width >= note->prcs ?
+					note->width - note->prcs : 0;
+		}
+		note->cnt_space += note->is_dot == 1 && note->prcs == 0 && arg
+		 == 0 ? 1 : 0;
+		note->cnt_space -= is_negative == 1 && note->cnt_space > 0 ? 1 : 0;
+	}
+	return ;
 }
 
 static int	generate_str(char **str, unsigned long long arg)
@@ -45,33 +77,6 @@ static int	generate_str(char **str, unsigned long long arg)
 	return (proc_len);
 }
 
-static void	calc(int arg, t_note *note, int is_negative)
-{
-	if (arg >= note->width)
-	{
-		note->cnt_space = 0;
-		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 ? 0 : arg;
-		note->cnt_zero = arg >= note->prcs ? 0 : note->prcs - arg;
-	}
-	else
-	{
-		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 ? 0 : arg;
-		if (arg >= note->prcs)
-		{
-			note->cnt_zero = 0;
-			note->cnt_space = note->width - arg - is_negative;
-		}
-		else
-		{
-			note->cnt_zero = note->prcs - arg;
-			note->cnt_space = note->width >= note->prcs ?
-					note->width - note->prcs - is_negative : 0;
-		}
-		note->cnt_space += note->is_dot == 1 && note->prcs == 0 ? 1 : 0;
-	}
-	return ;
-}
-
 size_t		put_u_type(unsigned int arg, t_note *note)
 {
 	int		proc_len;
@@ -80,7 +85,7 @@ size_t		put_u_type(unsigned int arg, t_note *note)
 
 	is_negative = arg < 0 ? 1 : 0;
 	proc_len = generate_str(&str, arg);
-	calc(proc_len, note, is_negative);
+	calc(proc_len, note, is_negative, arg);
 	proc_len = note->cnt_arg;
 	if (note->flag != 0)
 		proc_len += proc_with_flag(str, note, is_negative);
