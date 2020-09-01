@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:16:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/31 16:02:12 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/09/01 21:05:42 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,23 @@ static void	calc(int len_arg, t_note *note, int arg)
 {
 	if (len_arg >= note->width)
 	{
-		note->cnt_space = note->is_dot == 1 && note->prcs == 0 && arg == 0 && note->width > 0 ? 1 : 0;
+		note->cnt_space = note->is_dot == 1 && note->prcs == 0 && arg == 0
+				&& note->width > 0 ? 1 : 0;
 		note->cnt_arg = len_arg;
-		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 && arg
-		 == 0 ? 0 : len_arg;
+		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 &&
+				arg == 0 ? 0 : len_arg;
 		note->cnt_zero = len_arg >= note->prcs ? 0 : note->prcs - len_arg;
 	}
 	else
 	{
-		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 && arg
-		 == 0 ? 0 : len_arg;
+		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 &&
+				arg == 0 ? 0 : len_arg;
 		if (len_arg >= note->prcs)
 		{
-			note->cnt_zero = note->flag == '0' && note->prcs < 0 ? note->width - len_arg: 0;
-			note->cnt_space = note->flag == '0' && note->prcs < 0 ? 0 : note->width - len_arg;
+			note->cnt_zero = note->flag == '0' && note->prcs < 0 ?
+					note->width - len_arg : 0;
+			note->cnt_space = note->flag == '0' && note->prcs < 0 ? 0 :
+					note->width - len_arg;
 		}
 		else
 		{
@@ -59,8 +62,8 @@ static void	calc(int len_arg, t_note *note, int arg)
 			note->cnt_space = note->width >= note->prcs ?
 					note->width - note->prcs : 0;
 		}
-		note->cnt_space += note->is_dot == 1 && note->prcs == 0 && arg
-		 == 0 ? 1 : 0;;
+		note->cnt_space += note->is_dot == 1 && note->prcs == 0 &&
+				arg == 0 ? 1 : 0;
 	}
 	return ;
 }
