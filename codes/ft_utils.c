@@ -6,11 +6,35 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/21 10:08:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/09/02 17:44:56 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/09/02 18:56:32 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int			proc_with_flag(char *str, t_note *note, int is_negative)
+{
+	int	len;
+
+	len = 0;
+	if (note->flag == '-')
+	{
+		len += is_negative > 0 ? putnchar('-', 1) : 0;
+		len += putnchar('0', note->cnt_zero);
+		write(1, str, note->cnt_arg);
+		len += putnchar(' ', note->cnt_space);
+	}
+	else if (note->flag == '0')
+	{
+		len += note->is_dot == 0 ? putnchar('-', is_negative) : 0;
+		len += note->is_dot == 1 ? putnchar(' ', note->cnt_space) :
+			putnchar('0', note->cnt_space);
+		len += note->is_dot == 1 ? putnchar('-', is_negative) : 0;
+		len += putnchar('0', note->cnt_zero);
+		write(1, str, note->cnt_arg);
+	}
+	return (len);
+}
 
 void		parse_prcs(int *len, const char *fmt, int *idx, t_note *note)
 {
@@ -37,18 +61,6 @@ int			parse_flag(const char *fmt, int *idx, t_note *note)
 	return (len);
 }
 
-void		init_note(t_note *note)
-{
-	note->flag = 0;
-	note->type = 0;
-	note->width = 0;
-	note->prcs = 0;
-	note->is_dot = 0;
-	note->cnt_space = 0;
-	note->cnt_zero = 0;
-	note->cnt_arg = 0;
-}
-
 char		*itoa_abs(int arg)
 {
 	unsigned int	value;
@@ -59,7 +71,7 @@ char		*itoa_abs(int arg)
 
 size_t		putnchar(char chr, size_t len)
 {
-	size_t			idx;
+	size_t	idx;
 
 	idx = 0;
 	if (len == 0)

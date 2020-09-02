@@ -6,14 +6,14 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:16:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/09/02 18:21:22 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/09/02 18:55:22 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int	proc_with_flag(char *str, t_note *note)
+static int	proc_x_with_flag(char *str, t_note *note)
 {
 	int		len;
 
@@ -80,7 +80,7 @@ size_t		put_xx_type(unsigned int arg, char *base, t_note *note)
 	calc(proc_len, note, arg);
 	proc_len = note->cnt_arg;
 	if (note->flag != 0)
-		proc_len += proc_with_flag(str, note);
+		proc_len += proc_x_with_flag(str, note);
 	else
 	{
 		proc_len += putnchar(' ', note->cnt_space);
