@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:14:52 by cbaek             #+#    #+#             */
-/*   Updated: 2020/09/01 21:03:00 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/09/02 18:50:41 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,28 @@ static int	proc_with_flag(char *str, t_note *note, int is_negative)
 	return (len);
 }
 
+static int	is_both_zero(t_note *note, int arg)
+{
+	if (note->is_dot == 1 && note->prcs == 0 && arg == 0)
+		return (1);
+	return (0);
+}
+
+static void	set_note_when_arg_greater_than_w(t_note *note, int len_arg, int arg)
+{
+	note->cnt_space = is_both_zero(note, arg) && note->width > 0 ? 1 : 0;
+	note->cnt_arg = is_both_zero(note, arg) ? 0 : len_arg;
+	note->cnt_zero = len_arg >= note->prcs ? 0 : note->prcs - len_arg;
+	return ;
+}
+
 static void	calc(int len_arg, t_note *note, int is_negative, int arg)
 {
 	if (len_arg >= note->width)
-	{
-		note->cnt_space = note->is_dot == 1 && note->prcs == 0 && arg == 0 &&
-				note->width > 0 ? 1 : 0;
-		note->cnt_arg = len_arg;
-		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 &&
-				arg == 0 ? 0 : len_arg;
-		note->cnt_zero = len_arg >= note->prcs ? 0 : note->prcs - len_arg;
-	}
+		set_note_when_arg_greater_than_w(note, len_arg, arg);
 	else
 	{
-		note->cnt_arg = note->is_dot == 1 && note->prcs == 0 &&
-			arg == 0 ? 0 : len_arg;
+		note->cnt_arg = is_both_zero(note, arg) ? 0 : len_arg;
 		if (len_arg >= note->prcs)
 		{
 			note->cnt_zero = note->flag == '0' && note->prcs < 0 ?
@@ -64,8 +71,7 @@ static void	calc(int len_arg, t_note *note, int is_negative, int arg)
 			note->cnt_space = note->width >= note->prcs ?
 					note->width - note->prcs : 0;
 		}
-		note->cnt_space += note->is_dot == 1 && note->prcs == 0 &&
-				arg == 0 ? 1 : 0;
+		note->cnt_space += is_both_zero(note, arg) ? 1 : 0;
 		note->cnt_space -= is_negative == 1 && note->cnt_space > 0 ? 1 : 0;
 	}
 	return ;
