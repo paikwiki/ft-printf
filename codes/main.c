@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 15:56:16 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/31 16:58:36 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/09/02 17:06:08 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -763,22 +763,52 @@ int main(void)
 // printf("\n%d\n", printf("%p, %x, %p, %x, %p, %x, %p, %x", (void *)209590960, 209590960, (void *)207038912, 207038912, (void *)1, 1, NULL, 0));
 // printf("\n%d\n", ft_printf("%p, %x, %p, %x, %p, %x, %p, %x", (void *)209590960, 209590960, (void *)207038912, 207038912, (void *)1, 1, NULL, 0));
 
-	int a = 8;
-	while (a < 12) //
-	{
-		printf(" --- Return : %d\n",    printf("orign: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",
-				a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
-		fflush(stdout);
-		printf(" --- Return : %d\n", ft_printf("mypft: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",
-				a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
-		printf(" --- Return : %d\n",    printf("orign: %-*p, %-*x, %-*p, %-*x, %-*p, %-*x, %-*p, %-*x",
-				a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
-		fflush(stdout);
-		printf(" --- Return : %d\n", ft_printf("mypft: %-*p, %-*x, %-*p, %-*x, %-*p, %-*x, %-*p, %-*x",
-				a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// int a = 8;
+	// while (a < 12) //
+	// {
+	// 	printf(" --- Return : %d\n",    printf("orign: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",
+	// 			a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// 	fflush(stdout);
+	// 	printf(" --- Return : %d\n", ft_printf("mypft: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",
+	// 			a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// 	fflush(stdout);
+	// 	printf(" --- Return : %d\n",    printf("orign: %-*p, %-*x, %-*p, %-*x, %-*p, %-*x, %-*p, %-*x",
+	// 			a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// 	fflush(stdout);
+	// 	printf(" --- Return : %d\n", ft_printf("mypft: %-*p, %-*x, %-*p, %-*x, %-*p, %-*x, %-*p, %-*x",
+	// 			a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// 	fflush(stdout);
+	// 	a++;
+	// }
 
-		a++;
-	}
+	// printf(" --- Return : %d\n",    printf("orign: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",
+	// 		a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// fflush(stdout);
+	// printf(" --- Return : %d\n", ft_printf("mypft: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",
+	// 		a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// fflush(stdout);
+	// printf(" --- Return : %d\n",    printf("orign: %-*p, %-*x, %-*p, %-*x, %-*p, %-*x, %-*p, %-*x",
+	// 		a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// fflush(stdout);
+	// printf(" --- Return : %d\n", ft_printf("mypft: %-*p, %-*x, %-*p, %-*x, %-*p, %-*x, %-*p, %-*x",
+	// 		a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// fflush(stdout);
+	// a = 9;
+
+	// printf(" --- Return : %d\n",    printf("orign: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",
+	// 	a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// fflush(stdout);
+	// printf(" --- Return : %d\n", ft_printf("mypft: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",
+	// 		a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// fflush(stdout);
+	// printf(" --- Return : %d\n",    printf("orign: %-*p, %-*x, %-*p, %-*x, %-*p, %-*x, %-*p, %-*x",
+	// 		a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// fflush(stdout);
+	// printf(" --- Return : %d\n", ft_printf("mypft: %-*p, %-*x, %-*p, %-*x, %-*p, %-*x, %-*p, %-*x",
+	// 		a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
+	// fflush(stdout);
+
+
 	// printf("\n==========================================================\n");
 
 	// a = 8;
@@ -790,7 +820,6 @@ int main(void)
 	// 			a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
 	// 	a++;
 	// }
-fflush(stdout);
 // int a = 8;
 // printf(" --- Return : %d\n",    printf("orign: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x", a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
 // printf(" --- Return : %d\n", ft_printf("mypft: %*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x", a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
@@ -813,5 +842,16 @@ fflush(stdout);
 	// 	ft_printf("ft_printf: -->|%-1.d|<--\n", iii);
 	// 	iii++;
 	// }
+
+
+	// int		a = -4;
+	// int		i = 8;
+	// printf(" --- Return : %d\n", printf("%-00000-----*i, %---0.*d, %0-0-0-0-0.*d, %-0-0-0-0-.*d, %-----.*d", a, i, a, i, a, i, a, i, a, i)); // not compile!!
+	// printf(" --- Return : %d\n", printf("%-2s, %.s, %-4s, %-2.4s, %-8.12s, %3s, %8s, %---2s, %.*s, %.0s, %.1s, %.2s, %.4s, %.8s", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -2, NULL, NULL, NULL, NULL, NULL, NULL));
+	// printf(" --- Return : %d\n", ft_printf("%-2s, %.s, %-4s, %-2.4s, %-8.12s, %3s, %8s, %---2s, %.*s, %.0s, %.1s, %.2s, %.4s, %.8s", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -2, NULL, NULL, NULL, NULL, NULL, NULL));
+
+	printf(" --- Return : %d\n", printf("%---2s, %.*s, %.0s, %.1s, %.2s, %.4s, %.8s", NULL, -2, NULL, NULL, NULL, NULL, NULL, NULL));
+	printf(" --- Return : %d\n", ft_printf("%---2s, %.*s, %.0s, %.1s, %.2s, %.4s, %.8s", NULL, -2, NULL, NULL, NULL, NULL, NULL, NULL));
+
 }
 

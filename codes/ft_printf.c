@@ -6,32 +6,17 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 22:23:23 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/28 14:00:44 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/09/02 17:44:59 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		parse_prcs(int *len, const char *fmt, int *idx, t_note *note)
-{
-	int	sign;
-
-	sign = 1;
-	if (fmt[*idx + *len] == '-' && ++(*len))
-		sign = -1;
-	while (ft_isdigit(fmt[*idx + *len]) && ++(*len))
-		note->prcs = (note->prcs * 10) + (fmt[*idx + *len - 1] - '0');
-	note->prcs *= sign;
-}
-
-static void		*parse_note(const char *fmt, int *idx, t_note *note, va_list ap)
+static void		parse_note(const char *fmt, int *idx, t_note *note, va_list ap)
 {
 	int	len;
 
-	len = 1;
-	note->flag = ft_strchr("-0", fmt[*idx + len]) ? fmt[*idx + len++] : 0;
-	if (ft_strchr("-0", fmt[*idx + len]) && len++)
-		note->flag = note->flag != '-' ? fmt[*idx + len - 1] : note->flag;
+	len = parse_flag(fmt, idx, note);
 	if (fmt[*idx + len] == '*' && ++len)
 		note->width = va_arg(ap, int);
 	note->flag = note->width < 0 ? '-' : note->flag;
@@ -47,7 +32,7 @@ static void		*parse_note(const char *fmt, int *idx, t_note *note, va_list ap)
 		parse_prcs(&len, fmt, idx, note);
 	note->type = fmt[*idx + len];
 	*idx = *idx + len;
-	return (0);
+	return ;
 }
 
 static size_t	proc_placeholder(char ph_type, va_list ap, t_note *note)

@@ -6,7 +6,7 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 11:54:26 by cbaek             #+#    #+#             */
-/*   Updated: 2020/08/28 12:21:51 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/09/02 16:22:52 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ static int	generate_str(char **str, unsigned long long arg, t_note *note)
 	if (arg == 0 && note->is_dot && note->prcs == 0)
 	{
 		temp = ft_strdup("0x");
-		*str = temp;
-	}
-	else if (arg == 0 && note->is_dot && note->prcs != 0)
-	{
-		temp = ft_strdup("0x0");
 		*str = temp;
 	}
 	else
