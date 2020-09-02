@@ -6,12 +6,11 @@
 /*   By: cbaek <cbaek@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 12:16:33 by cbaek             #+#    #+#             */
-/*   Updated: 2020/09/02 18:55:22 by cbaek            ###   ########.fr       */
+/*   Updated: 2020/09/02 20:03:21 by cbaek            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static int	proc_x_with_flag(char *str, t_note *note)
 {
